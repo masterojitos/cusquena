@@ -1,15 +1,18 @@
-# humanstxt.org/
-# The humans responsible & technology colophon
-
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    Ricardo Garcia -- @masterojitos
+    Andres Garcia -- @andresx1x
 
 # THANKS
 
-    <name>
+    Gino Ferrand -- @gino_ferrand
 
-# TECHNOLOGY COLOPHON
-
-    HTML5, CSS3
-    Normalize.css, jQuery, Modernizr
+# SITE
+    
+    Cerveza Cusqueña Perú -- @cusquenaperu -- fb/cervezacusquena
+    Last update: 2014/10/05
+    Language: Español
+    IDE: NetBeans 8.0.1
+    Standards: HTML5, CSS3
+    Components: HTML5 Boilerplate, Normalize.css, SASS, Modernizr, 
+    jQuery, Ajax, Velocity, nanoScroller
