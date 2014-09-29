@@ -15,6 +15,7 @@ body
         margin-bottom: 3px
         position: relative
         width: 100%
+
         section
             height: 709px
             display: none
@@ -274,22 +275,23 @@ body
                 color: #fff
 
     > footer
-        color : #fff
+        color: #999
         height: 248px
         width: 100%
         h3
             text-align: center
             letter-spacing: 13px
-        article
-            font-size: 0.8em
-            img, span
-                display: inline-block
-                vertical-align: middle
-            img
-                width: 170px
-                margin: 0 15px
-            span
-                width: 600px
+        hr
+            border-top: 1px solid #2e2e2e
+            margin: 1em 40px
+        img, p
+            +inline-block
+        img
+            margin: 0 20px
+            width: 168px
+        p
+            font-size: 12px
+            width: 558px
     .boton-que-gano
         display: none
     .text-center
