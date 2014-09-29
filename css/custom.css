@@ -19,18 +19,15 @@ body {
 }
 /* line 17, ../sass/custom.sass */
 .container .content section {
+  height: 709px;
   display: none;
-}
-/* line 19, ../sass/custom.sass */
-.container .content section.section-no-fan {
-  display: block;
 }
 /* line 21, ../sass/custom.sass */
 .container .content section.section-no-fan article {
   background-image: url(../img/contenedor-no-fan.png);
   background-repeat: no-repeat;
   height: 360px;
-  margin: 135px auto 0 auto;
+  margin: 0 auto;
   padding: 55px 5px 0 5px;
   position: relative;
   text-align: center;
@@ -60,37 +57,91 @@ body {
   width: 260px;
 }
 /* line 47, ../sass/custom.sass */
-.container .content .enunciado {
-  color: #fea200 !important;
-  font-size: 1.7em !important;
-  font-weight: 600 !important;
+.container .content section.section-no-fan div.space {
+  width: 100%;
+  height: 165px;
+}
+/* line 50, ../sass/custom.sass */
+.container .content section.section-fan {
+  background-image: url(../img/fondo-mesa.jpg);
 }
 /* line 52, ../sass/custom.sass */
+.container .content section.section-fan article {
+  background-image: url(../img/contenedor-fan.png);
+  background-repeat: no-repeat;
+  height: 460px;
+  margin: 0 auto;
+  padding-top: 55px;
+  position: relative;
+  text-align: center;
+  width: 329px;
+}
+/* line 61, ../sass/custom.sass */
+.container .content section.section-fan .top-logo {
+  left: -30px;
+  position: absolute;
+  top: -142px;
+  width: 391px;
+}
+/* line 66, ../sass/custom.sass */
+.container .content section.section-fan footer {
+  margin: 10px auto;
+  padding: 3px 0;
+  width: 260px;
+}
+/* line 70, ../sass/custom.sass */
+.container .content section.section-fan footer:hover {
+  cursor: pointer;
+}
+/* line 72, ../sass/custom.sass */
+.container .content section.section-fan div.space {
+  width: 100%;
+  height: 123px;
+}
+/* line 75, ../sass/custom.sass */
+.container .content .enunciado {
+  color: #fea200;
+  font-size: 1.7em;
+  font-weight: 600;
+}
+/* line 79, ../sass/custom.sass */
+.container .content .enunciado.white {
+  color: white;
+}
+/* line 82, ../sass/custom.sass */
 .container > footer {
   color: white;
   height: 248px;
   width: 100%;
 }
-/* line 56, ../sass/custom.sass */
+/* line 86, ../sass/custom.sass */
 .container > footer h3 {
   text-align: center;
   letter-spacing: 13px;
 }
-/* line 59, ../sass/custom.sass */
+/* line 89, ../sass/custom.sass */
 .container > footer article {
   font-size: 0.8em;
 }
-/* line 61, ../sass/custom.sass */
+/* line 91, ../sass/custom.sass */
 .container > footer article img, .container > footer article span {
   display: inline-block;
   vertical-align: middle;
 }
-/* line 64, ../sass/custom.sass */
+/* line 94, ../sass/custom.sass */
 .container > footer article img {
   width: 170px;
   margin: 0 15px;
 }
-/* line 67, ../sass/custom.sass */
+/* line 97, ../sass/custom.sass */
 .container > footer article span {
   width: 600px;
+}
+/* line 99, ../sass/custom.sass */
+.container .boton-que-gano {
+  display: none;
+}
+/* line 101, ../sass/custom.sass */
+.container .text-center {
+  text-align: center;
 }
