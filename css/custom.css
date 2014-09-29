@@ -12,21 +12,85 @@ body {
 }
 /* line 12, ../sass/custom.sass */
 .container .content {
+  background-image: url(../img/fondo-no-fan.jpg);
   height: 709px;
   margin-bottom: 3px;
   width: 100%;
-  background-image: url(../img/fondo-no-fan.jpg);
 }
-/* line 18, ../sass/custom.sass */
+/* line 17, ../sass/custom.sass */
 .container .content section {
   display: none;
 }
-/* line 21, ../sass/custom.sass */
+/* line 19, ../sass/custom.sass */
 .container .content section.section-no-fan {
   display: block;
 }
-/* line 24, ../sass/custom.sass */
-.container .footer {
+/* line 21, ../sass/custom.sass */
+.container .content section.section-no-fan article {
+  background-image: url(../img/contenedor-no-fan.png);
+  background-repeat: no-repeat;
+  height: 360px;
+  margin: 135px auto 0 auto;
+  padding: 55px 5px 0 5px;
+  position: relative;
+  text-align: center;
+  width: 284px;
+}
+/* line 30, ../sass/custom.sass */
+.container .content section.section-no-fan .top-logo {
+  left: 25px;
+  position: absolute;
+  top: -150px;
+  width: 260px;
+}
+/* line 35, ../sass/custom.sass */
+.container .content section.section-no-fan .mesa-roja {
+  margin-left: -40px;
+}
+/* line 37, ../sass/custom.sass */
+.container .content section.section-no-fan footer {
+  border-bottom: 2px solid white;
+  border-top: 2px solid white;
+  color: white;
+  font-size: 1.19em;
+  font-weight: 600;
+  margin: 10px auto;
+  padding: 3px 0;
+  text-align: center;
+  width: 260px;
+}
+/* line 47, ../sass/custom.sass */
+.container .content .enunciado {
+  color: #fea200 !important;
+  font-size: 1.7em !important;
+  font-weight: 600 !important;
+}
+/* line 52, ../sass/custom.sass */
+.container > footer {
+  color: white;
   height: 248px;
   width: 100%;
+}
+/* line 56, ../sass/custom.sass */
+.container > footer h3 {
+  text-align: center;
+  letter-spacing: 13px;
+}
+/* line 59, ../sass/custom.sass */
+.container > footer article {
+  font-size: 0.8em;
+}
+/* line 61, ../sass/custom.sass */
+.container > footer article img, .container > footer article span {
+  display: inline-block;
+  vertical-align: middle;
+}
+/* line 64, ../sass/custom.sass */
+.container > footer article img {
+  width: 170px;
+  margin: 0 15px;
+}
+/* line 67, ../sass/custom.sass */
+.container > footer article span {
+  width: 600px;
 }
