@@ -120,64 +120,71 @@ body {
   height: 100px;
   position: absolute;
   width: 100px;
+  z-index: 1;
 }
-/* line 92, ../sass/custom.sass */
+/* line 93, ../sass/custom.sass */
 .container .content section.section-mesa-roja .imagen-recuadro.amigo-1 {
   left: 83px;
   top: 252px;
 }
-/* line 95, ../sass/custom.sass */
+/* line 96, ../sass/custom.sass */
 .container .content section.section-mesa-roja .imagen-recuadro.amigo-2 {
   left: 264px;
   top: 252px;
 }
-/* line 98, ../sass/custom.sass */
+/* line 99, ../sass/custom.sass */
 .container .content section.section-mesa-roja .imagen-recuadro.amigo-3 {
   left: 441px;
   top: 252px;
 }
-/* line 101, ../sass/custom.sass */
+/* line 102, ../sass/custom.sass */
 .container .content section.section-mesa-roja .imagen-recuadro.amigo-4 {
   left: 621px;
   top: 252px;
 }
-/* line 104, ../sass/custom.sass */
+/* line 105, ../sass/custom.sass */
 .container .content section.section-mesa-roja .imagen-recuadro.amigo-5 {
   left: 83px;
   top: 505px;
 }
-/* line 107, ../sass/custom.sass */
+/* line 108, ../sass/custom.sass */
 .container .content section.section-mesa-roja .imagen-recuadro.amigo-6 {
   left: 264px;
   top: 505px;
 }
-/* line 110, ../sass/custom.sass */
+/* line 111, ../sass/custom.sass */
 .container .content section.section-mesa-roja .imagen-recuadro.amigo-7 {
   left: 441px;
   top: 505px;
 }
-/* line 113, ../sass/custom.sass */
+/* line 114, ../sass/custom.sass */
 .container .content section.section-mesa-roja .imagen-recuadro.amigo-8 {
   left: 621px;
   top: 505px;
 }
-/* line 116, ../sass/custom.sass */
+/* line 117, ../sass/custom.sass */
 .container .content section.section-mesa-roja .imagen-recuadro img {
   position: absolute;
   right: -17px;
   top: -18px;
 }
-/* line 120, ../sass/custom.sass */
+/* line 121, ../sass/custom.sass */
 .container .content section.section-mesa-roja article {
   color: white;
+  height: 500px;
   padding-top: 65px;
+  z-index: 2;
 }
-/* line 123, ../sass/custom.sass */
+/* line 126, ../sass/custom.sass */
+.container .content section.section-mesa-roja article div.space {
+  height: 335px;
+}
+/* line 128, ../sass/custom.sass */
 .container .content section.section-formulario {
   background-image: url(../img/fondo-mesa.jpg);
   background-position: -811px 0;
 }
-/* line 126, ../sass/custom.sass */
+/* line 131, ../sass/custom.sass */
 .container .content section.section-formulario article {
   background-image: url(../img/contenedor-formulario.png);
   background-repeat: no-repeat;
@@ -188,72 +195,7 @@ body {
   text-align: left;
   width: 430px;
 }
-/* line 135, ../sass/custom.sass */
-.container .content section.section-formulario article .cusquena-input {
-  height: 22px;
-  margin-top: 20px;
-  position: relative;
-  width: 100%;
-}
 /* line 140, ../sass/custom.sass */
-.container .content section.section-formulario article .cusquena-input > div {
-  position: relative;
-  display: inline-block;
-  text-align: left;
-}
-/* line 144, ../sass/custom.sass */
-.container .content section.section-formulario article .cusquena-input > div .border {
-  border: 1px solid #fea200;
-  border-top: 0;
-  bottom: 0;
-  height: 10px;
-  position: absolute;
-  width: 192px;
-}
-/* line 151, ../sass/custom.sass */
-.container .content section.section-formulario article .cusquena-input > div .border.error {
-  border: 1px solid #fb2600;
-  border-top: 0;
-}
-/* line 154, ../sass/custom.sass */
-.container .content section.section-formulario article .cusquena-input > div .border.dia {
-  left: 1px;
-  width: 57px;
-}
-/* line 157, ../sass/custom.sass */
-.container .content section.section-formulario article .cusquena-input > div .border.mes {
-  left: 69px;
-  width: 57px;
-}
-/* line 160, ../sass/custom.sass */
-.container .content section.section-formulario article .cusquena-input > div .border.ano {
-  left: 137px;
-  width: 57px;
-}
-/* line 163, ../sass/custom.sass */
-.container .content section.section-formulario article .cusquena-input > div.text {
-  color: #fea200;
-  padding-right: 3px;
-  text-align: right;
-  width: 177px;
-}
-/* line 168, ../sass/custom.sass */
-.container .content section.section-formulario article .cusquena-input > div input {
-  background: transparent;
-  color: white;
-  border: 0;
-  padding: 0 0 1px 5px;
-}
-/* line 173, ../sass/custom.sass */
-.container .content section.section-formulario article .cusquena-input > div input.dia, .container .content section.section-formulario article .cusquena-input > div input.mes, .container .content section.section-formulario article .cusquena-input > div input.ano {
-  margin-left: 9px;
-  width: 50px;
-}
-/* line 176, ../sass/custom.sass */
-.container .content section.section-formulario article .cusquena-input > div input.dia {
-  margin-left: 0;
-}
-/* line 178, ../sass/custom.sass */
 .container .content section.section-formulario article .terminos {
   bottom: 30px;
   color: white;
@@ -263,42 +205,42 @@ body {
   text-align: center;
   width: 100%;
 }
-/* line 186, ../sass/custom.sass */
+/* line 148, ../sass/custom.sass */
 .container .content section.section-formulario article .terminos .error {
   color: #fb2600;
 }
-/* line 188, ../sass/custom.sass */
+/* line 150, ../sass/custom.sass */
 .container .content section.section-formulario article .terminos a {
   color: #fea200;
 }
-/* line 190, ../sass/custom.sass */
+/* line 152, ../sass/custom.sass */
 .container .content section.section-formulario .top-logo {
   left: 18px;
   position: absolute;
   top: -142px;
   width: 391px;
 }
-/* line 195, ../sass/custom.sass */
+/* line 157, ../sass/custom.sass */
 .container .content section.section-formulario footer {
   margin: 10px auto;
   padding: 3px 0;
   text-align: center;
   width: 260px;
 }
-/* line 200, ../sass/custom.sass */
+/* line 162, ../sass/custom.sass */
 .container .content section.section-formulario footer img:hover {
   cursor: pointer;
 }
-/* line 202, ../sass/custom.sass */
+/* line 164, ../sass/custom.sass */
 .container .content section.section-formulario div.space {
   width: 100%;
   height: 123px;
 }
-/* line 205, ../sass/custom.sass */
+/* line 167, ../sass/custom.sass */
 .container .content section.section-terminos-y-condiciones {
   background: black;
 }
-/* line 207, ../sass/custom.sass */
+/* line 169, ../sass/custom.sass */
 .container .content section.section-terminos-y-condiciones article {
   background-repeat: no-repeat;
   border: 1px solid white;
@@ -309,14 +251,14 @@ body {
   text-align: center;
   width: 510px;
 }
-/* line 216, ../sass/custom.sass */
+/* line 178, ../sass/custom.sass */
 .container .content section.section-terminos-y-condiciones .top-logo {
   left: 55px;
   position: absolute;
   top: -142px;
   width: 391px;
 }
-/* line 221, ../sass/custom.sass */
+/* line 183, ../sass/custom.sass */
 .container .content section.section-terminos-y-condiciones .scroll {
   border: 1px solid white;
   color: white;
@@ -325,27 +267,27 @@ body {
   text-align: left;
   width: 490px;
 }
-/* line 228, ../sass/custom.sass */
+/* line 190, ../sass/custom.sass */
 .container .content section.section-terminos-y-condiciones footer {
   margin: 10px auto;
   padding: 3px 0;
   text-align: center;
   width: 260px;
 }
-/* line 233, ../sass/custom.sass */
+/* line 195, ../sass/custom.sass */
 .container .content section.section-terminos-y-condiciones footer img:hover {
   cursor: pointer;
 }
-/* line 235, ../sass/custom.sass */
+/* line 197, ../sass/custom.sass */
 .container .content section.section-terminos-y-condiciones div.space {
   width: 100%;
   height: 123px;
 }
-/* line 238, ../sass/custom.sass */
+/* line 200, ../sass/custom.sass */
 .container .content section.section-que-gano {
   background: black;
 }
-/* line 240, ../sass/custom.sass */
+/* line 202, ../sass/custom.sass */
 .container .content section.section-que-gano article {
   background-repeat: no-repeat;
   height: 300px;
@@ -355,14 +297,14 @@ body {
   text-align: center;
   width: 510px;
 }
-/* line 248, ../sass/custom.sass */
+/* line 210, ../sass/custom.sass */
 .container .content section.section-que-gano .top-logo {
   left: 55px;
   position: absolute;
   top: -142px;
   width: 391px;
 }
-/* line 253, ../sass/custom.sass */
+/* line 215, ../sass/custom.sass */
 .container .content section.section-que-gano .premios {
   color: white;
   font-size: 1.2em;
@@ -370,66 +312,131 @@ body {
   text-align: left;
   width: 200px;
 }
-/* line 259, ../sass/custom.sass */
+/* line 221, ../sass/custom.sass */
 .container .content section.section-que-gano footer {
   margin: 10px auto;
   padding: 3px 0;
   text-align: center;
   width: 260px;
 }
-/* line 264, ../sass/custom.sass */
+/* line 226, ../sass/custom.sass */
 .container .content section.section-que-gano footer img:hover {
   cursor: pointer;
 }
-/* line 266, ../sass/custom.sass */
+/* line 228, ../sass/custom.sass */
 .container .content section.section-que-gano div.space {
   width: 100%;
   height: 123px;
 }
+/* line 231, ../sass/custom.sass */
+.container .content section .cusquena-input {
+  height: 22px;
+  margin-top: 20px;
+  position: relative;
+  width: 100%;
+}
+/* line 236, ../sass/custom.sass */
+.container .content section .cusquena-input > div {
+  position: relative;
+  display: inline-block;
+  text-align: left;
+}
+/* line 240, ../sass/custom.sass */
+.container .content section .cusquena-input > div .border {
+  border: 1px solid #fea200;
+  border-top: 0;
+  bottom: 0;
+  height: 10px;
+  position: absolute;
+  width: 192px;
+}
+/* line 247, ../sass/custom.sass */
+.container .content section .cusquena-input > div .border.error {
+  border: 1px solid #fb2600;
+  border-top: 0;
+}
+/* line 250, ../sass/custom.sass */
+.container .content section .cusquena-input > div .border.dia {
+  left: 1px;
+  width: 57px;
+}
+/* line 253, ../sass/custom.sass */
+.container .content section .cusquena-input > div .border.mes {
+  left: 69px;
+  width: 57px;
+}
+/* line 256, ../sass/custom.sass */
+.container .content section .cusquena-input > div .border.ano {
+  left: 137px;
+  width: 57px;
+}
+/* line 259, ../sass/custom.sass */
+.container .content section .cusquena-input > div.text {
+  color: #fea200;
+  padding-right: 3px;
+  text-align: right;
+  width: 177px;
+}
+/* line 264, ../sass/custom.sass */
+.container .content section .cusquena-input > div input {
+  background: transparent;
+  color: white;
+  border: 0;
+  padding: 0 0 1px 5px;
+}
 /* line 269, ../sass/custom.sass */
+.container .content section .cusquena-input > div input.dia, .container .content section .cusquena-input > div input.mes, .container .content section .cusquena-input > div input.ano {
+  margin-left: 9px;
+  width: 50px;
+}
+/* line 272, ../sass/custom.sass */
+.container .content section .cusquena-input > div input.dia {
+  margin-left: 0;
+}
+/* line 274, ../sass/custom.sass */
 .container .content .enunciado {
   color: #fea200;
   font-size: 1.7em;
   font-weight: 600;
 }
-/* line 273, ../sass/custom.sass */
+/* line 278, ../sass/custom.sass */
 .container .content .enunciado.white {
   color: white;
 }
-/* line 276, ../sass/custom.sass */
+/* line 281, ../sass/custom.sass */
 .container > footer {
   color: white;
   height: 248px;
   width: 100%;
 }
-/* line 280, ../sass/custom.sass */
+/* line 285, ../sass/custom.sass */
 .container > footer h3 {
   text-align: center;
   letter-spacing: 13px;
 }
-/* line 283, ../sass/custom.sass */
+/* line 288, ../sass/custom.sass */
 .container > footer article {
   font-size: 0.8em;
 }
-/* line 285, ../sass/custom.sass */
+/* line 290, ../sass/custom.sass */
 .container > footer article img, .container > footer article span {
   display: inline-block;
   vertical-align: middle;
 }
-/* line 288, ../sass/custom.sass */
+/* line 293, ../sass/custom.sass */
 .container > footer article img {
   width: 170px;
   margin: 0 15px;
 }
-/* line 291, ../sass/custom.sass */
+/* line 296, ../sass/custom.sass */
 .container > footer article span {
   width: 600px;
 }
-/* line 293, ../sass/custom.sass */
+/* line 298, ../sass/custom.sass */
 .container .boton-que-gano {
   display: none;
 }
-/* line 295, ../sass/custom.sass */
+/* line 300, ../sass/custom.sass */
 .container .text-center {
   text-align: center;
 }
