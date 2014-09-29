@@ -49,7 +49,7 @@ body
                 div.space
                     width: 100%
                     height: 165px
-            &.section-fan, &.section-mesa-roja
+            &.section-fan, &.section-mesa-roja, &.section-inscrito
                 background-image: url(../img/fondo-mesa.jpg)
                 article
                     background-image: url(../img/contenedor-fan.png)
@@ -75,8 +75,16 @@ body
                 div.space
                     width: 100%
                     height: 123px
-            &.section-mesa-roja
+            &.section-inscrito
+                background-image: url(../img/fondo-mesa.jpg)
+                background-position: -2433px 0
                 display: block
+                article
+                    background-image: url(../img/contenedor-fan-inscrito.png)
+                    height: 260px
+                    padding-top: 360px
+                    width: 347px
+            &.section-mesa-roja
                 background-image: url(../img/fondo-mesa.jpg)
                 background-position: -1622px 0
                 .top-logo
@@ -277,6 +285,8 @@ body
             font-weight: 600
             &.white
                 color: #fff
+            &.little
+                font-size: 1.4em
 
     > footer
         color : #fff
