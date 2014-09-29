@@ -15,14 +15,16 @@ body {
   background-image: url(../img/fondo-no-fan.jpg);
   height: 709px;
   margin-bottom: 3px;
+  position: relative;
   width: 100%;
 }
-/* line 17, ../sass/custom.sass */
+/* line 18, ../sass/custom.sass */
 .container .content section {
   height: 709px;
   display: none;
+  position: relative;
 }
-/* line 21, ../sass/custom.sass */
+/* line 23, ../sass/custom.sass */
 .container .content section.section-no-fan article {
   background-image: url(../img/contenedor-no-fan.png);
   background-repeat: no-repeat;
@@ -33,18 +35,18 @@ body {
   text-align: center;
   width: 284px;
 }
-/* line 30, ../sass/custom.sass */
+/* line 32, ../sass/custom.sass */
 .container .content section.section-no-fan .top-logo {
   left: 25px;
   position: absolute;
   top: -150px;
   width: 260px;
 }
-/* line 35, ../sass/custom.sass */
+/* line 37, ../sass/custom.sass */
 .container .content section.section-no-fan .mesa-roja {
   margin-left: -40px;
 }
-/* line 37, ../sass/custom.sass */
+/* line 39, ../sass/custom.sass */
 .container .content section.section-no-fan footer {
   border-bottom: 2px solid white;
   border-top: 2px solid white;
@@ -56,17 +58,17 @@ body {
   text-align: center;
   width: 260px;
 }
-/* line 47, ../sass/custom.sass */
+/* line 49, ../sass/custom.sass */
 .container .content section.section-no-fan div.space {
   width: 100%;
   height: 165px;
 }
-/* line 50, ../sass/custom.sass */
-.container .content section.section-fan {
+/* line 52, ../sass/custom.sass */
+.container .content section.section-fan, .container .content section.section-mesa-roja {
   background-image: url(../img/fondo-mesa.jpg);
 }
-/* line 52, ../sass/custom.sass */
-.container .content section.section-fan article {
+/* line 54, ../sass/custom.sass */
+.container .content section.section-fan article, .container .content section.section-mesa-roja article {
   background-image: url(../img/contenedor-fan.png);
   background-repeat: no-repeat;
   height: 460px;
@@ -76,35 +78,106 @@ body {
   text-align: center;
   width: 329px;
 }
-/* line 61, ../sass/custom.sass */
-.container .content section.section-fan .top-logo {
+/* line 63, ../sass/custom.sass */
+.container .content section.section-fan .top-logo, .container .content section.section-mesa-roja .top-logo {
   left: -30px;
   position: absolute;
   top: -142px;
   width: 391px;
 }
-/* line 66, ../sass/custom.sass */
-.container .content section.section-fan footer {
+/* line 68, ../sass/custom.sass */
+.container .content section.section-fan footer, .container .content section.section-mesa-roja footer {
   margin: 10px auto;
   padding: 3px 0;
   text-align: center;
   width: 260px;
 }
-/* line 71, ../sass/custom.sass */
-.container .content section.section-fan footer img:hover {
+/* line 73, ../sass/custom.sass */
+.container .content section.section-fan footer img:hover, .container .content section.section-mesa-roja footer img:hover {
   cursor: pointer;
 }
-/* line 73, ../sass/custom.sass */
-.container .content section.section-fan div.space {
+/* line 75, ../sass/custom.sass */
+.container .content section.section-fan div.space, .container .content section.section-mesa-roja div.space {
   width: 100%;
   height: 123px;
 }
-/* line 76, ../sass/custom.sass */
+/* line 78, ../sass/custom.sass */
+.container .content section.section-mesa-roja {
+  display: block;
+  background-image: url(../img/fondo-mesa.jpg);
+  background-position: -1622px 0;
+}
+/* line 82, ../sass/custom.sass */
+.container .content section.section-mesa-roja .top-logo {
+  left: 209px;
+  position: absolute;
+  top: -17px;
+  width: 391px;
+  z-index: 10;
+}
+/* line 88, ../sass/custom.sass */
+.container .content section.section-mesa-roja .imagen-recuadro {
+  height: 100px;
+  position: absolute;
+  width: 100px;
+}
+/* line 92, ../sass/custom.sass */
+.container .content section.section-mesa-roja .imagen-recuadro.amigo-1 {
+  left: 83px;
+  top: 252px;
+}
+/* line 95, ../sass/custom.sass */
+.container .content section.section-mesa-roja .imagen-recuadro.amigo-2 {
+  left: 264px;
+  top: 252px;
+}
+/* line 98, ../sass/custom.sass */
+.container .content section.section-mesa-roja .imagen-recuadro.amigo-3 {
+  left: 441px;
+  top: 252px;
+}
+/* line 101, ../sass/custom.sass */
+.container .content section.section-mesa-roja .imagen-recuadro.amigo-4 {
+  left: 621px;
+  top: 252px;
+}
+/* line 104, ../sass/custom.sass */
+.container .content section.section-mesa-roja .imagen-recuadro.amigo-5 {
+  left: 83px;
+  top: 505px;
+}
+/* line 107, ../sass/custom.sass */
+.container .content section.section-mesa-roja .imagen-recuadro.amigo-6 {
+  left: 264px;
+  top: 505px;
+}
+/* line 110, ../sass/custom.sass */
+.container .content section.section-mesa-roja .imagen-recuadro.amigo-7 {
+  left: 441px;
+  top: 505px;
+}
+/* line 113, ../sass/custom.sass */
+.container .content section.section-mesa-roja .imagen-recuadro.amigo-8 {
+  left: 621px;
+  top: 505px;
+}
+/* line 116, ../sass/custom.sass */
+.container .content section.section-mesa-roja .imagen-recuadro img {
+  position: absolute;
+  right: -17px;
+  top: -18px;
+}
+/* line 120, ../sass/custom.sass */
+.container .content section.section-mesa-roja article {
+  color: white;
+  padding-top: 65px;
+}
+/* line 123, ../sass/custom.sass */
 .container .content section.section-formulario {
   background-image: url(../img/fondo-mesa.jpg);
   background-position: -811px 0;
 }
-/* line 79, ../sass/custom.sass */
+/* line 126, ../sass/custom.sass */
 .container .content section.section-formulario article {
   background-image: url(../img/contenedor-formulario.png);
   background-repeat: no-repeat;
@@ -115,20 +188,20 @@ body {
   text-align: left;
   width: 430px;
 }
-/* line 88, ../sass/custom.sass */
+/* line 135, ../sass/custom.sass */
 .container .content section.section-formulario article .cusquena-input {
   height: 22px;
   margin-top: 20px;
   position: relative;
   width: 100%;
 }
-/* line 93, ../sass/custom.sass */
+/* line 140, ../sass/custom.sass */
 .container .content section.section-formulario article .cusquena-input > div {
   position: relative;
   display: inline-block;
   text-align: left;
 }
-/* line 97, ../sass/custom.sass */
+/* line 144, ../sass/custom.sass */
 .container .content section.section-formulario article .cusquena-input > div .border {
   border: 1px solid #fea200;
   border-top: 0;
@@ -137,50 +210,50 @@ body {
   position: absolute;
   width: 192px;
 }
-/* line 104, ../sass/custom.sass */
+/* line 151, ../sass/custom.sass */
 .container .content section.section-formulario article .cusquena-input > div .border.error {
   border: 1px solid #fb2600;
   border-top: 0;
 }
-/* line 107, ../sass/custom.sass */
+/* line 154, ../sass/custom.sass */
 .container .content section.section-formulario article .cusquena-input > div .border.dia {
   left: 1px;
   width: 57px;
 }
-/* line 110, ../sass/custom.sass */
+/* line 157, ../sass/custom.sass */
 .container .content section.section-formulario article .cusquena-input > div .border.mes {
   left: 69px;
   width: 57px;
 }
-/* line 113, ../sass/custom.sass */
+/* line 160, ../sass/custom.sass */
 .container .content section.section-formulario article .cusquena-input > div .border.ano {
   left: 137px;
   width: 57px;
 }
-/* line 116, ../sass/custom.sass */
+/* line 163, ../sass/custom.sass */
 .container .content section.section-formulario article .cusquena-input > div.text {
   color: #fea200;
   padding-right: 3px;
   text-align: right;
   width: 177px;
 }
-/* line 121, ../sass/custom.sass */
+/* line 168, ../sass/custom.sass */
 .container .content section.section-formulario article .cusquena-input > div input {
   background: transparent;
   color: white;
   border: 0;
   padding: 0 0 1px 5px;
 }
-/* line 126, ../sass/custom.sass */
+/* line 173, ../sass/custom.sass */
 .container .content section.section-formulario article .cusquena-input > div input.dia, .container .content section.section-formulario article .cusquena-input > div input.mes, .container .content section.section-formulario article .cusquena-input > div input.ano {
   margin-left: 9px;
   width: 50px;
 }
-/* line 129, ../sass/custom.sass */
+/* line 176, ../sass/custom.sass */
 .container .content section.section-formulario article .cusquena-input > div input.dia {
   margin-left: 0;
 }
-/* line 131, ../sass/custom.sass */
+/* line 178, ../sass/custom.sass */
 .container .content section.section-formulario article .terminos {
   bottom: 30px;
   color: white;
@@ -190,42 +263,42 @@ body {
   text-align: center;
   width: 100%;
 }
-/* line 139, ../sass/custom.sass */
+/* line 186, ../sass/custom.sass */
 .container .content section.section-formulario article .terminos .error {
   color: #fb2600;
 }
-/* line 141, ../sass/custom.sass */
+/* line 188, ../sass/custom.sass */
 .container .content section.section-formulario article .terminos a {
   color: #fea200;
 }
-/* line 143, ../sass/custom.sass */
+/* line 190, ../sass/custom.sass */
 .container .content section.section-formulario .top-logo {
   left: 18px;
   position: absolute;
   top: -142px;
   width: 391px;
 }
-/* line 148, ../sass/custom.sass */
+/* line 195, ../sass/custom.sass */
 .container .content section.section-formulario footer {
   margin: 10px auto;
   padding: 3px 0;
   text-align: center;
   width: 260px;
 }
-/* line 153, ../sass/custom.sass */
+/* line 200, ../sass/custom.sass */
 .container .content section.section-formulario footer img:hover {
   cursor: pointer;
 }
-/* line 155, ../sass/custom.sass */
+/* line 202, ../sass/custom.sass */
 .container .content section.section-formulario div.space {
   width: 100%;
   height: 123px;
 }
-/* line 158, ../sass/custom.sass */
+/* line 205, ../sass/custom.sass */
 .container .content section.section-terminos-y-condiciones {
   background: black;
 }
-/* line 160, ../sass/custom.sass */
+/* line 207, ../sass/custom.sass */
 .container .content section.section-terminos-y-condiciones article {
   background-repeat: no-repeat;
   border: 1px solid white;
@@ -236,14 +309,14 @@ body {
   text-align: center;
   width: 510px;
 }
-/* line 169, ../sass/custom.sass */
+/* line 216, ../sass/custom.sass */
 .container .content section.section-terminos-y-condiciones .top-logo {
   left: 55px;
   position: absolute;
   top: -142px;
   width: 391px;
 }
-/* line 174, ../sass/custom.sass */
+/* line 221, ../sass/custom.sass */
 .container .content section.section-terminos-y-condiciones .scroll {
   border: 1px solid white;
   color: white;
@@ -252,28 +325,27 @@ body {
   text-align: left;
   width: 490px;
 }
-/* line 181, ../sass/custom.sass */
+/* line 228, ../sass/custom.sass */
 .container .content section.section-terminos-y-condiciones footer {
   margin: 10px auto;
   padding: 3px 0;
   text-align: center;
   width: 260px;
 }
-/* line 186, ../sass/custom.sass */
+/* line 233, ../sass/custom.sass */
 .container .content section.section-terminos-y-condiciones footer img:hover {
   cursor: pointer;
 }
-/* line 188, ../sass/custom.sass */
+/* line 235, ../sass/custom.sass */
 .container .content section.section-terminos-y-condiciones div.space {
   width: 100%;
   height: 123px;
 }
-/* line 191, ../sass/custom.sass */
+/* line 238, ../sass/custom.sass */
 .container .content section.section-que-gano {
-  display: block;
   background: black;
 }
-/* line 194, ../sass/custom.sass */
+/* line 240, ../sass/custom.sass */
 .container .content section.section-que-gano article {
   background-repeat: no-repeat;
   height: 300px;
@@ -283,14 +355,14 @@ body {
   text-align: center;
   width: 510px;
 }
-/* line 202, ../sass/custom.sass */
+/* line 248, ../sass/custom.sass */
 .container .content section.section-que-gano .top-logo {
   left: 55px;
   position: absolute;
   top: -142px;
   width: 391px;
 }
-/* line 207, ../sass/custom.sass */
+/* line 253, ../sass/custom.sass */
 .container .content section.section-que-gano .premios {
   color: white;
   font-size: 1.2em;
@@ -298,66 +370,66 @@ body {
   text-align: left;
   width: 200px;
 }
-/* line 213, ../sass/custom.sass */
+/* line 259, ../sass/custom.sass */
 .container .content section.section-que-gano footer {
   margin: 10px auto;
   padding: 3px 0;
   text-align: center;
   width: 260px;
 }
-/* line 218, ../sass/custom.sass */
+/* line 264, ../sass/custom.sass */
 .container .content section.section-que-gano footer img:hover {
   cursor: pointer;
 }
-/* line 220, ../sass/custom.sass */
+/* line 266, ../sass/custom.sass */
 .container .content section.section-que-gano div.space {
   width: 100%;
   height: 123px;
 }
-/* line 223, ../sass/custom.sass */
+/* line 269, ../sass/custom.sass */
 .container .content .enunciado {
   color: #fea200;
   font-size: 1.7em;
   font-weight: 600;
 }
-/* line 227, ../sass/custom.sass */
+/* line 273, ../sass/custom.sass */
 .container .content .enunciado.white {
   color: white;
 }
-/* line 230, ../sass/custom.sass */
+/* line 276, ../sass/custom.sass */
 .container > footer {
   color: white;
   height: 248px;
   width: 100%;
 }
-/* line 234, ../sass/custom.sass */
+/* line 280, ../sass/custom.sass */
 .container > footer h3 {
   text-align: center;
   letter-spacing: 13px;
 }
-/* line 237, ../sass/custom.sass */
+/* line 283, ../sass/custom.sass */
 .container > footer article {
   font-size: 0.8em;
 }
-/* line 239, ../sass/custom.sass */
+/* line 285, ../sass/custom.sass */
 .container > footer article img, .container > footer article span {
   display: inline-block;
   vertical-align: middle;
 }
-/* line 242, ../sass/custom.sass */
+/* line 288, ../sass/custom.sass */
 .container > footer article img {
   width: 170px;
   margin: 0 15px;
 }
-/* line 245, ../sass/custom.sass */
+/* line 291, ../sass/custom.sass */
 .container > footer article span {
   width: 600px;
 }
-/* line 247, ../sass/custom.sass */
+/* line 293, ../sass/custom.sass */
 .container .boton-que-gano {
   display: none;
 }
-/* line 249, ../sass/custom.sass */
+/* line 295, ../sass/custom.sass */
 .container .text-center {
   text-align: center;
 }

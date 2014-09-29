@@ -13,10 +13,12 @@ body
         background-image: url(../img/fondo-no-fan.jpg)
         height: 709px
         margin-bottom: 3px
+        position: relative
         width: 100%
         section
             height: 709px
             display: none
+            position: relative
             &.section-no-fan
                 article
                     background-image: url(../img/contenedor-no-fan.png)
@@ -47,7 +49,7 @@ body
                 div.space
                     width: 100%
                     height: 165px
-            &.section-fan
+            &.section-fan, &.section-mesa-roja
                 background-image: url(../img/fondo-mesa.jpg)
                 article
                     background-image: url(../img/contenedor-fan.png)
@@ -73,6 +75,51 @@ body
                 div.space
                     width: 100%
                     height: 123px
+            &.section-mesa-roja
+                display: block
+                background-image: url(../img/fondo-mesa.jpg)
+                background-position: -1622px 0
+                .top-logo
+                    left: 209px
+                    position: absolute
+                    top: -17px
+                    width: 391px
+                    z-index: 10
+                .imagen-recuadro
+                    height: 100px
+                    position: absolute
+                    width: 100px
+                    &.amigo-1
+                        left: 83px
+                        top: 252px
+                    &.amigo-2
+                        left: 264px
+                        top: 252px
+                    &.amigo-3
+                        left: 441px
+                        top: 252px
+                    &.amigo-4
+                        left: 621px
+                        top: 252px
+                    &.amigo-5
+                        left: 83px
+                        top: 505px
+                    &.amigo-6
+                        left: 264px
+                        top: 505px
+                    &.amigo-7
+                        left: 441px
+                        top: 505px
+                    &.amigo-8
+                        left: 621px
+                        top: 505px
+                    img
+                        position: absolute
+                        right: -17px
+                        top: -18px
+                article
+                    color: #fff
+                    padding-top: 65px
             &.section-formulario
                 background-image: url(../img/fondo-mesa.jpg)
                 background-position: -811px 0
@@ -188,8 +235,7 @@ body
                 div.space
                     width: 100%
                     height: 123px
-            &.section-que-gano
-                display: block 
+            &.section-que-gano 
                 background: #000
                 article
                     background-repeat: no-repeat
