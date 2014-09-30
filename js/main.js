@@ -48,6 +48,11 @@ $(document).on("ready", function() {
         }
         $("section:visible").hide();
         $("section." + $this.data("to")).fadeIn();
+        if ($this.data("to") !== "section-no-fan") {
+            $("#boton_que_gano").fadeIn();
+        } else {
+            $("#boton_que_gano").hide();
+        }
         if ($this.data('to') === "section-mesa-roja" && $this.hasClass('nombre')) {
             $(".section-mesa-roja .elegir-amigos").addClass('hidden');
             $(".section-mesa-roja .colocar-nombre").removeClass('hidden');
