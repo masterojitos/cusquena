@@ -30,10 +30,10 @@
                 <a href="#" class="boton-que-gano"><img src="img/boton-que-gano.png" alt="¿QUÉ GANO?" /></a>
                 <ul class="indice">
                     <li data-to="section-no-fan">No fan</li>
-                    <li data-to="section-fan">fan</li>
-                    <li data-to="section-formulario">Formulario <br /><span data-show="normal">Normal</span> <br /><span data-show="error">Error</span> </li>
-                    <li data-to="section-terminos-y-condiciones">terminos y condiciones</li>
-                    <li data-to="section-que-gano">¿que gano?</li>
+                    <li data-to="section-fan">Fan</li>
+                    <li data-to="section-formulario">Formulario <br /><span data-show="normal">normal</span> <br /><span data-show="error">error</span> </li>
+                    <li data-to="section-terminos-y-condiciones">Terminos y condiciones</li>
+                    <li data-to="section-que-gano">¿Que Gano?</li>
                     <li data-to="section-mesa-roja">Elegir amigos <br /><span data-show="agregar">boton agregar</span> <br /> <span data-show="eliminar">boton eliminar</span></li>
                     <li data-to="section-mesa-roja" class="nombre">¿Cómo llamaremos a tu mesa?</li>
                     <li data-to="section-inscrito">Compartir la mesa</li>
@@ -259,38 +259,7 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.1.0/velocity.min.js"></script>
         <script>$.fn.velocity || document.write('<script src="js/vendor/velocity.min.js"><\/script>');</script>
         <script src="js/main.js"></script>
-        <script>
-            $(document).on("ready",function(){
-                $("ul.indice li").on("click",function(e){
-                    $(".section-formulario .border").removeClass('error');
-                    $(".section-mesa-roja .elegir-amigos").removeClass('hidden');
-                    $(".section-mesa-roja .colocar-nombre, .agregar-amigo, .eliminar-amigo").addClass('hidden');
-                    if($(e.target).is("span")){
-                        if($(this).data('to') == "section-formulario"){
-                            if($(e.target).data("show") == "error"){
-                                $(".section-formulario .border").addClass('error');
-                            }
-                        }else if($(this).data('to') == "section-mesa-roja"){
-                            if($(e.target).data("show") == "agregar"){
-                                $(".section-mesa-roja .elegir-amigos").addClass('hidden');
-                                $(".agregar-amigo").removeClass('hidden');
-                            }else if($(e.target).data("show") == "eliminar"){
-                                $(".eliminar-amigo").removeClass('hidden');
-                                $(".section-mesa-roja .elegir-amigos").addClass('hidden');
-                            }
-                        }
-                    }
-                    $("section:visible").css("display","none");
-                    $("section." + $(this).data("to")).fadeIn("fast");
-                    if($(this).data('to') == "section-mesa-roja"){
-                        if($(this).hasClass('nombre')){
-                            $(".section-mesa-roja .elegir-amigos").addClass('hidden');
-                            $(".section-mesa-roja .colocar-nombre").removeClass('hidden');    
-                        }
-                    }
-                });
-            });
-        </script>
+
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
