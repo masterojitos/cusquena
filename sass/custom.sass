@@ -17,6 +17,7 @@ body
             display: none
             position: relative
             &.section-no-fan
+                display: block
                 article
                     background-image: url(../img/contenedor-no-fan.png)
                     background-repeat: no-repeat
@@ -49,8 +50,6 @@ body
                         cursor: pointer
                 div.space
                     height: 165px
-            &.section-mesa-roja
-                display: block
             &.section-fan, &.section-mesa-roja, &.section-inscrito
                 background-image: url(../img/fondo-mesa.jpg)
                 article
@@ -318,3 +317,17 @@ body
     margin-left: -68px
     position: absolute
     width: 137px
+.indice
+    color: #ddd
+    opacity: 0.5
+    max-width: 250px
+    position: absolute
+    right: -260px
+    li
+        &:hover
+            cursor: pointer
+            color: #fff
+        span
+            color: #FF7F7F
+            &:hover
+                color: red
