@@ -12,6 +12,20 @@ body
         margin-bottom: 3px
         position: relative
         width: 100%
+        =mesa-roja-cusquena
+            left: 50%
+            margin-left: -196px
+            position: absolute
+            top: -132px
+        =boton-inferior
+            bottom: 15px
+            left: 50%
+            height: 52px
+            margin-left: -68px
+            position: absolute
+            width: 137px
+            img:hover
+                cursor: pointer
         section
             height: 709px
             display: none
@@ -62,21 +76,10 @@ body
                     text-align: center
                     width: 328px
                 .top-logo
-                    left: -35px
-                    position: absolute
-                    top: -142px
+                    +mesa-roja-cusquena
                 footer
-                    bottom: 30px
-                    left: 50%
-                    margin-left: -130px
-                    padding: 3px 0
-                    position: absolute
-                    text-align: center
-                    width: 260px
-                    img:hover
-                        cursor: pointer
+                    +boton-inferior
                 div.space
-                    width: 100%
                     height: 123px
             &.section-formulario
                 background-image: url(../img/fondo-mesa.jpg)
@@ -99,33 +102,30 @@ body
                         text-align: center
                         width: 100%
                         .error
-                            color: #FB2600
+                            color: #fb2600
                         a
-                            color: #FEA200
+                            color: #fea200
                 .top-logo
-                    left: 18px
-                    position: absolute
-                    top: -142px
-                    width: 391px
+                    +mesa-roja-cusquena
                 footer
-                    margin: 10px auto
-                    padding: 3px 0
-                    text-align: center
-                    width: 260px
-                    img:hover
-                        cursor: pointer
+                    +boton-inferior
                 div.space
-                    width: 100%
                     height: 123px
             &.section-mesa-roja
                 background-image: url(../img/fondo-mesa.jpg)
                 background-position: -1622px 0
+                article
+                    color: #fff
+                    z-index: 2
                 .top-logo
-                    left: 209px
-                    position: absolute
-                    top: -17px
-                    width: 391px
-                    z-index: 10
+                    top: -10px
+                    z-index: 3
+                footer
+                    margin-left: -145px
+                    text-align: center
+                    width: 290px
+                    img:last-child
+                        padding-left: 10px
                 .imagen-recuadro
                     height: 100px
                     position: absolute
@@ -159,13 +159,6 @@ body
                         position: absolute
                         right: -17px
                         top: -18px
-                article
-                    color: #fff
-                    height: 500px
-                    padding-top: 65px
-                    z-index: 2
-                    div.space
-                        height: 335px
             &.section-inscrito
                 background-image: url(../img/fondo-mesa.jpg)
                 background-position: -2433px 0
@@ -174,38 +167,33 @@ body
                     height: 260px
                     padding-top: 360px
                     width: 347px
+                footer
+                    margin-left: -96px
+                    width: 192px
             &.section-terminos-y-condiciones
                 background: #000
                 article
                     background-repeat: no-repeat
-                    border: 1px solid #fff
                     height: 460px
                     margin: 0 auto
-                    padding-top: 55px
+                    padding-top: 65px
                     position: relative
                     text-align: center
                     width: 510px
                 .top-logo
-                    left: 55px
-                    position: absolute
-                    top: -142px
-                    width: 391px
+                    +mesa-roja-cusquena
                 .scroll
-                    border: 1px solid #fff
+                    border-right: 4px solid #666
                     color: #fff
-                    height: 410px
-                    margin: 0 10px
+                    height: 370px
+                    margin: 20px 0
+                    overflow: hidden
+                    padding: 0 20px
                     text-align: left
-                    width: 490px
+                    width: 470px
                 footer
-                    margin: 10px auto
-                    padding: 3px 0
-                    text-align: center
-                    width: 260px
-                    img:hover
-                        cursor: pointer
+                    +boton-inferior
                 div.space
-                    width: 100%
                     height: 123px
             &.section-que-gano 
                 background: #000
@@ -218,63 +206,60 @@ body
                     text-align: center
                     width: 510px
                 .top-logo
-                    left: 55px
-                    position: absolute
-                    top: -142px
-                    width: 391px
+                    +mesa-roja-cusquena
                 .premios
                     color: #fff
                     font-size: 1.2em
                     margin: 30px auto 0
                     text-align: left
                     width: 200px
+                    li
+                        margin: 15px 0
                 footer
-                    margin: 10px auto
-                    padding: 3px 0
-                    text-align: center
-                    width: 260px
+                    height: 52px
+                    margin: 50px auto 0
+                    width: 137px
                     img:hover
                         cursor: pointer
                 div.space
-                    width: 100%
                     height: 123px
             .cusquena-input
                 height: 22px
                 margin-top: 20px
                 position: relative
                 width: 100%
+                label
+                    color: #fea200
+                    padding-right: 3px
+                    text-align: right
+                    width: 177px
+                    +inline-block
                 > div
                     position: relative
                     display: inline-block
                     text-align: left
                     .border
-                        border: 1px solid #FEA200
+                        border: 1px solid #fea200
                         border-top: 0
                         bottom: 0
                         height: 10px
                         position: absolute
                         width: 192px
                         &.error
-                            border: 1px solid #FB2600
+                            border: 1px solid #fb2600
                             border-top: 0
-                        &.dia
+                        &.dia, &.mes, &.ano
                             left: 1px
                             width: 57px
                         &.mes
                             left: 69px
-                            width: 57px
                         &.ano
                             left: 137px
-                            width: 57px
-                    &.text
-                        color: #FEA200
-                        padding-right: 3px
-                        text-align: right
-                        width: 177px
                     input
                         background: transparent
                         color: #fff
                         border: 0
+                        outline: 0
                         padding: 0 0 1px 5px
                         &.dia, &.mes, &.ano
                             margin-left: 9px
@@ -310,13 +295,6 @@ body
         display: none
     .text-center
         text-align: center
-=boton-inferior
-    bottom: 30px
-    left: 50%
-    height: 52px
-    margin-left: -68px
-    position: absolute
-    width: 137px
 .indice
     color: #ddd
     max-width: 250px

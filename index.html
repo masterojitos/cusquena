@@ -70,29 +70,29 @@
                             <span class="enunciado">COMPLETA TUS DATOS</span><br />
                         </div>
                         <div class="cusquena-input">
-                            <div class="text">Nombres:</div>
+                            <label>Nombres:</label>
                             <div>
                                 <div class="border"></div>
                                 <input type="text" name="nombre" />
                             </div>
                         </div>
                         <div class="cusquena-input">
-                            <div class="text">Apellido Paterno:</div>
+                            <label>Apellido Paterno:</label>
                             <div>
                                 <div class="border"></div>
                                 <input type="text" name="apellido_paterno" />
                             </div>
                         </div>
                         <div class="cusquena-input">
-                            <div class="text">Apellido Materno:</div>
+                            <label>Apellido Materno:</label>
                             <div>
                                 <div class="border"></div>
                                 <input type="text" name="apellido_materno" />
                             </div>
                         </div>
                         <div class="cusquena-input">
-                            <div class="text">Fecha de Nacimiento:</div>
-                            <div class="dia">
+                            <label>Fecha de Nacimiento:</label>
+                            <div>
                                 <div class="border dia"></div>
                                 <div class="border mes"></div>
                                 <div class="border ano"></div>
@@ -102,21 +102,21 @@
                             </div>
                         </div>
                         <div class="cusquena-input">
-                            <div class="text">DNI:</div>
+                            <label>DNI:</label>
                             <div>
                                 <div class="border"></div>
                                 <input type="text" name="dni" />
                             </div>
                         </div>
                         <div class="cusquena-input">
-                            <div class="text">Correo Electronico:</div>
+                            <label>Correo Electronico:</label>
                             <div>
                                 <div class="border"></div>
                                 <input type="text" name="email" />
                             </div>
                         </div>
                         <div class="cusquena-input">
-                            <div class="text">Celular:</div>
+                            <label>Celular:</label>
                             <div>
                                 <div class="border"></div>
                                 <input type="text" name="cell" />
@@ -133,7 +133,7 @@
                         </div>
                     </article>
                     <footer>
-                        <img src="img/boton-participa.png" alt="PARTICIPA" />
+                        <img src="img/boton-participa.png" alt="SIGUIENTE" id="boton_siguiente" />
                     </footer>
                 </section>
                 <section class="section-mesa-roja">
@@ -143,7 +143,7 @@
                         <span class="enunciado">ELIGE A TUS 7 AMIGOS</span><br />
                         <span>PARA DISFRUTAR DE LA MEJOR</span><br />
                         <strong>FIESTA CERVECERA DEL MUNDO</strong><br /><br />
-                        <img src="img/boton-elegir.png" alt="CERRAR" />
+                        <img src="img/boton-elegir.png" alt="ELEGIR" id="boton_elegir" />
                     </article>
                     <article class="hidden colocar-nombre">
                         <span class="enunciado">¿CÓMO LLAMAMOS A TU MESA ROJA?</span><br />
@@ -153,9 +153,6 @@
                                 <input type="text" name="name" placeholder="   Escribe el nombre aqui" />
                             </div>
                         </div>
-                        <div class="space"></div>
-                        <img src="img/boton-regresar.png" alt="REGRESAR" />
-                        <img src="img/boton-listo.png" alt="LISTO" />
                     </article>
                     <div class="imagen-recuadro amigo-1">
                         <img src="img/boton-eliminar.png" alt="ELIMINAR" class="eliminar-amigo hidden" />
@@ -190,7 +187,9 @@
                         <img src="img/boton-escoger.png" alt="AGREGAR" class="agregar-amigo hidden" />
                     </div>
                     <footer>
-                        <img src="img/boton-participa.png" alt="PARTICIPA" class="hidden" />
+                        <img src="img/boton-un-paso-mas.png" alt="UN PASO MÁS" id="boton_unpasomas" />
+                        <img src="img/boton-regresar.png" alt="REGRESAR" class="hidden" id="boton_regresar" />
+                        <img src="img/boton-listo.png" alt="¡LISTO!" class="hidden" id="boton_listo" />
                     </footer>
                 </section>
                 <section class="section-inscrito">
@@ -200,7 +199,7 @@
                         <span class="enunciado white">"CAMPEONES"</span><br/>
                     </article>
                     <footer>
-                        <img src="img/boton-participa.png" alt="PARTICIPA"/>
+                        <img src="img/boton-compartir.png" alt="COMPARTE LA MESA" id="boton_compartir" />
                     </footer>
                 </section>
                 <section class="section-terminos-y-condiciones">
@@ -208,12 +207,13 @@
                     <article>
                         <img class="top-logo" src="img/mesa-roja-cusquena.png" alt="MESA ROJA" />
                         <span class="enunciado">TERMINOS Y CONDICIONES</span><br />
-                        <div class="scroll">
+                        <div id="scroll_terminos_y_condiciones" class="scroll">
+                            Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
                             Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
                         </div>
                     </article>
                     <footer>
-                        <img src="img/boton-cerrar.png" alt="CERRAR" />
+                        <img src="img/boton-cerrar.png" alt="CERRAR" class="boton-cerrar" />
                     </footer>
                 </section>
                 <section class="section-que-gano">
@@ -229,7 +229,7 @@
                         </ul>
                     </article>
                     <footer>
-                        <img src="img/boton-cerrar.png" alt="CERRAR" />
+                        <img src="img/boton-cerrar.png" alt="CERRAR" class="boton-cerrar" />
                     </footer>
                 </section>
             </main>
