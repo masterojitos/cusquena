@@ -5,13 +5,15 @@ body
     border: 1px solid #fff //temporary
     height: 960px
     margin: 3px auto 0
+    overflow: hidden
+    position: relative
     width: 812px
     > main
         background-image: url(../img/fondo-no-fan.jpg)
         height: 709px
         margin-bottom: 3px
-        position: relative
-        width: 100%
+        overflow: hidden
+        width: 3241px
         =mesa-roja-cusquena
             left: 50%
             margin-left: -196px
@@ -29,18 +31,26 @@ body
         section
             height: 709px
             display: none
+            float: left
             position: relative
+            width: 812px
+            article
+                list-style: none
+                margin: 0 auto
+                margin-top: -1709px
             &.section-no-fan
                 display: block
                 article
                     background-image: url(../img/contenedor-no-fan.png)
                     background-repeat: no-repeat
+                    display: block
                     height: 360px
+                    float: none
                     margin: 0 auto
                     padding-top: 55px
                     position: relative
                     text-align: center
-                    width: 284px
+                    width: 294px
                 .top-logo
                     left: 20px
                     position: absolute
@@ -70,11 +80,10 @@ body
                     background-image: url(../img/contenedor-fan.png)
                     background-repeat: no-repeat
                     height: 250px
-                    margin: 0 auto
                     padding-top: 55px
                     position: relative
                     text-align: center
-                    width: 328px
+                    width: 329px
                 .top-logo
                     +mesa-roja-cusquena
                 footer
@@ -88,7 +97,6 @@ body
                     background-image: url(../img/contenedor-formulario.png)
                     background-repeat: no-repeat
                     height: 460px
-                    margin: 0 auto
                     padding-top: 55px
                     position: relative
                     text-align: left
@@ -173,6 +181,10 @@ body
                 footer
                     margin-left: -96px
                     width: 192px
+            &.section-terminos-y-condiciones, &.section-que-gano
+                left: 0
+                position: absolute
+                top: -709px
             &.section-terminos-y-condiciones
                 background: #000
                 z-index: 5
@@ -301,25 +313,16 @@ body
             width: 558px
     #boton_que_gano
         cursor: pointer
-        display: none
         position: absolute
         top: -3px
         right: 3px
         z-index: 4
     .text-center
         text-align: center
-.indice
-    left: 812px
-    margin: 20px 0 0 40px
-    padding: 0
-    position: absolute
-    width: 250px
-    li
-        color: #000
-        margin: 10px 0
-        &:hover
-            cursor: pointer
-            font-weight: 700
-        span
-            color: #f00
-            margin-left: 20px
+    .nano
+        .nano-content
+            padding: 10px
+        .nano-pane
+            background: #888
+        .nano-slider
+            background: #111

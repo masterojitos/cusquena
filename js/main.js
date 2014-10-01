@@ -27,35 +27,76 @@
 // User code
 var $this, $target;
 $(document).on("ready", function() {
-    $("ul.indice li").on("click", function(e) {
-        $(".section-formulario .border").removeClass('error');
-        $(".section-mesa-roja .elegir-amigos").removeClass('hidden');
-        $(".section-mesa-roja .colocar-nombre, .agregar-amigo, .eliminar-amigo").addClass('hidden');
-        $this = $(this);
-        $target = $(e.target);
-        if ($target.is("span")) {
-            if ($this.data('to') === "section-formulario" && $target.data("show") === "error") {
-                $(".section-formulario .border").addClass('error');
-            } else if ($this.data('to') === "section-mesa-roja") {
-                if ($target.data("show") === "agregar") {
-                    $(".section-mesa-roja .elegir-amigos").addClass('hidden');
-                    $(".agregar-amigo").removeClass('hidden');
-                } else if ($target.data("show") === "eliminar") {
-                    $(".section-mesa-roja .elegir-amigos").addClass('hidden');
-                    $(".eliminar-amigo").removeClass('hidden');
-                }
-            }
-        }
-        $("section:visible").hide();
-        $("section." + $this.data("to")).fadeIn();
-        if ($this.data("to") !== "section-no-fan") {
-            $("#boton_que_gano").fadeIn();
-        } else {
-            $("#boton_que_gano").hide();
-        }
-        if ($this.data('to') === "section-mesa-roja" && $this.hasClass('nombre')) {
-            $(".section-mesa-roja .elegir-amigos").addClass('hidden');
-            $(".section-mesa-roja .colocar-nombre").removeClass('hidden');
+    $(".like-page").on("click",function(){
+        $("#boton_que_gano").removeClass('hidden');
+        $(".nano").nanoScroller();
+        $("section.section-no-fan").fadeOut(500).find("article").velocity({ marginTop: "-709px"},500,function(){
+            $("section.section-fan article").css("display","list-item").velocity({ marginTop: "0"},500);
+        }).parent().next().css("display","block");
+    });
+    $("#boton_participa").on("click",function(){
+        $("section.section-formulario").css("display","block");
+        $("section.section-fan").velocity({ marginLeft: "-812px"},1200,function(){
+            $("section.section-fan").css("display","none")}).find("article").velocity({ marginTop: "-709px"},500,function(){
+            $("section.section-formulario article").css("display","list-item").velocity({ marginTop: "0"},700);
+        });
+    });
+    $("#boton_siguiente").on("click",function(){
+        //validacion
+        //name /^([a-zA-Z ñáéíóú äöüÄÖÜß]{2,60})$/
+        //efecto
+        $("section.section-mesa-roja").css("display","block");
+        $("section.section-formulario").velocity({ marginLeft: "-812px"},1200,function(){
+            $(this).css("display","none")}).find("article").velocity({ marginTop: "-1709px"},500,function(){
+            $("section.section-mesa-roja article.elegir-amigos").css("display","list-item").velocity({ marginTop: "0"},700);
+        });
+    });
+    $("#boton_elegir").on("click",function(){
+        $("section.section-mesa-roja article.elegir-amigos").velocity({ marginTop: "-709px"},700,function(){
+            $(this).addClass('hidden');
+            $(".agregar-amigo").removeClass('hidden')
+        });
+    });
+    $("img.agregar-amigo").on("click",function(){
+        $(this).parent(".imagen-recuadro").css("background","red");
+        $(this).addClass('hidden').prev().removeClass('hidden')
+    });
+    $("img.eliminar-amigo").on("click",function(){
+        $(this).parent(".imagen-recuadro").css("background","transparent");
+        $(this).addClass('hidden').next().removeClass('hidden')
+    });
+    $("#boton_unpasomas").on("click",function(){
+        console.log($("section.section-mesa-roja article.colocar-nombre"),$(this).hasClass('enabled'))
+        if(!$(this).hasClass('enabled')){
+            $("section.section-mesa-roja article.colocar-nombre").removeClass('hidden').velocity({ marginTop: 0},700,function(){
+                $("#boton_unpasomas").addClass('hidden');
+                $("#boton_regresar, #boton_listo").css("display","none").removeClass('hidden').fadeIn("fast");
+            });
         }
     });
+    $("#boton_regresar").on("click",function(){
+        $("section.section-mesa-roja article.colocar-nombre").velocity({ marginTop: "-709px"},700,function(){
+            $(this).addClass('hidden');
+            $("#boton_regresar, #boton_listo").addClass('hidden');
+            $("#boton_unpasomas").css("display","none").removeClass('hidden').fadeIn("fast");
+        });
+    });
+    $("#boton_listo").on("click",function(){
+        $("section.section-inscrito").css("display","block");
+        $("section.section-mesa-roja").velocity({ marginLeft: "-812px"},1200,function(){
+            $("section.section-mesa-roja").css("display","none")}).find("article.colocar-nombre").velocity({ marginTop: "-709px"},500,function(){
+            $("section.section-inscrito article").css("display","list-item").velocity({ marginTop: "0"},700);
+        });
+    });
+    $("#boton_que_gano, .boton-terminos-y-condiciones").on("click",function(){
+        if($(this).hasClass('boton-terminos-y-condiciones')){
+            $("section.section-terminos-y-condiciones").css("display","block").velocity({ top: 0},1000);
+        }else{
+            $("section.section-que-gano").css("display","block").velocity({ top: 0},1000);
+        }
+    });
+    $(".boton-cerrar").on("click",function(){
+        $(this).parents("section").velocity({ top: "-709px"},1000,function(){$(this).css("display","block");});
+    });
+    
 });
