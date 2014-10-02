@@ -30,29 +30,63 @@ $(document).on("ready", function() {
     $(".like-page").on("click",function(){
         $("#boton_que_gano").removeClass('hidden');
         $(".nano").nanoScroller();
-        $("section.section-no-fan").fadeOut(500).find("article").velocity({ marginTop: "-709px"},500,function(){
-            $("section.section-fan article").css("display","list-item").velocity({ marginTop: "0"},500);
+        $("section.section-no-fan").fadeOut(500).find("article").animate({ marginTop: "-709px"},500,function(){
+            $("section.section-fan article").css("display","list-item").animate({ marginTop: "0"},500);
         }).parent().next().css("display","block");
     });
     $("#boton_participa").on("click",function(){
         $("section.section-formulario").css("display","block");
-        $("section.section-fan").velocity({ marginLeft: "-812px"},1200,function(){
-            $("section.section-fan").css("display","none")}).find("article").velocity({ marginTop: "-709px"},500,function(){
-            $("section.section-formulario article").css("display","list-item").velocity({ marginTop: "0"},700);
+        $("section.section-fan").animate({ marginLeft: "-812px"},1200,function(){
+            $("section.section-fan").css("display","none")}).find("article").animate({ marginTop: "-709px"},500,function(){
+            $("section.section-formulario article").css("display","list-item").animate({ marginTop: "0"},700);
         });
     });
     $("#boton_siguiente").on("click",function(){
-        //validacion
-        //name /^([a-zA-Z ñáéíóú äöüÄÖÜß]{2,60})$/
-        //efecto
-        $("section.section-mesa-roja").css("display","block");
-        $("section.section-formulario").velocity({ marginLeft: "-812px"},1200,function(){
-            $(this).css("display","none")}).find("article").velocity({ marginTop: "-1709px"},500,function(){
-            $("section.section-mesa-roja article.elegir-amigos").css("display","list-item").velocity({ marginTop: "0"},700);
-        });
+        form = $("section.section-formulario");
+        form.find(".border.error").removeClass('error');
+        var nombre = form.find("[name=nombre]");
+        var apellido_paterno = form.find("[name=apellido_paterno]");
+        var apellido_materno = form.find("[name=apellido_materno]");
+        var dia = form.find("[name=dia]");
+        var mes = form.find("[name=mes]");
+        var ano = form.find("[name=ano]");
+        var dni = form.find("[name=dni]");
+        var email = form.find("[name=email]");
+        var cell = form.find("[name=cell]");
+        var new_date = new Date(ano.val()+"-"+mes.val()+"-"+dia.val());
+        var nameregex = /^([a-zA-Z ñáéíóú äöüÄÖÜß]{2,60})$/;
+        var emailregex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        var numberregex = /[0-9-()+]{9,9}/;
+        if(!nameregex.test(nombre.val()) || nombre.val() == ""){
+            form.find(".error").text("El dato que ingresaste es incorrecto o inválido.");
+            nombre.prev().addClass('error');
+        }else if(!nameregex.test(apellido_paterno.val()) || apellido_paterno.val() == ""){
+            form.find(".error").text("El dato que ingresaste es incorrecto o inválido.");
+            apellido_paterno.prev().addClass('error');
+        }else if(!nameregex.test(apellido_materno.val()) || apellido_materno.val() == ""){
+            form.find(".error").text("El dato que ingresaste es incorrecto o inválido.");
+            apellido_materno.prev().addClass('error');
+        }else if( isNaN( new_date.getTime() )){
+            form.find(".error").text("El dato que ingresaste es incorrecto o inválido.");
+            dia.prev().addClass('error');
+            mes.prev().addClass('error');
+            ano.prev().addClass('error');
+        }else if(!emailregex.test(email.val()) || email.val() == ""){
+            form.find(".error").text("El dato que ingresaste es incorrecto o inválido.");
+            email.prev().addClass('error');
+        }else if(!numberregex.test(cell.val()) || cell.val() == ""){
+            form.find(".error").text("El dato que ingresaste es incorrecto o inválido.");
+            cell.prev().addClass('error');
+        }else {
+            $("section.section-mesa-roja").css("display","block");
+            $("section.section-formulario").animate({ marginLeft: "-812px"},1200,function(){
+                $(this).css("display","none")}).find("article").animate({ marginTop: "-1709px"},500,function(){
+                $("section.section-mesa-roja article.elegir-amigos").css("display","list-item").animate({ marginTop: "0"},700);
+            });
+        }
     });
     $("#boton_elegir").on("click",function(){
-        $("section.section-mesa-roja article.elegir-amigos").velocity({ marginTop: "-709px"},700,function(){
+        $("section.section-mesa-roja article.elegir-amigos").animate({ marginTop: "-709px"},700,function(){
             $(this).addClass('hidden');
             $(".agregar-amigo").removeClass('hidden')
         });
@@ -68,14 +102,14 @@ $(document).on("ready", function() {
     $("#boton_unpasomas").on("click",function(){
         console.log($("section.section-mesa-roja article.colocar-nombre"),$(this).hasClass('enabled'))
         if(!$(this).hasClass('enabled')){
-            $("section.section-mesa-roja article.colocar-nombre").removeClass('hidden').velocity({ marginTop: 0},700,function(){
+            $("section.section-mesa-roja article.colocar-nombre").removeClass('hidden').animate({ marginTop: 0},700,function(){
                 $("#boton_unpasomas").addClass('hidden');
                 $("#boton_regresar, #boton_listo").css("display","none").removeClass('hidden').fadeIn("fast");
             });
         }
     });
     $("#boton_regresar").on("click",function(){
-        $("section.section-mesa-roja article.colocar-nombre").velocity({ marginTop: "-709px"},700,function(){
+        $("section.section-mesa-roja article.colocar-nombre").animate({ marginTop: "-709px"},700,function(){
             $(this).addClass('hidden');
             $("#boton_regresar, #boton_listo").addClass('hidden');
             $("#boton_unpasomas").css("display","none").removeClass('hidden').fadeIn("fast");
@@ -83,20 +117,20 @@ $(document).on("ready", function() {
     });
     $("#boton_listo").on("click",function(){
         $("section.section-inscrito").css("display","block");
-        $("section.section-mesa-roja").velocity({ marginLeft: "-812px"},1200,function(){
-            $("section.section-mesa-roja").css("display","none")}).find("article.colocar-nombre").velocity({ marginTop: "-709px"},500,function(){
-            $("section.section-inscrito article").css("display","list-item").velocity({ marginTop: "0"},700);
+        $("section.section-mesa-roja").animate({ marginLeft: "-812px"},1200,function(){
+            $("section.section-mesa-roja").css("display","none")}).find("article.colocar-nombre").animate({ marginTop: "-709px"},500,function(){
+            $("section.section-inscrito article").css("display","list-item").animate({ marginTop: "0"},700);
         });
     });
     $("#boton_que_gano, .boton-terminos-y-condiciones").on("click",function(){
         if($(this).hasClass('boton-terminos-y-condiciones')){
-            $("section.section-terminos-y-condiciones").css("display","block").velocity({ top: 0},1000);
+            $("section.section-terminos-y-condiciones").css("display","block").animate({ top: 0},1000);
         }else{
-            $("section.section-que-gano").css("display","block").velocity({ top: 0},1000);
+            $("section.section-que-gano").css("display","block").animate({ top: 0},1000);
         }
     });
     $(".boton-cerrar").on("click",function(){
-        $(this).parents("section").velocity({ top: "-709px"},1000,function(){$(this).css("display","block");});
+        $(this).parents("section").animate({ top: "-709px"},1000,function(){$(this).css("display","block");});
     });
     
 });
