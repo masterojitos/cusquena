@@ -1,5 +1,6 @@
 @import compass
 @import fonts
+$page_width: 810px
 body
     background-color: #fff
 .container
@@ -7,13 +8,13 @@ body
     margin: 3px auto 0
     overflow: hidden
     position: relative
-    width: 810px
+    width: $page_width
     > main
         background-image: url(../img/fondo-no-fan.jpg)
         height: 709px
         margin-bottom: 3px
         overflow: hidden
-        width: 3241px
+        width: $page_width * 4
         =mesa-roja-cusquena
             left: 50%
             margin-left: -196px
@@ -33,7 +34,7 @@ body
             display: none
             float: left
             position: relative
-            width: 810px
+            width: $page_width
             article
                 list-style: none
                 margin: 0 auto

@@ -100,15 +100,16 @@ $(document).on("ready", function() {
         var cell = form.find("[name=cell]");
         var new_date = new Date(ano.val()+"-"+mes.val()+"-"+dia.val());
         var nameregex = /^([a-zA-Z ñáéíóú äöüÄÖÜß]{2,60})$/;
+        var dniregex = /[0-9]{8,8}/;
         var emailregex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         var numberregex = /[0-9-()+]{9,9}/;
-        if(!nameregex.test(nombre.val()) || nombre.val() == ""){
+        if(!nameregex.test(nombre.val()) || nombre.val() === ""){
             form.find(".error").text("El dato que ingresaste es incorrecto o inválido.");
             nombre.prev().addClass('error');
-        }else if(!nameregex.test(apellido_paterno.val()) || apellido_paterno.val() == ""){
+        }else if(!nameregex.test(apellido_paterno.val()) || apellido_paterno.val() === ""){
             form.find(".error").text("El dato que ingresaste es incorrecto o inválido.");
             apellido_paterno.prev().addClass('error');
-        }else if(!nameregex.test(apellido_materno.val()) || apellido_materno.val() == ""){
+        }else if(!nameregex.test(apellido_materno.val()) || apellido_materno.val() === ""){
             form.find(".error").text("El dato que ingresaste es incorrecto o inválido.");
             apellido_materno.prev().addClass('error');
         }else if( isNaN( new_date.getTime() )){
@@ -116,10 +117,13 @@ $(document).on("ready", function() {
             dia.prev().addClass('error');
             mes.prev().addClass('error');
             ano.prev().addClass('error');
-        }else if(!emailregex.test(email.val()) || email.val() == ""){
+        }else if(!dniregex.test(dni.val()) || dni.val() === ""){
+            form.find(".error").text("El dato que ingresaste es incorrecto o inválido.");
+            dni.prev().addClass('error');
+        }else if(!emailregex.test(email.val()) || email.val() === ""){
             form.find(".error").text("El dato que ingresaste es incorrecto o inválido.");
             email.prev().addClass('error');
-        }else if(!numberregex.test(cell.val()) || cell.val() == ""){
+        }else if(!numberregex.test(cell.val()) || cell.val() === ""){
             form.find(".error").text("El dato que ingresaste es incorrecto o inválido.");
             cell.prev().addClass('error');
         }else {
