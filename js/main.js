@@ -141,21 +141,34 @@ $(document).on("ready", function() {
         });
     });
     $("img.agregar-amigo").on("click",function(){
-        $(this).parent(".imagen-recuadro").css("background","red");
-        $(this).addClass('hidden').prev().removeClass('hidden')
+        $(this).parent(".imagen-recuadro").addClass('img_selected');
+        $(this).addClass('hidden').prev().removeClass('hidden');
+        if($(".imagen-recuadro.img_selected").length == 8){
+            $("#boton_unpasomas").css("display","none").removeClass('hidden').fadeIn("fast");
+        }
     });
     $("img.eliminar-amigo").on("click",function(){
-        $(this).parent(".imagen-recuadro").css("background","transparent");
-        $(this).addClass('hidden').next().removeClass('hidden')
+        $(this).parent(".imagen-recuadro").removeClass('img_selected');
+        $(this).addClass('hidden').next().removeClass('hidden');
+        $("#boton_unpasomas").addClass('hidden');
+    });
+    $("#boton_regresar").on("click",function(){
+        $("section.section-mesa-roja article.colocar-nombre").animate({ marginTop: "-709px"},700,function(){
+            $("#boton_regresar,#boton_listo").addClass('hidden');
+            $(".boton_unpasomas").css("display","none").removeClass('hidden').fadeIn("fast");
+        });
     });
     $("#boton_unpasomas").on("click",function(){
-        console.log($("section.section-mesa-roja article.colocar-nombre"),$(this).hasClass('enabled'))
         if(!$(this).hasClass('enabled')){
             $("section.section-mesa-roja article.colocar-nombre").removeClass('hidden').animate({ marginTop: 0},700,function(){
                 $("#boton_unpasomas").addClass('hidden');
-                $("#boton_regresar, #boton_listo").css("display","none").removeClass('hidden').fadeIn("fast");
+                $("#boton_regresar").css("display","none").removeClass('hidden').fadeIn("fast");
+                $("article.colocar-nombre input[name=name]").val().length >0 ? $("#boton_listo").css("display","none").removeClass('hidden').fadeIn("fast") : $("#boton_listo").addClass('hidden');
             });
         }
+    });
+    $("article.colocar-nombre input[name=name]").on("keyup",function(){
+        $("article.colocar-nombre input[name=name]").val().length >0 ? $("#boton_listo").css("display","none").removeClass('hidden').fadeIn("fast") : $("#boton_listo").addClass('hidden');
     });
     $("#boton_regresar").on("click",function(){
         $("section.section-mesa-roja article.colocar-nombre").animate({ marginTop: "-709px"},700,function(){
@@ -181,5 +194,11 @@ $(document).on("ready", function() {
     $(".boton-cerrar").on("click",function(){
         $(this).parents("section").animate({ top: "-709px"},1000,function(){$(this).css("display","block");});
     });
-    
+    $("#boton_compartir,#boton_listo,#boton_unpasomas,#boton_elegir,#boton_siguiente,#boton_participa,#boton_que_gano,#boton_regresar,.boton-cerrar").on("mouseenter",function(){
+        src = $(this).attr("src");
+        $(this).attr("src", src.replace(".png","-hover.png"));
+    }).on("mouseleave",function(){
+        src = $(this).attr("src");
+        $(this).attr("src", src.replace("-hover.png",".png"));
+    });
 });
