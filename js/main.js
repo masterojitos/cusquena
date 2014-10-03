@@ -27,9 +27,9 @@
 // User code
 var $this, $target;
 $(document).on("ready", function() {
-    $("section.section-no-fan").hide();   
-    $("section.section-mesa-roja").show();
-    $("section.section-mesa-roja article.elegir-amigos").animate({ marginTop: "0"}, 700);
+//    $("section.section-no-fan").hide();   
+//    $("section.section-mesa-roja").show();
+//    $("section.section-mesa-roja article.elegir-amigos").animate({ marginTop: "0"}, 700);
     
     $.ajaxSetup({cache: true});
     var facebook_status = 0, User = {};
@@ -151,7 +151,15 @@ $(document).on("ready", function() {
             });
         });
     });
-    $("img.agregar-amigo").on("click", function() {
+//    $(".bt-fs-dialog").fSelector({
+//        onSubmit: function (response) {
+//            console.log(response);
+//        }
+//    });
+    $("img.agregar-amigo").on("click", function() { 
+//        FB.api('/me/taggable_friends', function(response) {
+//            console.log(response)
+//        });
         $(this).parent().addClass('img_selected');
         $(this).addClass('hidden').prev().removeClass('hidden');
         if($(".imagen-recuadro.img_selected").length === 1){
