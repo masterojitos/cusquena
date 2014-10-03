@@ -168,7 +168,7 @@ $(document).on("ready", function() {
         }
     });
     $("article.colocar-nombre input[name=name]").on("keyup",function(){
-        $("article.colocar-nombre input[name=name]").val().length >0 ? $("#boton_listo").css("display","none").removeClass('hidden').fadeIn("fast") : $("#boton_listo").addClass('hidden');
+        $("article.colocar-nombre input[name=name]").val().length >0 ? $("#boton_listo").removeClass('hidden') : $("#boton_listo").addClass('hidden');
     });
     $("#boton_regresar").on("click",function(){
         $("section.section-mesa-roja article.colocar-nombre").animate({ marginTop: "-709px"},700,function(){
@@ -182,6 +182,7 @@ $(document).on("ready", function() {
         $("section.section-mesa-roja").animate({ marginLeft: "-812px"},1200,function(){
             $("section.section-mesa-roja").css("display","none")}).find("article.colocar-nombre").animate({ marginTop: "-709px"},500,function(){
             $("section.section-inscrito article").css("display","list-item").animate({ marginTop: "0"},700);
+            $(".nombre_ingresado").text('"' + $("article.colocar-nombre input[name=name]").val() + '"');
         });
     });
     $("#boton_que_gano, .boton-terminos-y-condiciones").on("click",function(){
