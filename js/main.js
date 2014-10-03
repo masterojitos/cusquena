@@ -22,54 +22,56 @@
 }());
 
 // Place any jQuery/helper plugins in here.
-var api_data;
-window.fbAsyncInit = function() {
-//    FB.init({appId: 1521037214801847, status: true, cookie: true, xfbml: true, oauth: true});
-//    FB.init({appId: 1521331134772455, status: true, cookie: true, xfbml: true, oauth: true});
-    FB.init({appId: '1521331134772455', xfbml: true, version: 'v2.1'});
-    FB.getLoginStatus(fbLoginStatus, true);
-//    FB.Event.subscribe('auth.login', fbLoginStatus);
-//    FB.Event.subscribe('auth.authResponseChange', fbLoginStatus);
-};
-var go_register = false;
-var fbLoginStatus = function(response) {
-    if (response.status === 'connected') {
-        FB.api('/me', function (response) {
-            console.log(response);
-            api_data = response;
-            user_id = response.authResponse.userID;
-            if (go_register) {
-                register_new_account();
-                return;
-            }
-            FB.api('/me/permissions/publish_actions/', function (response) {
-                if (response.data[0].publish_actions) {
-                    //todos los permisos
-                } else {
-                    //sin permisos de publicar
-                }
-            });
-        });
-    } else if (response.status === 'not_authorized') {
-        go_register = true;
-        //sin permisos de ver info
-    } else {
-        go_register = true;
-        //no logeado en fb
-    }
-};
-(function(d, s, id){
-   var js, fjs = d.getElementsByTagName(s)[0];
-   if (d.getElementById(id)) {return;}
-   js = d.createElement(s); js.id = id;
-   js.src = "//connect.facebook.net/en_US/sdk.js";
-   fjs.parentNode.insertBefore(js, fjs);
- }(document, 'script', 'facebook-jssdk'));
 
 
 // User code
 var $this, $target;
 $(document).on("ready", function() {
+    $.ajaxSetup({cache: true});
+    $.getScript('//connect.facebook.net/en_US/all.js', function () {
+//        FB.init({appId: 1521037214801847, status: true, cookie: true, xfbml: true, oauth: true});
+//        FB.getLoginStatus(function(response) {
+//            fbLoginStatus(response);
+//        });
+//        FB.Event.subscribe('edge.create', page_like_or_unlike_callback);
+//        FB.Event.subscribe('edge.remove', page_like_or_unlike_callback);
+//        FB.Event.subscribe('auth.login', fbLoginStatus);
+//        FB.Event.subscribe('auth.authResponseChange', fbLoginStatus);
+    });
+    var page_like_or_unlike_callback = function(url, html_element) {
+        console.log("page_like_or_unlike_callback");
+        console.log("url", url);
+        console.log("html_element", html_element);
+    };
+    var checkLoginState = function() {
+        FB.getLoginStatus(function(response) {
+            fbLoginStatus(response);
+        });
+    };
+    var fbLoginStatus = function(response) {
+        console.log('statusChangeCallback');
+        console.log(response);
+        if (response.status === 'connected') {
+            FB.api('/me', function(response) {
+                console.log('me');
+                console.log(response);
+//                FB.api('/me/permissions/publish_actions/', function (response) {
+//                    if (response.data[0].publish_actions) {
+//                        //todos los permisos
+//                    } else {
+//                        //sin permisos de publicar
+//                    }
+//                });
+            });
+        } else if (response.status === 'not_authorized') {
+            go_register = true;
+            //sin permisos de ver info
+        } else {
+            go_register = true;
+            //no logeado en fb
+        }
+    };
+    
     $(".like-page").on("click",function(){
         $("#boton_que_gano").removeClass('hidden');
         $(".nano").nanoScroller();
@@ -98,15 +100,16 @@ $(document).on("ready", function() {
         var cell = form.find("[name=cell]");
         var new_date = new Date(ano.val()+"-"+mes.val()+"-"+dia.val());
         var nameregex = /^([a-zA-Z ñáéíóú äöüÄÖÜß]{2,60})$/;
+        var dniregex = /[0-9]{8,8}/;
         var emailregex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         var numberregex = /[0-9-()+]{9,9}/;
-        if(!nameregex.test(nombre.val()) || nombre.val() == ""){
+        if(!nameregex.test(nombre.val()) || nombre.val() === ""){
             form.find(".error").text("El dato que ingresaste es incorrecto o inválido.");
             nombre.prev().addClass('error');
-        }else if(!nameregex.test(apellido_paterno.val()) || apellido_paterno.val() == ""){
+        }else if(!nameregex.test(apellido_paterno.val()) || apellido_paterno.val() === ""){
             form.find(".error").text("El dato que ingresaste es incorrecto o inválido.");
             apellido_paterno.prev().addClass('error');
-        }else if(!nameregex.test(apellido_materno.val()) || apellido_materno.val() == ""){
+        }else if(!nameregex.test(apellido_materno.val()) || apellido_materno.val() === ""){
             form.find(".error").text("El dato que ingresaste es incorrecto o inválido.");
             apellido_materno.prev().addClass('error');
         }else if( isNaN( new_date.getTime() )){
@@ -114,10 +117,13 @@ $(document).on("ready", function() {
             dia.prev().addClass('error');
             mes.prev().addClass('error');
             ano.prev().addClass('error');
-        }else if(!emailregex.test(email.val()) || email.val() == ""){
+        }else if(!dniregex.test(dni.val()) || dni.val() === ""){
+            form.find(".error").text("El dato que ingresaste es incorrecto o inválido.");
+            dni.prev().addClass('error');
+        }else if(!emailregex.test(email.val()) || email.val() === ""){
             form.find(".error").text("El dato que ingresaste es incorrecto o inválido.");
             email.prev().addClass('error');
-        }else if(!numberregex.test(cell.val()) || cell.val() == ""){
+        }else if(!numberregex.test(cell.val()) || cell.val() === ""){
             form.find(".error").text("El dato que ingresaste es incorrecto o inválido.");
             cell.prev().addClass('error');
         }else {
