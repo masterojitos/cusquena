@@ -62,7 +62,7 @@ $(document).on("ready", function() {
                     if (response && !response.error) {
                         User.picture = response.data.url;
                         $("#user_picture").css("background-image", 'url(' + User.picture + ')');
-                        callback();
+                        if (callback) callback();
                     }
                 });
             }
