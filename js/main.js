@@ -28,7 +28,7 @@
 var $this, $target;
 $(document).on("ready", function() {
     $.ajaxSetup({cache: true});
-    var facebook_status = 0;
+    var facebook_status = 0, User = {};
 //    $.getScript('//connect.facebook.net/en_US/all.js', function () {
     $.getScript('//connect.facebook.net/en_US/sdk.js', function () {
 //        FB.init({appId: 1521037214801847, status: true, cookie: true, xfbml: true, oauth: true});
@@ -36,6 +36,12 @@ $(document).on("ready", function() {
         FB.getLoginStatus(function(response) {
             if (response.status === 'connected') {
                 verifyPublishActions();
+                FB.api('/me', function(response) {
+                    if (response && !response.error) User = response;
+                });
+                FB.api('/me/picture', {height: "100", width: "100"}, function(response) {
+                    if (response && !response.error) User.picture = response.data.url;
+                });
             } else {
                 facebook_status = 0;
             }
