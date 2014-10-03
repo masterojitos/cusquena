@@ -27,21 +27,18 @@
 // User code
 var $this, $target;
 $(document).on("ready", function() {
+    $("section.section-no-fan").hide();   
+    $("section.section-mesa-roja").show();
+    $("section.section-mesa-roja article.elegir-amigos").animate({ marginTop: "0"}, 700);
+    
     $.ajaxSetup({cache: true});
     var facebook_status = 0, User = {};
-//    $.getScript('//connect.facebook.net/en_US/all.js', function () {
     $.getScript('//connect.facebook.net/en_US/sdk.js', function () {
-//        FB.init({appId: 1521037214801847, status: true, cookie: true, xfbml: true, oauth: true});
         FB.init({appId: 1521037214801847, cookie: true, xfbml: true, version: 'v2.1'});
         FB.getLoginStatus(function(response) {
             if (response.status === 'connected') {
+                setUserData();
                 verifyPublishActions();
-                FB.api('/me', function(response) {
-                    if (response && !response.error) User = response;
-                });
-                FB.api('/me/picture', {height: "100", width: "100"}, function(response) {
-                    if (response && !response.error) User.picture = response.data.url;
-                });
             } else {
                 facebook_status = 0;
             }
@@ -54,6 +51,20 @@ $(document).on("ready", function() {
                 if (callback) callback();
             } else {
                 facebook_status = 1;
+            }
+        });
+    };
+    var setUserData = function(callback) {
+        FB.api('/me', function(response) {
+            if (response && !response.error) {
+                User = response;
+                FB.api('/me/picture', {height: "100", width: "100"}, function(response) {
+                    if (response && !response.error) {
+                        User.picture = response.data.url;
+                        $("#user_picture").css("background-image", 'url(' + User.picture + ')');
+                        callback();
+                    }
+                });
             }
         });
     };
@@ -125,7 +136,7 @@ $(document).on("ready", function() {
             FB.login(function(response) {
                 if (response.status === 'connected') {
                     facebook_status = 1;
-                    callback();
+                    setUserData(callback);
                 }
             }, {scope: 'user_friends'});
         } else {
@@ -141,15 +152,15 @@ $(document).on("ready", function() {
         });
     });
     $("img.agregar-amigo").on("click", function() {
-        $(this).parent(".imagen-recuadro").addClass('img_selected');
+        $(this).parent().addClass('img_selected');
         $(this).addClass('hidden').prev().removeClass('hidden');
-        if($(".imagen-recuadro.img_selected").length == 8){
+        if($(".imagen-recuadro.img_selected").length === 7){
             $("#boton_unpasomas_inactivo").addClass('hidden');
             $("#boton_unpasomas").removeClass('hidden');
         }
     });
     $("img.eliminar-amigo").on("click", function() {
-        $(this).parent(".imagen-recuadro").removeClass('img_selected');
+        $(this).parent().removeClass('img_selected');
         $(this).addClass('hidden').next().removeClass('hidden');
         $("#boton_unpasomas").addClass('hidden');
         $("#boton_unpasomas_inactivo").removeClass('hidden');
