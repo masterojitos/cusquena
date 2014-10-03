@@ -189,13 +189,6 @@ $(document).on("ready", function() {
             $("#boton_listo_inactivo").removeClass('hidden');
         }
     });
-    $("#boton_regresar").on("click", function() {
-        $("section.section-mesa-roja article.colocar-nombre").animate({ marginTop: "-709px"},700,function(){
-            $(this).addClass('hidden');
-            $("#boton_regresar, #boton_listo").addClass('hidden');
-            $("#boton_unpasomas").css("display","none").removeClass('hidden').fadeIn("fast");
-        });
-    });
     var validar_boton_listo = function(callback) {
         if (facebook_status === 1) {
             FB.login(function() {
