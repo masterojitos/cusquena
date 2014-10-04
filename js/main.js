@@ -100,9 +100,9 @@ $(document).on("ready", function() {
         var cell = form.find("[name=cell]");
         var new_date = new Date(ano.val()+"-"+mes.val()+"-"+dia.val());
         var nameregex = /^([a-zA-Z ñáéíóú äöüÄÖÜß]{2,60})$/;
-        var dniregex = /[0-9]{8,8}$/;
+        var dniregex = /^[1-9]{8,8}$/;
         var emailregex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        var numberregex = /[0-9-()+]{9,9}$/;
+        var numberregex = /^[1-9]{9,9}$/;
         if(!nameregex.test(nombre.val()) || nombre.val() === ""){
             form.find(".error").text("El dato que ingresaste es incorrecto o inválido.");
             nombre.prev().addClass('error');

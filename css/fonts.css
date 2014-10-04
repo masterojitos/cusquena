@@ -1,1 +1,602 @@
-@font-face{font-family:"BebasNeue";src:url("../fonts/BebasNeue.ttf") format("truetype")}@font-face{font-family:"Calibri";font-style:normal;font-weight:300;src:url("../fonts/calibril.ttf") format("truetype")}@font-face{font-family:"Calibri";font-style:normal;font-weight:400;src:url("../fonts/calibri.ttf") format("truetype")}@font-face{font-family:"Calibri";font-style:normal;font-weight:700;src:url("../fonts/calibrib.ttf") format("truetype")}@font-face{font-family:"Calibri";font-style:italic;font-weight:300;src:url("../fonts/calibrili.ttf") format("truetype")}@font-face{font-family:"Calibri";font-style:italic;font-weight:400;src:url("../fonts/calibrii.ttf") format("truetype")}@font-face{font-family:"Calibri";font-style:italic;font-weight:700;src:url("../fonts/calibriz.ttf") format("truetype")}@font-face{font-family:"ZURCHLC";font-weight:400;src:url("../fonts/ZURCHLC.ttf") format("truetype")}@font-face{font-family:"ZURCHLC";font-style:italic;font-weight:400;src:url("../fonts/ZURCHLCI.ttf") format("truetype")}
+@font-face {
+  font-family: "BebasNeue";
+  src: url("../fonts/BebasNeue.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "Calibri";
+  font-style: normal;
+  font-weight: 300;
+  src: url("../fonts/calibril.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Calibri";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/calibri.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Calibri";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/calibrib.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Calibri";
+  font-style: italic;
+  font-weight: 300;
+  src: url("../fonts/calibrili.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Calibri";
+  font-style: italic;
+  font-weight: 400;
+  src: url("../fonts/calibrii.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Calibri";
+  font-style: italic;
+  font-weight: 700;
+  src: url("../fonts/calibriz.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "ZURCHLC";
+  font-weight: 400;
+  src: url("../fonts/ZURCHLC.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "ZURCHLC";
+  font-style: italic;
+  font-weight: 400;
+  src: url("../fonts/ZURCHLCI.ttf") format("truetype");
+}
+
+/* line 4, ../sass/custom.sass */
+body {
+  background-color: white;
+}
+
+/* line 6, ../sass/custom.sass */
+.container {
+  font-family: "Calibri";
+  margin: 3px auto 0;
+  overflow: hidden;
+  position: relative;
+  width: 810px;
+}
+/* line 12, ../sass/custom.sass */
+.container > main {
+  background-image: url(../img/fondo-no-fan.jpg);
+  height: 709px;
+  margin-bottom: 3px;
+  overflow: hidden;
+  width: 3240px;
+}
+/* line 32, ../sass/custom.sass */
+.container > main section {
+  height: 709px;
+  display: none;
+  float: left;
+  position: relative;
+  width: 810px;
+}
+/* line 38, ../sass/custom.sass */
+.container > main section article {
+  list-style: none;
+  margin: 0 auto;
+  margin-top: -1709px;
+}
+/* line 42, ../sass/custom.sass */
+.container > main section article input {
+  width: 184px;
+}
+/* line 44, ../sass/custom.sass */
+.container > main section.section-no-fan {
+  display: block;
+}
+/* line 46, ../sass/custom.sass */
+.container > main section.section-no-fan article {
+  background-image: url(../img/contenedor-no-fan.png);
+  background-repeat: no-repeat;
+  display: block;
+  height: 360px;
+  float: none;
+  margin: 0 auto;
+  padding-top: 55px;
+  position: relative;
+  text-align: center;
+  width: 294px;
+}
+/* line 57, ../sass/custom.sass */
+.container > main section.section-no-fan .top-logo {
+  left: 20px;
+  position: absolute;
+  top: -150px;
+  width: 260px;
+}
+/* line 62, ../sass/custom.sass */
+.container > main section.section-no-fan .mesa-roja {
+  margin-left: -40px;
+}
+/* line 64, ../sass/custom.sass */
+.container > main section.section-no-fan footer {
+  border-bottom: 2px solid white;
+  border-top: 2px solid white;
+  bottom: 40px;
+  color: white;
+  font-size: 1.19em;
+  left: 50%;
+  margin-left: -130px;
+  padding: 3px 0;
+  position: absolute;
+  text-align: center;
+  width: 260px;
+}
+/* line 76, ../sass/custom.sass */
+.container > main section.section-no-fan footer .like-page {
+  cursor: pointer;
+}
+/* line 78, ../sass/custom.sass */
+.container > main section.section-no-fan div.space {
+  height: 165px;
+}
+/* line 80, ../sass/custom.sass */
+.container > main section.section-fan, .container > main section.section-mesa-roja, .container > main section.section-inscrito {
+  background-image: url(../img/fondo-mesa.jpg);
+}
+/* line 82, ../sass/custom.sass */
+.container > main section.section-fan article, .container > main section.section-mesa-roja article, .container > main section.section-inscrito article {
+  background-image: url(../img/contenedor-fan.png);
+  background-repeat: no-repeat;
+  height: 250px;
+  padding-top: 55px;
+  position: relative;
+  text-align: center;
+  width: 329px;
+}
+/* line 90, ../sass/custom.sass */
+.container > main section.section-fan .top-logo, .container > main section.section-mesa-roja .top-logo, .container > main section.section-inscrito .top-logo {
+  left: 50%;
+  margin-left: -196px;
+  position: absolute;
+  top: -142px;
+}
+/* line 92, ../sass/custom.sass */
+.container > main section.section-fan footer, .container > main section.section-mesa-roja footer, .container > main section.section-inscrito footer {
+  bottom: 15px;
+  left: 50%;
+  height: 52px;
+  margin-left: -68px;
+  position: absolute;
+  width: 137px;
+}
+/* line 30, ../sass/custom.sass */
+.container > main section.section-fan footer img:hover, .container > main section.section-mesa-roja footer img:hover, .container > main section.section-inscrito footer img:hover {
+  cursor: pointer;
+}
+/* line 94, ../sass/custom.sass */
+.container > main section.section-fan div.space, .container > main section.section-mesa-roja div.space, .container > main section.section-inscrito div.space {
+  height: 123px;
+}
+/* line 96, ../sass/custom.sass */
+.container > main section.section-formulario {
+  background-image: url(../img/fondo-mesa.jpg);
+  background-position: -811px 0;
+}
+/* line 99, ../sass/custom.sass */
+.container > main section.section-formulario article {
+  background-image: url(../img/contenedor-formulario.png);
+  background-repeat: no-repeat;
+  height: 460px;
+  padding-top: 55px;
+  position: relative;
+  text-align: left;
+  width: 430px;
+}
+/* line 107, ../sass/custom.sass */
+.container > main section.section-formulario article .terminos {
+  bottom: 30px;
+  color: white;
+  font-size: 12px;
+  left: 0;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+/* line 115, ../sass/custom.sass */
+.container > main section.section-formulario article .terminos .error {
+  color: #fb2600;
+}
+/* line 117, ../sass/custom.sass */
+.container > main section.section-formulario article .terminos a {
+  color: #fea200;
+}
+/* line 119, ../sass/custom.sass */
+.container > main section.section-formulario .top-logo {
+  left: 50%;
+  margin-left: -196px;
+  position: absolute;
+  top: -142px;
+}
+/* line 121, ../sass/custom.sass */
+.container > main section.section-formulario footer {
+  bottom: 15px;
+  left: 50%;
+  height: 52px;
+  margin-left: -68px;
+  position: absolute;
+  width: 137px;
+}
+/* line 30, ../sass/custom.sass */
+.container > main section.section-formulario footer img:hover {
+  cursor: pointer;
+}
+/* line 123, ../sass/custom.sass */
+.container > main section.section-formulario div.space {
+  height: 123px;
+}
+/* line 125, ../sass/custom.sass */
+.container > main section.section-mesa-roja {
+  background-image: url(../img/fondo-mesa.jpg);
+  background-position: -1622px 0;
+}
+/* line 128, ../sass/custom.sass */
+.container > main section.section-mesa-roja article {
+  color: white;
+  z-index: 2;
+}
+/* line 131, ../sass/custom.sass */
+.container > main section.section-mesa-roja article img:hover {
+  cursor: pointer;
+}
+/* line 133, ../sass/custom.sass */
+.container > main section.section-mesa-roja .top-logo {
+  top: -20px;
+  z-index: 3;
+}
+/* line 136, ../sass/custom.sass */
+.container > main section.section-mesa-roja footer {
+  margin-left: -145px;
+  text-align: center;
+  width: 290px;
+}
+/* line 140, ../sass/custom.sass */
+.container > main section.section-mesa-roja footer img:last-child {
+  padding-left: 10px;
+}
+/* line 142, ../sass/custom.sass */
+.container > main section.section-mesa-roja .imagen-recuadro {
+  height: 100px;
+  position: absolute;
+  width: 100px;
+  z-index: 1;
+}
+/* line 147, ../sass/custom.sass */
+.container > main section.section-mesa-roja .imagen-recuadro.amigo-1 {
+  left: 83px;
+  top: 252px;
+}
+/* line 150, ../sass/custom.sass */
+.container > main section.section-mesa-roja .imagen-recuadro.amigo-2 {
+  left: 264px;
+  top: 252px;
+}
+/* line 153, ../sass/custom.sass */
+.container > main section.section-mesa-roja .imagen-recuadro.amigo-3 {
+  left: 441px;
+  top: 252px;
+}
+/* line 156, ../sass/custom.sass */
+.container > main section.section-mesa-roja .imagen-recuadro.amigo-4 {
+  left: 621px;
+  top: 252px;
+}
+/* line 159, ../sass/custom.sass */
+.container > main section.section-mesa-roja .imagen-recuadro.amigo-5 {
+  left: 83px;
+  top: 505px;
+}
+/* line 162, ../sass/custom.sass */
+.container > main section.section-mesa-roja .imagen-recuadro.amigo-6 {
+  left: 264px;
+  top: 505px;
+}
+/* line 165, ../sass/custom.sass */
+.container > main section.section-mesa-roja .imagen-recuadro.amigo-7 {
+  left: 441px;
+  top: 505px;
+}
+/* line 168, ../sass/custom.sass */
+.container > main section.section-mesa-roja .imagen-recuadro.amigo-8 {
+  left: 621px;
+  top: 505px;
+}
+/* line 171, ../sass/custom.sass */
+.container > main section.section-mesa-roja .imagen-recuadro img {
+  cursor: pointer;
+  position: absolute;
+  right: -17px;
+  top: -18px;
+}
+/* line 176, ../sass/custom.sass */
+.container > main section.section-inscrito {
+  background-image: url(../img/fondo-mesa.jpg);
+  background-position: -2433px 0;
+}
+/* line 179, ../sass/custom.sass */
+.container > main section.section-inscrito article {
+  background-image: url(../img/contenedor-fan-inscrito.png);
+  height: 260px;
+  padding-top: 360px;
+  width: 347px;
+}
+/* line 184, ../sass/custom.sass */
+.container > main section.section-inscrito footer {
+  margin-left: -96px;
+  width: 192px;
+}
+/* line 187, ../sass/custom.sass */
+.container > main section.section-terminos-y-condiciones, .container > main section.section-que-gano {
+  left: 0;
+  position: absolute;
+  top: -709px;
+}
+/* line 191, ../sass/custom.sass */
+.container > main section.section-terminos-y-condiciones {
+  background: black;
+  z-index: 5;
+}
+/* line 194, ../sass/custom.sass */
+.container > main section.section-terminos-y-condiciones article {
+  background-repeat: no-repeat;
+  height: 460px;
+  margin: 0 auto;
+  padding-top: 65px;
+  position: relative;
+  text-align: center;
+  width: 510px;
+}
+/* line 202, ../sass/custom.sass */
+.container > main section.section-terminos-y-condiciones .top-logo {
+  left: 50%;
+  margin-left: -196px;
+  position: absolute;
+  top: -142px;
+}
+/* line 204, ../sass/custom.sass */
+.container > main section.section-terminos-y-condiciones .scroll {
+  border-right: 4px solid #666666;
+  color: white;
+  height: 370px;
+  margin: 20px 0;
+  overflow: hidden;
+  padding: 0 20px;
+  text-align: left;
+  width: 470px;
+}
+/* line 213, ../sass/custom.sass */
+.container > main section.section-terminos-y-condiciones footer {
+  bottom: 15px;
+  left: 50%;
+  height: 52px;
+  margin-left: -68px;
+  position: absolute;
+  width: 137px;
+}
+/* line 30, ../sass/custom.sass */
+.container > main section.section-terminos-y-condiciones footer img:hover {
+  cursor: pointer;
+}
+/* line 215, ../sass/custom.sass */
+.container > main section.section-terminos-y-condiciones div.space {
+  height: 123px;
+}
+/* line 217, ../sass/custom.sass */
+.container > main section.section-que-gano {
+  background: black;
+  z-index: 5;
+}
+/* line 220, ../sass/custom.sass */
+.container > main section.section-que-gano article {
+  background-repeat: no-repeat;
+  height: 300px;
+  margin: 0 auto;
+  padding-top: 65px;
+  position: relative;
+  text-align: center;
+  width: 510px;
+}
+/* line 228, ../sass/custom.sass */
+.container > main section.section-que-gano .top-logo {
+  left: 50%;
+  margin-left: -196px;
+  position: absolute;
+  top: -142px;
+}
+/* line 230, ../sass/custom.sass */
+.container > main section.section-que-gano .premios {
+  color: white;
+  font-size: 1.2em;
+  margin: 30px auto 0;
+  text-align: left;
+  width: 200px;
+}
+/* line 236, ../sass/custom.sass */
+.container > main section.section-que-gano .premios li {
+  margin: 15px 0;
+}
+/* line 238, ../sass/custom.sass */
+.container > main section.section-que-gano footer {
+  height: 52px;
+  margin: 50px auto 0;
+  width: 137px;
+}
+/* line 242, ../sass/custom.sass */
+.container > main section.section-que-gano footer img:hover {
+  cursor: pointer;
+}
+/* line 244, ../sass/custom.sass */
+.container > main section.section-que-gano div.space {
+  height: 123px;
+}
+/* line 246, ../sass/custom.sass */
+.container > main section .cusquena-input {
+  height: 22px;
+  margin-top: 20px;
+  position: relative;
+  width: 100%;
+}
+/* line 251, ../sass/custom.sass */
+.container > main section .cusquena-input label {
+  color: #fea200;
+  padding-right: 3px;
+  text-align: right;
+  width: 177px;
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+}
+/* line 257, ../sass/custom.sass */
+.container > main section .cusquena-input > div {
+  position: relative;
+  display: inline-block;
+  text-align: left;
+}
+/* line 261, ../sass/custom.sass */
+.container > main section .cusquena-input > div .border {
+  border: 1px solid #fea200;
+  border-top: 0;
+  bottom: 0;
+  height: 10px;
+  position: absolute;
+  width: 192px;
+}
+/* line 268, ../sass/custom.sass */
+.container > main section .cusquena-input > div .border.error {
+  border: 1px solid #fb2600;
+  border-top: 0;
+}
+/* line 271, ../sass/custom.sass */
+.container > main section .cusquena-input > div .border.dia, .container > main section .cusquena-input > div .border.mes, .container > main section .cusquena-input > div .border.ano {
+  left: 1px;
+  width: 57px;
+}
+/* line 274, ../sass/custom.sass */
+.container > main section .cusquena-input > div .border.mes {
+  left: 69px;
+}
+/* line 276, ../sass/custom.sass */
+.container > main section .cusquena-input > div .border.ano {
+  left: 137px;
+}
+/* line 278, ../sass/custom.sass */
+.container > main section .cusquena-input > div input {
+  background: transparent;
+  color: white;
+  border: 0;
+  outline: 0;
+  padding: 0 0 1px 5px;
+}
+/* line 284, ../sass/custom.sass */
+.container > main section .cusquena-input > div input.dia, .container > main section .cusquena-input > div input.mes, .container > main section .cusquena-input > div input.ano {
+  margin-left: 9px;
+  width: 50px;
+}
+/* line 287, ../sass/custom.sass */
+.container > main section .cusquena-input > div input.dia {
+  margin-left: 0;
+}
+/* line 289, ../sass/custom.sass */
+.container > main .enunciado {
+  color: #fea200;
+  font-family: "BebasNeue";
+  font-size: 2em;
+}
+/* line 293, ../sass/custom.sass */
+.container > main .enunciado.white {
+  color: white;
+}
+/* line 295, ../sass/custom.sass */
+.container > main .enunciado.little {
+  font-size: 1.4em;
+}
+/* line 297, ../sass/custom.sass */
+.container > footer {
+  background-color: black;
+  color: #999999;
+  width: 100%;
+}
+/* line 301, ../sass/custom.sass */
+.container > footer h3 {
+  font-family: "ZURCHLC";
+  letter-spacing: 0.9em;
+  margin: 0;
+  padding: 20px 0;
+  text-align: center;
+}
+/* line 307, ../sass/custom.sass */
+.container > footer hr {
+  border-top: 1px solid #2e2e2e;
+  margin: 0 40px 1em;
+}
+/* line 310, ../sass/custom.sass */
+.container > footer img, .container > footer p {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+}
+/* line 312, ../sass/custom.sass */
+.container > footer img {
+  margin: 0 20px;
+  width: 168px;
+}
+/* line 315, ../sass/custom.sass */
+.container > footer p {
+  font-size: 0.75em;
+  width: 558px;
+}
+/* line 318, ../sass/custom.sass */
+.container .img_selected {
+  background: red;
+}
+/* line 320, ../sass/custom.sass */
+.container #boton_regresar {
+  float: left;
+}
+/* line 322, ../sass/custom.sass */
+.container #boton_que_gano {
+  cursor: pointer;
+  position: absolute;
+  top: -3px;
+  right: 3px;
+  z-index: 4;
+}
+/* line 328, ../sass/custom.sass */
+.container .text-center {
+  text-align: center;
+}
+/* line 331, ../sass/custom.sass */
+.container .nano .nano-content {
+  padding: 10px;
+}
+/* line 333, ../sass/custom.sass */
+.container .nano .nano-pane {
+  background: #888888;
+}
+/* line 335, ../sass/custom.sass */
+.container .nano .nano-slider {
+  background: #111111;
+}
