@@ -14,6 +14,7 @@
 
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/nanoscroller.css">
+        <link rel="stylesheet" href="css/friends_selector.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/custom.css">
             
@@ -144,10 +145,7 @@
                             </div>
                         </div>
                     </article>
-                    <div class="imagen-recuadro amigo-1">
-                        <img src="img/boton-eliminar.png" alt="ELIMINAR" class="eliminar-amigo hidden" />
-                        <img src="img/boton-escoger.png" alt="AGREGAR" class="agregar-amigo hidden" />
-                    </div>
+                    <div id="user_picture" class="imagen-recuadro amigo-1"></div>
                     <div class="imagen-recuadro amigo-2">
                         <img src="img/boton-eliminar.png" alt="ELIMINAR" class="eliminar-amigo hidden" />
                         <img src="img/boton-escoger.png" alt="AGREGAR" class="agregar-amigo hidden" />
@@ -179,9 +177,9 @@
                     <footer>
                         <img src="img/boton-un-paso-mas-inactivo.png" alt="UN PASO MÁS" id="boton_unpasomas_inactivo" class="hidden" />
                         <img src="img/boton-un-paso-mas.png" alt="UN PASO MÁS" id="boton_unpasomas" class="hidden" />
-                        <img src="img/boton-regresar.png" alt="REGRESAR" class="hidden" id="boton_regresar" />
-                        <img src="img/boton-listo-inactivo.png" alt="¡LISTO!" class="hidden" id="boton_listo_inactivo"  style="padding-left: 10px"/>
-                        <img src="img/boton-listo.png" alt="¡LISTO!" class="hidden" id="boton_listo" />
+                        <img src="img/boton-regresar.png" alt="REGRESAR" id="boton_regresar" class="hidden" />
+                        <img src="img/boton-listo-inactivo.png" alt="¡LISTO!" id="boton_listo_inactivo" class="hidden" style="padding-left: 10px"/>
+                        <img src="img/boton-listo.png" alt="¡LISTO!" id="boton_listo" class="hidden" />
                     </footer>
                 </section>
                 <section class="section-inscrito">
@@ -201,8 +199,39 @@
                         <span class="enunciado">TERMINOS Y CONDICIONES</span><br />
                         <div id="scroll_terminos_y_condiciones" class="scroll nano">
                             <div class="nano-content">
-                            Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
-                            Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
+                                <h3 style="text-decoration:underline;">BASES DEL CONCURSO</h3>
+                                <p>
+                                El participante deberá ingresar sus datos completos para quedar registrado. Escogerá siete (7) de
+                                sus contactos en Facebook para llenar una mesa virtual (Mesa Roja). Al completarla entrará al
+                                sorteo.
+                                </p>
+                                <h3 style="text-decoration:underline;"><strong>PREMIOS</strong></h3>
+                                <ul>
+                                    <li>
+                                        <strong>Para el viernes 17/10</strong>
+                                        <p>Cuatro (04) premios conformados cada uno por 8 entradas para el evento Oktoberfest
+                                        Perú, 8 tickets de Comida y 32 vasos de Cerveza Cusqueña Roja de 25oz gratis en el
+                                        Oktoberfest.</p>
+                                    </li>
+                                    <li>
+                                        <strong>Para el sábado 18/10</strong>
+                                        <p>Cuatro (04) premios conformados cada uno por 8 entradas para el evento Oktoberfest
+                                        Perú, 8 tickets de Comida y 32 vasos de Cerveza Cusqueña Roja de 25oz gratis en el
+                                        Oktoberfest.</p>
+                                    </li>
+                                </ul>
+                                <h3 style="text-decoration:underline;"><strong>CONDICIONES Y/O RESTRICCIONES</strong></h3>
+                                <ul>
+                                    <li>Fecha de finalización: 13 de octubre de 2014.</li>
+                                    <li>Fecha de sorteo: 14 de octubre de 2014 a las 16:00 horas.</li>
+                                    <li>Son ocho (08) los ganadores. Cuatro (04) recibirán los premios del viernes 17/10 y el resto
+                                        (04) del sábado 18/10.</li>
+                                    <li>Cada consumidor tendrá una (01) oportunidad de participar.</li>
+                                    <li>No participan menores de edad.</li>
+                                    <li>Los ganadores tienen un plazo de hasta el 16 de octubre del 2014 a las 18:00 pm para
+                                        reclamar el premio, de lo contrario se pondrá a disposición de la Oficina Nacional de
+                                        Gobierno Interior.</li>
+                                </ul>
                             </div>
                         </div>
                     </article>
@@ -246,7 +275,6 @@
             </footer>
         </div>
         <div id="fb-root"></div>
-        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>');</script>
@@ -254,7 +282,9 @@
         <script>$.fn.nanoScroller || document.write('<script src="js/vendor/jquery.nanoscroller.min.js"><\/script>');</script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.1.0/velocity.min.js"></script>
         <script>$.fn.velocity || document.write('<script src="js/vendor/velocity.min.js"><\/script>');</script>
+        <script src="js/vendor/jquery.friend.selector-1.2.1.min.js"></script>
         <script src="js/main.js"></script>
+        <a href="#" class="bt-fs-dialog hidden"></a>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>

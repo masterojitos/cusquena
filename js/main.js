@@ -27,66 +27,57 @@
 // User code
 var $this, $target;
 $(document).on("ready", function() {
+//    $("section.section-fan").hide();   
+//    $("section.section-mesa-roja").show();
+//    $("section.section-mesa-roja article.elegir-amigos").animate({ marginTop: "0"}, 700);
+    
     $.ajaxSetup({cache: true});
-    $.getScript('//connect.facebook.net/en_US/all.js', function () {
-//        FB.init({appId: 1521037214801847, status: true, cookie: true, xfbml: true, oauth: true});
-//        FB.getLoginStatus(function(response) {
-//            fbLoginStatus(response);
-//        });
-//        FB.Event.subscribe('edge.create', page_like_or_unlike_callback);
-//        FB.Event.subscribe('edge.remove', page_like_or_unlike_callback);
-//        FB.Event.subscribe('auth.login', fbLoginStatus);
-//        FB.Event.subscribe('auth.authResponseChange', fbLoginStatus);
-    });
-    var page_like_or_unlike_callback = function(url, html_element) {
-        console.log("page_like_or_unlike_callback");
-        console.log("url", url);
-        console.log("html_element", html_element);
-    };
-    var checkLoginState = function() {
+    var facebook_status = 0, User = {};
+    $.getScript('//connect.facebook.net/es_LA/all.js', function () {
+        FB.init({appId: 147666458740407, status: true, cookie: true, xfbml: true});
         FB.getLoginStatus(function(response) {
-            fbLoginStatus(response);
+            if (response.status === 'connected') {
+                setUserData();
+                verifyPublishActions();
+            } else {
+                facebook_status = 0;
+            }
+        });
+    });
+    var verifyPublishActions = function(callback) {
+        FB.api('/me/permissions', function (response) {
+            if (response.data[0].publish_actions) {
+                facebook_status = 2;
+                if (callback) callback();
+            } else {
+                facebook_status = 1;
+            }
         });
     };
-    var fbLoginStatus = function(response) {
-        console.log('statusChangeCallback');
-        console.log(response);
-        if (response.status === 'connected') {
-            FB.api('/me', function(response) {
-                console.log('me');
-                console.log(response);
-//                FB.api('/me/permissions/publish_actions/', function (response) {
-//                    if (response.data[0].publish_actions) {
-//                        //todos los permisos
-//                    } else {
-//                        //sin permisos de publicar
-//                    }
-//                });
-            });
-        } else if (response.status === 'not_authorized') {
-            go_register = true;
-            //sin permisos de ver info
-        } else {
-            go_register = true;
-            //no logeado en fb
-        }
+    var setUserData = function(callback) {
+        FB.api('/me', function(response) {
+            User = response;
+            User.picture = 'https://graph.facebook.com/' + User.id + '/picture?width=100&height=100';
+            $("#user_picture").css("background-image", 'url(' + User.picture + ')');
+            if (callback) callback();
+        });
     };
     
-    $(".like-page").on("click",function(){
+    $(".like-page").on("click", function() {
         $("#boton_que_gano").removeClass('hidden');
         $(".nano").nanoScroller();
         $("section.section-no-fan").fadeOut(500).find("article").animate({ marginTop: "-709px"},500,function(){
             $("section.section-fan article").css("display","list-item").animate({ marginTop: "0"},500);
         }).parent().next().css("display","block");
     });
-    $("#boton_participa").on("click",function(){
+    $("#boton_participa").on("click", function() {
         $("section.section-formulario").css("display","block");
         $("section.section-fan").animate({ marginLeft: "-812px"},1200,function(){
             $("section.section-fan").css("display","none")}).find("article").animate({ marginTop: "-709px"},500,function(){
             $("section.section-formulario article").css("display","list-item").animate({ marginTop: "0"},700);
         });
     });
-    $("#boton_siguiente").on("click",function(){
+    $("#boton_siguiente").on("click", function() {
         form = $("section.section-formulario");
         form.find(".border.error").removeClass('error');
         var nombre = form.find("[name=nombre]");
@@ -134,43 +125,82 @@ $(document).on("ready", function() {
             });
         }
     });
-    $("#boton_elegir").on("click",function(){
-        $("section.section-mesa-roja article.elegir-amigos").animate({ marginTop: "-709px"},700,function(){
-            $(this).addClass('hidden');
-            $(".agregar-amigo,#boton_unpasomas_inactivo").removeClass('hidden');
+    var validar_boton_elegir = function(callback) {
+        if (!facebook_status) {
+            FB.login(function(response) {
+                if (response.status === 'connected') {
+                    facebook_status = 1;
+                    setUserData(callback);
+                }
+            }, {scope: 'publish_actions'});
+        } else {
+            callback();
+        }
+    };
+    $("#boton_elegir").on("click", function() {
+        validar_boton_elegir(function() {
+            $("section.section-mesa-roja article.elegir-amigos").animate({ marginTop: "-709px"},700,function(){
+                $(this).addClass('hidden');
+                $(".agregar-amigo, #boton_unpasomas_inactivo").removeClass('hidden');
+            });
         });
     });
-    $("img.agregar-amigo").on("click",function(){
-        $(this).parent(".imagen-recuadro").addClass('img_selected');
-        $(this).addClass('hidden').prev().removeClass('hidden');
-        if($(".imagen-recuadro.img_selected").length == 8){
-            $("#boton_unpasomas_inactivo").addClass('hidden');
-            $("#boton_unpasomas").removeClass('hidden');
+    $(".bt-fs-dialog").fSelector({
+        closeOnSubmit: true,
+        facebookInvite: false,
+        max: 7,
+        showButtonSelectAll: false,
+        lang: {
+            title: "Invitar a amigos",
+            buttonSubmit: "Enviar",
+            buttonCancel: "Cancelar",
+            buttonShowSelected: "Mostrar Seleccionados",
+            buttonShowAll: "Mostrar todos",
+            summaryBoxResult: "{1} mejores resultados para {0}",
+            summaryBoxNoResult: "No hay resultados para {0}",
+            searchText: "Busca a todos tus amigos",
+            selectedCountResult: "Ya has elegido a {0} amigos.",
+            selectedLimitResult: "Solo puedes invitar a {0} amigos."
+        },
+        onSubmit: function (response) {
+            User.friends = response;
+            $(".imagen-recuadro[id!=user_picture]").each(function(i) {
+                if (!response[i]) return;
+                $(this).css("background-image", 'url(https://graph.facebook.com/' + response[i] + '/picture?width=100&height=100)')
+                        .addClass('img_selected').find("img.agregar-amigo").addClass('hidden').prev().removeClass('hidden');
+            });
+            if($(".imagen-recuadro.img_selected").length === 7){
+                $("#boton_unpasomas_inactivo").addClass('hidden');
+                $("#boton_unpasomas").removeClass('hidden');
+            }
         }
     });
-    $("img.eliminar-amigo").on("click",function(){
-        $(this).parent(".imagen-recuadro").removeClass('img_selected');
+    $("img.agregar-amigo").on("click", function() {
+        $(".bt-fs-dialog").trigger("click");
+//        $(this).parent().addClass('img_selected');
+//        $(this).addClass('hidden').prev().removeClass('hidden');
+    });
+    $("img.eliminar-amigo").on("click", function() {
+        $(this).parent().removeClass('img_selected');
         $(this).addClass('hidden').next().removeClass('hidden');
         $("#boton_unpasomas").addClass('hidden');
         $("#boton_unpasomas_inactivo").removeClass('hidden');
     });
-    $("#boton_regresar").on("click",function(){
-        $("section.section-mesa-roja article.colocar-nombre").animate({ marginTop: "-709px"},700,function(){
-            $("#boton_regresar,#boton_listo,#boton_listo_inactivo").addClass('hidden');
-            $(".boton_unpasomas").css("display","none").removeClass('hidden').fadeIn("fast");
+    $("#boton_unpasomas").on("click", function() {
+        $("#boton_unpasomas, img.eliminar-amigo").addClass('hidden');
+        $("section.section-mesa-roja article.colocar-nombre").removeClass('hidden').animate({ marginTop: 0},700,function(){
+            $("#boton_regresar").hide().removeClass('hidden').fadeIn();
+            $("article.colocar-nombre input[name=name]").val().length > 2 ? $("#boton_listo").hide().removeClass('hidden').fadeIn() : $("#boton_listo_inactivo").hide().removeClass('hidden').fadeIn();
         });
     });
-    $("#boton_unpasomas").on("click",function(){
-        if(!$(this).hasClass('enabled')){
-            $("section.section-mesa-roja article.colocar-nombre").removeClass('hidden').animate({ marginTop: 0},700,function(){
-                $("#boton_unpasomas").addClass('hidden');
-                $("#boton_regresar").removeClass('hidden');
-                $("article.colocar-nombre input[name=name]").val().length >0 ? $("#boton_listo").removeClass('hidden') : $("#boton_listo_inactivo").removeClass('hidden');
-            });
-        }
+    $("#boton_regresar").on("click", function() {
+        $("#boton_regresar,#boton_listo, #boton_listo_inactivo").addClass('hidden');
+        $("section.section-mesa-roja article.colocar-nombre").animate({ marginTop: "-709px"},700,function(){
+            $("#boton_unpasomas, img.eliminar-amigo").hide().removeClass('hidden').fadeIn();
+        });
     });
     $("article.colocar-nombre input[name=name]").on("keyup",function(){
-        if($("article.colocar-nombre input[name=name]").val().length >0){
+        if($("article.colocar-nombre input[name=name]").val().length > 2){
             $("#boton_listo").removeClass('hidden');
             $("#boton_listo_inactivo").addClass('hidden');
         }else{
@@ -178,29 +208,33 @@ $(document).on("ready", function() {
             $("#boton_listo_inactivo").removeClass('hidden');
         }
     });
-    $("#boton_regresar").on("click",function(){
-        $("section.section-mesa-roja article.colocar-nombre").animate({ marginTop: "-709px"},700,function(){
-            $(this).addClass('hidden');
-            $("#boton_regresar, #boton_listo").addClass('hidden');
-            $("#boton_unpasomas").css("display","none").removeClass('hidden').fadeIn("fast");
+    var validar_boton_listo = function(callback) {
+        if (facebook_status === 1) {
+            FB.login(function() {
+                verifyPublishActions(callback);
+            }, {scope: 'publish_actions'});
+        } else {
+            callback();
+        }
+    };
+    $("#boton_listo").on("click", function() {
+        validar_boton_listo(function() {
+            $("section.section-inscrito").css("display","block");
+            $("section.section-mesa-roja").animate({ marginLeft: "-812px"},1200,function(){
+                $("section.section-mesa-roja").css("display","none")}).find("article.colocar-nombre").animate({ marginTop: "-709px"},500,function(){
+                $("section.section-inscrito article").css("display","list-item").animate({ marginTop: "0"},700);
+                $(".nombre_ingresado").text('"' + $("article.colocar-nombre input[name=name]").val() + '"');
+            });
         });
     });
-    $("#boton_listo").on("click",function(){
-        $("section.section-inscrito").css("display","block");
-        $("section.section-mesa-roja").animate({ marginLeft: "-812px"},1200,function(){
-            $("section.section-mesa-roja").css("display","none")}).find("article.colocar-nombre").animate({ marginTop: "-709px"},500,function(){
-            $("section.section-inscrito article").css("display","list-item").animate({ marginTop: "0"},700);
-            $(".nombre_ingresado").text('"' + $("article.colocar-nombre input[name=name]").val() + '"');
-        });
-    });
-    $("#boton_que_gano, .boton-terminos-y-condiciones").on("click",function(){
+    $("#boton_que_gano, .boton-terminos-y-condiciones").on("click", function() {
         if($(this).hasClass('boton-terminos-y-condiciones')){
             $("section.section-terminos-y-condiciones").css("display","block").animate({ top: 0},1000);
         }else{
             $("section.section-que-gano").css("display","block").animate({ top: 0},1000);
         }
     });
-    $(".boton-cerrar").on("click",function(){
+    $(".boton-cerrar").on("click", function() {
         $(this).parents("section").animate({ top: "-709px"},1000,function(){$(this).css("display","block");});
     });
     $("#boton_compartir,#boton_listo,#boton_unpasomas,#boton_elegir,#boton_siguiente,#boton_participa,#boton_que_gano,#boton_regresar,.boton-cerrar").on("mouseenter",function(){
