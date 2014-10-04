@@ -33,6 +33,7 @@ $(document).on("ready", function() {
     
     $.ajaxSetup({cache: true});
     var facebook_status = 0, User = {};
+    var user_picture = 'https://graph.facebook.com/$user_id/picture?width=100&height=100';
     $.getScript('//connect.facebook.net/es_LA/all.js', function () {
         FB.init({appId: 147666458740407, status: true, cookie: true, xfbml: true});
         FB.getLoginStatus(function(response) {
@@ -57,7 +58,8 @@ $(document).on("ready", function() {
     var setUserData = function(callback) {
         FB.api('/me', function(response) {
             User = response;
-            User.picture = 'https://graph.facebook.com/' + User.id + '/picture?width=100&height=100';
+            User.friends = [];
+            User.picture = user_picture.replace('$user_id', User.id);
             $("#user_picture").css("background-image", 'url(' + User.picture + ')');
             if (callback) callback();
         });
@@ -145,43 +147,34 @@ $(document).on("ready", function() {
             });
         });
     });
+    var selected_friend;
     $(".bt-fs-dialog").fSelector({
-        closeOnSubmit: true,
-        facebookInvite: false,
-        max: 7,
-        showButtonSelectAll: false,
+        oneByOne: true,
         lang: {
             title: "Invitar a amigos",
-            buttonSubmit: "Enviar",
-            buttonCancel: "Cancelar",
-            buttonShowSelected: "Mostrar Seleccionados",
-            buttonShowAll: "Mostrar todos",
             summaryBoxResult: "{1} mejores resultados para {0}",
             summaryBoxNoResult: "No hay resultados para {0}",
-            searchText: "Busca a todos tus amigos",
-            selectedCountResult: "Ya has elegido a {0} amigos.",
-            selectedLimitResult: "Solo puedes invitar a {0} amigos."
+            searchText: "Busca a todos tus amigos"
         },
-        onSubmit: function (response) {
-            User.friends = response;
-            $(".imagen-recuadro[id!=user_picture]").each(function(i) {
-                if (!response[i]) return;
-                $(this).css("background-image", 'url(https://graph.facebook.com/' + response[i] + '/picture?width=100&height=100)')
-                        .addClass('img_selected').find("img.agregar-amigo").addClass('hidden').prev().removeClass('hidden');
-            });
-            if($(".imagen-recuadro.img_selected").length === 7){
+        onSubmit: function (friend_id) {
+            User.friends.push(friend_id);
+            fs_selected_friends = User.friends;
+            selected_friend.data('id', friend_id).css("background-image", 'url(' + user_picture.replace('$user_id', friend_id) + ')')
+            .addClass('img_selected').find("img.agregar-amigo").addClass('hidden').prev().removeClass('hidden');
+            if (User.friends.length === 7) {
                 $("#boton_unpasomas_inactivo").addClass('hidden');
                 $("#boton_unpasomas").removeClass('hidden');
             }
         }
     });
     $("img.agregar-amigo").on("click", function() {
+        selected_friend = $(this).parent();
         $(".bt-fs-dialog").trigger("click");
-//        $(this).parent().addClass('img_selected');
-//        $(this).addClass('hidden').prev().removeClass('hidden');
     });
     $("img.eliminar-amigo").on("click", function() {
-        $(this).parent().removeClass('img_selected');
+        $this = $(this);
+        User.friends.splice(User.friends.indexOf($this.parent().data('id')), 1);
+        $(this).parent().css("background-image", "url()").removeClass('img_selected');
         $(this).addClass('hidden').next().removeClass('hidden');
         $("#boton_unpasomas").addClass('hidden');
         $("#boton_unpasomas_inactivo").removeClass('hidden');

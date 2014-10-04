@@ -6,6 +6,7 @@
  *   jQuery v1.6.2 or above
  *   Facebook Integration - http://developers.facebook.com/docs/reference/javascript/
  */
+var fs_selected_friends;
 ;(function(window, document, $, undefined) {
   'use strict';
 
@@ -126,16 +127,17 @@
                         '<ul></ul>' +
                       '</div>' +
 
+                      (!fsOptions.oneByOne ? 
                       '<div id="fs-filters-buttons">' +
                         '<div id="fs-filters">' +
                           '<a href="javascript:{}" id="fs-show-selected"><span>'+fsOptions.lang.buttonShowSelected+'</span></a>' +
                         '</div>' +
-      
                         '<div id="fs-dialog-buttons">' +
                           '<a href="javascript:{}" id="fs-submit-button" class="fs-button"><span>'+fsOptions.lang.buttonSubmit+'</span></a>' +
                           '<a href="javascript:{}" id="fs-cancel-button" class="fs-button"><span>'+fsOptions.lang.buttonCancel+'</span></a>' +
                         '</div>' +
-                      '</div>' +
+                      '</div>'
+                      : '') + 
                     '</div>';
 
 
@@ -207,6 +209,8 @@
         k++;
       }
     }
+    
+    for (i in fs_selected_friends) { fsOptions.excludeIds.push(fs_selected_friends[i]); };
 
     for (var j = 0; j < facebook_friends.length; j++) {
 
@@ -230,15 +234,14 @@
   _setFacebookFriends = function (k, v, predefined) {
 
     var item = $('<li/>');
-
     var link =  '<a class="fs-anchor" href="javascript://">' +
                   '<input class="fs-fullname" type="hidden" name="fullname[]" value="'+v[k].name.toLowerCase().replace(/\s/gi, "0")+'" />' +
-                  '<input class="fs-friends" type="checkbox" name="friend[]" value="fs-'+v[k].id+'" />' +
+                  (!fsOptions.oneByOne ? '<input class="fs-friends" type="checkbox" name="friend[]" value="fs-'+v[k].id+'" />' : '')  +
                   '<img class="fs-thumb" src="https://graph.facebook.com/'+v[k].id+'/picture" />' +
                   '<span class="fs-name">' + _charLimit(v[k].name, 15) + '</span>' +
                 '</a>';
 
-    item.append(link);
+    item.data('id', v[k].id).append(link);
 
     $('#fs-user-list ul').append(item);
 
@@ -307,6 +310,12 @@
   _select = function(th) {
     var btn = th;
 
+    if (fsOptions.oneByOne) {
+        fsOptions.onSubmit(parseInt(btn.data('id'), 10));
+        _close();
+        return;
+    }
+    
     if ( btn.hasClass('checked') ) {
 
       btn.removeClass('checked');
@@ -321,14 +330,6 @@
     }
     else {
       
-      if (fsOptions.oneByOne === true) {
-//        $('input.fs-friends').not(':checked').each(function(){
-//              
-//        });
-//        fsOptions.onSubmit(parseInt(btn.find('input.fs-friends').val().split('-')[1], 10));
-//        _close();
-      }
-
       var limit_state = _limitText();
       
       if (limit_state === false) {
