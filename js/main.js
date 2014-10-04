@@ -27,14 +27,14 @@
 // User code
 var $this, $target;
 $(document).on("ready", function() {
-//    $("section.section-no-fan").hide();   
+//    $("section.section-fan").hide();   
 //    $("section.section-mesa-roja").show();
 //    $("section.section-mesa-roja article.elegir-amigos").animate({ marginTop: "0"}, 700);
     
     $.ajaxSetup({cache: true});
     var facebook_status = 0, User = {};
-    $.getScript('//connect.facebook.net/en_US/sdk.js', function () {
-        FB.init({appId: 1521037214801847, cookie: true, xfbml: true, version: 'v2.1'});
+    $.getScript('//connect.facebook.net/es_LA/all.js', function () {
+        FB.init({appId: 147666458740407, status: true, cookie: true, xfbml: true});
         FB.getLoginStatus(function(response) {
             if (response.status === 'connected') {
                 setUserData();
@@ -45,8 +45,8 @@ $(document).on("ready", function() {
         });
     });
     var verifyPublishActions = function(callback) {
-        FB.api('/me/permissions/publish_actions/', function (response) {
-            if (response.data[0] && response.data[0].status === "granted") {
+        FB.api('/me/permissions', function (response) {
+            if (response.data[0].publish_actions) {
                 facebook_status = 2;
                 if (callback) callback();
             } else {
@@ -56,16 +56,10 @@ $(document).on("ready", function() {
     };
     var setUserData = function(callback) {
         FB.api('/me', function(response) {
-            if (response && !response.error) {
-                User = response;
-                FB.api('/me/picture', {height: "100", width: "100"}, function(response) {
-                    if (response && !response.error) {
-                        User.picture = response.data.url;
-                        $("#user_picture").css("background-image", 'url(' + User.picture + ')');
-                        if (callback) callback();
-                    }
-                });
-            }
+            User = response;
+            User.picture = 'https://graph.facebook.com/' + User.id + '/picture?width=100&height=100';
+            $("#user_picture").css("background-image", 'url(' + User.picture + ')');
+            if (callback) callback();
         });
     };
     
@@ -138,7 +132,7 @@ $(document).on("ready", function() {
                     facebook_status = 1;
                     setUserData(callback);
                 }
-            }, {scope: 'user_friends'});
+            }, {scope: 'publish_actions'});
         } else {
             callback();
         }
@@ -151,21 +145,40 @@ $(document).on("ready", function() {
             });
         });
     });
-//    $(".bt-fs-dialog").fSelector({
-//        onSubmit: function (response) {
-//            console.log(response);
-//        }
-//    });
-    $("img.agregar-amigo").on("click", function() { 
-//        FB.api('/me/taggable_friends', function(response) {
-//            console.log(response)
-//        });
-        $(this).parent().addClass('img_selected');
-        $(this).addClass('hidden').prev().removeClass('hidden');
-        if($(".imagen-recuadro.img_selected").length === 1){
-            $("#boton_unpasomas_inactivo").addClass('hidden');
-            $("#boton_unpasomas").removeClass('hidden');
+    $(".bt-fs-dialog").fSelector({
+        closeOnSubmit: true,
+        facebookInvite: false,
+        max: 7,
+        showButtonSelectAll: false,
+        lang: {
+            title: "Invitar a amigos",
+            buttonSubmit: "Enviar",
+            buttonCancel: "Cancelar",
+            buttonShowSelected: "Mostrar Seleccionados",
+            buttonShowAll: "Mostrar todos",
+            summaryBoxResult: "{1} mejores resultados para {0}",
+            summaryBoxNoResult: "No hay resultados para {0}",
+            searchText: "Busca a todos tus amigos",
+            selectedCountResult: "Ya has elegido a {0} amigos.",
+            selectedLimitResult: "Solo puedes invitar a {0} amigos."
+        },
+        onSubmit: function (response) {
+            User.friends = response;
+            $(".imagen-recuadro[id!=user_picture]").each(function(i) {
+                if (!response[i]) return;
+                $(this).css("background-image", 'url(https://graph.facebook.com/' + response[i] + '/picture?width=100&height=100)')
+                        .addClass('img_selected').find("img.agregar-amigo").addClass('hidden').prev().removeClass('hidden');
+            });
+            if($(".imagen-recuadro.img_selected").length === 7){
+                $("#boton_unpasomas_inactivo").addClass('hidden');
+                $("#boton_unpasomas").removeClass('hidden');
+            }
         }
+    });
+    $("img.agregar-amigo").on("click", function() {
+        $(".bt-fs-dialog").trigger("click");
+//        $(this).parent().addClass('img_selected');
+//        $(this).addClass('hidden').prev().removeClass('hidden');
     });
     $("img.eliminar-amigo").on("click", function() {
         $(this).parent().removeClass('img_selected');
@@ -174,7 +187,7 @@ $(document).on("ready", function() {
         $("#boton_unpasomas_inactivo").removeClass('hidden');
     });
     $("#boton_unpasomas").on("click", function() {
-        $("#boton_unpasomas").addClass('hidden');
+        $("#boton_unpasomas, img.eliminar-amigo").addClass('hidden');
         $("section.section-mesa-roja article.colocar-nombre").removeClass('hidden').animate({ marginTop: 0},700,function(){
             $("#boton_regresar").hide().removeClass('hidden').fadeIn();
             $("article.colocar-nombre input[name=name]").val().length > 2 ? $("#boton_listo").hide().removeClass('hidden').fadeIn() : $("#boton_listo_inactivo").hide().removeClass('hidden').fadeIn();
@@ -183,7 +196,7 @@ $(document).on("ready", function() {
     $("#boton_regresar").on("click", function() {
         $("#boton_regresar,#boton_listo, #boton_listo_inactivo").addClass('hidden');
         $("section.section-mesa-roja article.colocar-nombre").animate({ marginTop: "-709px"},700,function(){
-            $("#boton_unpasomas").hide().removeClass('hidden').fadeIn();
+            $("#boton_unpasomas, img.eliminar-amigo").hide().removeClass('hidden').fadeIn();
         });
     });
     $("article.colocar-nombre input[name=name]").on("keyup",function(){

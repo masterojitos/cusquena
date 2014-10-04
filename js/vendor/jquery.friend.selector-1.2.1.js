@@ -320,6 +320,14 @@
 
     }
     else {
+      
+      if (fsOptions.oneByOne === true) {
+//        $('input.fs-friends').not(':checked').each(function(){
+//              
+//        });
+//        fsOptions.onSubmit(parseInt(btn.find('input.fs-friends').val().split('-')[1], 10));
+//        _close();
+      }
 
       var limit_state = _limitText();
       
@@ -593,6 +601,7 @@
       facebookInviteMessage: "Invite message"
     },
     maxFriendsCount: null,
+    oneByOne: false,
     showRandom: false,
     facebookInvite: true,
     onPreStart: function(response){ return null; },
