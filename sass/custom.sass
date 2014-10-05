@@ -144,6 +144,13 @@ body
                     width: 290px
                     img:last-child
                         padding-left: 10px
+                .cusquena-input
+                    > div
+                        height: 20px
+                        width: 100%
+                        div, input
+                            left: 63px
+                            text-align: center
                 .imagen-recuadro
                     height: 100px
                     position: absolute
@@ -282,15 +289,24 @@ body
                             left: 137px
                     input
                         background: transparent
-                        color: #fff
                         border: 0
+                        bottom: 0
+                        color: #fff
+                        left: 0
                         outline: 0
                         padding: 0 0 1px 5px
+                        position: absolute
+                        z-index: 2
                         &.dia, &.mes, &.ano
-                            margin-left: 9px
+                            padding-left: 19px
                             width: 50px
                         &.dia
+                            left: 6px
                             margin-left: 0
+                        &.mes
+                            left: 65px
+                        &.ano
+                            left: 126px
         .enunciado
             color: #fea200
             font-family: 'BebasNeue'
@@ -337,6 +353,6 @@ body
         .nano-content
             padding: 10px
         .nano-pane
-            background: #888
+            background: #fff
         .nano-slider
             background: #111

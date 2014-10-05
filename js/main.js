@@ -65,17 +65,22 @@ $(document).on("ready", function() {
     
     $(".like-page").on("click", function() {
         $("#boton_que_gano").removeClass('hidden');
-        $(".nano").nanoScroller();
         $("section.section-no-fan").fadeOut(500).find("article").animate({ marginTop: "-709px"},500,function(){
             $("section.section-fan article").css("display","list-item").animate({ marginTop: "0"},500);
         }).parent().next().css("display","block");
     });
     $("#boton_participa").on("click", function() {
+        $(".nano").nanoScroller();
         $("section.section-formulario").css("display","block");
         $("section.section-fan").animate({ marginLeft: "-812px"},1200,function(){
             $("section.section-fan").css("display","none")}).find("article").animate({ marginTop: "-709px"},500,function(){
             $("section.section-formulario article").css("display","list-item").animate({ marginTop: "0"},700);
         });
+    });
+    $("section.section-formulario input.dia, section.section-formulario input.mes").on("keyup",function(){
+        if($(this).val().length >= 2){
+            $(this).next().next().focus();
+        }
     });
     $("#boton_siguiente").on("click", function() {
         form = $("section.section-formulario");
@@ -118,11 +123,38 @@ $(document).on("ready", function() {
             form.find(".error").text("El dato que ingresaste es incorrecto o inválido.");
             cell.prev().addClass('error');
         }else {
-            $("section.section-mesa-roja").css("display","block");
-            $("section.section-formulario").animate({ marginLeft: "-812px"},1200,function(){
-                $(this).css("display","none")}).find("article").animate({ marginTop: "-1709px"},500,function(){
-                $("section.section-mesa-roja article.elegir-amigos").css("display","list-item").animate({ marginTop: "0"},700);
-            });
+            data = {
+                "nombre" : nombre.val(),
+                "apellido_paterno" : apellido_paterno.val(),
+                "apellido_materno" : apellido_materno.val(),
+                "dia" : dia.val(),
+                "mes" : mes.val(),
+                "ano" : ano.val(),
+                "dni" : dni.val(),
+                "email" : email.val(),
+                "cell" : cell.val()
+            }
+            $.ajax({
+                url: 'insertar_usuario.php',
+                type: 'POST',
+                data: data,
+            })
+            .done(function(response) {
+                if(response.success){
+                    $("section.section-mesa-roja").css("display","block");
+                    $("section.section-formulario").animate({ marginLeft: "-812px"},1200,function(){
+                        $(this).css("display","none")}).find("article").animate({ marginTop: "-1709px"},500,function(){
+                        $("section.section-mesa-roja article.elegir-amigos").css("display","list-item").animate({ marginTop: "0"},700);
+                    });
+                }else if(response.cumpleanos){
+                    fecha_ingresada = ano + "-" + mes + "-" + dia;
+                    if(fecha_ingresada == response.cumpleanos){
+                        $(".terminos .error").text("El DNI ingresado ya se encuentra participando");
+                    }else{
+                        $(".terminos .error").text("La fecha de nacimiento no coincide con el DNI ingresado");
+                    }
+                }
+            }); 
         }
     });
     var validar_boton_elegir = function(callback) {
