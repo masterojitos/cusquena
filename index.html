@@ -66,32 +66,32 @@
                                 <label>Nombres:</label>
                                 <div>
                                     <div class="border"></div>
-                                    <input type="text" name="nombre" />
+                                    <input type="text" name="nombre" maxlength="80" />
                                 </div>
                             </div>
                             <div class="cusquena-input">
                                 <label>Apellido Paterno:</label>
                                 <div>
                                     <div class="border"></div>
-                                    <input type="text" name="apellido_paterno" />
+                                    <input type="text" name="apellido_paterno" maxlength="80" />
                                 </div>
                             </div>
                             <div class="cusquena-input">
                                 <label>Apellido Materno:</label>
                                 <div>
                                     <div class="border"></div>
-                                    <input type="text" name="apellido_materno" />
+                                    <input type="text" name="apellido_materno" maxlength="80" />
                                 </div>
                             </div>
                             <div class="cusquena-input">
                                 <label>Fecha de Nacimiento:</label>
                                 <div>
                                     <div class="border dia"></div>
-                                    <input type="text" name="dia" class="dia" maxlength="2" />
+                                    <input type="text" name="dia" class="dia" placeholder="DD" maxlength="2" />
                                     <div class="border mes"></div>
-                                    <input type="text" name="mes" class="mes" maxlength="2" />
+                                    <input type="text" name="mes" class="mes" placeholder="MM" maxlength="2" />
                                     <div class="border ano"></div>
-                                    <input type="text" name="ano" class="ano" maxlength="4" />
+                                    <input type="text" name="ano" class="ano" placeholder="AAAA" maxlength="4" />
                                 </div>
                             </div>
                             <div class="cusquena-input">
@@ -116,12 +116,12 @@
                                 </div>
                             </div>
                             <div class="terminos">
-                                <div class="error">por favor, completa correctamente los campos</div><br />
+                                <div class="error"></div><br />
                                 <div>
-                                    <i class="check_button terminos_check"></i><span>ACEPTO </span><a href="#" class="boton-terminos-y-condiciones">Términos y Condiciones</a>
+                                    <i class="check_button" id="terminos_check"></i><span>ACEPTO </span><a href="#" class="boton-terminos-y-condiciones">Términos y Condiciones</a>
                                 </div>
                                 <div>
-                                    <i class="check_button noticias_check"></i><span>ACEPTO </span><a href="#">Recibir noticias por email y SMS</a>
+                                    <i class="check_button" id="noticias_check"></i><span>ACEPTO </span><a href="#">Recibir noticias por email y SMS</a>
                                 </div>
                             </div>
                         </form>
@@ -144,7 +144,7 @@
                         <div class="cusquena-input">
                             <div>
                                 <div class="border"></div>
-                                <input type="text" name="name" placeholder="   Escribe el nombre aqui" />
+                                <input type="text" name="name" id="nombre_mesa" placeholder="   Escribe el nombre aqui" maxlength="30" />
                             </div>
                         </div>
                     </article>

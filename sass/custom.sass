@@ -1,6 +1,8 @@
 @import compass
 @import fonts
 $page_width: 810px
+$text-color: #fea200
+$error-color: #fb2600
 body
     background-color: #fff
 .container
@@ -39,7 +41,7 @@ body
                 list-style: none
                 margin: 0 auto
                 margin-top: -1709px
-                input
+                input[type=text]
                     width: 184px
             &.section-no-fan
                 article
@@ -110,17 +112,21 @@ body
                     text-align: left
                     width: 430px
                     .terminos
-                        bottom: 50px
+                        bottom: 40px
                         color: #fff
                         font-size: 12px
                         left: 0
                         position: absolute
                         text-align: center
                         width: 100%
+                        div
+                            margin-bottom: 3px
                         .error
-                            color: #fb2600
+                            color: $error-color
+                        span
+                            margin-right: 5px
                         a
-                            color: #fea200
+                            color: $text-color
                 .top-logo
                     +mesa-roja-cusquena
                 footer
@@ -148,7 +154,7 @@ body
                     > div
                         height: 20px
                         width: 100%
-                        div, input
+                        div, input[type=text]
                             left: 63px
                             text-align: center
                 .imagen-recuadro
@@ -260,55 +266,55 @@ body
                 position: relative
                 width: 100%
                 label
-                    color: #fea200
+                    color: $text-color
                     padding-right: 3px
                     text-align: right
                     width: 177px
                     +inline-block
                 > div
                     position: relative
-                    display: inline-block
+                    +inline-block
                     text-align: left
                     vertical-align: text-bottom
                     .border
-                        border: 1px solid #fea200
+                        border: 1px solid $text-color
                         border-top: 0
                         bottom: 0
                         height: 10px
+                        left: 0
                         position: absolute
                         width: 192px
                         &.error
-                            border: 1px solid #fb2600
+                            border: 1px solid $error-color
                             border-top: 0
                         &.dia, &.mes, &.ano
-                            left: 1px
                             width: 57px
                         &.mes
                             left: 69px
                         &.ano
                             left: 137px
-                    input
+                    input[type=text]
                         background: transparent
                         border: 0
-                        bottom: 0
+                        bottom: 3px
                         color: #fff
                         left: 0
+                        margin-left: 5px
                         outline: 0
-                        padding: 0 0 1px 5px
+                        padding-bottom: 1px
                         position: absolute
                         z-index: 2
                         &.dia, &.mes, &.ano
-                            padding-left: 19px
-                            width: 50px
-                        &.dia
                             left: 6px
                             margin-left: 0
+                            text-align: center
+                            width: 47px
                         &.mes
-                            left: 65px
+                            left: 75px
                         &.ano
-                            left: 126px
+                            left: 143px
         .enunciado
-            color: #fea200
+            color: $text-color
             font-family: 'BebasNeue'
             font-size: 38px
             line-height: 30px
@@ -355,22 +361,22 @@ body
         .nano-slider
             background: #111
     .check_button
-        border: 1px solid #fea200
-        display: inline-block
-        height: 10px
-        margin-right: 10px
+        border: 1px solid $text-color
+        +inline-block
+        height: 14px
+        margin-right: 5px
         position: relative
-        width: 10px
+        width: 14px
         &.checked
             &:before
-                color: #fea200
+                color: $text-color
                 content:  "\2713 "
-                font-size: 8px
+                font-size: 12px
                 left: 1px
                 position: absolute
                 top: 0
         &.error
-            border: 1px solid #fb2600
+            border: 1px solid $error-color
         &:hover
             cursor: pointer
 
