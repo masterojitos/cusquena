@@ -84,6 +84,16 @@ $(document).on("ready", function() {
             $(this).next().next().focus();
         }
     });
+    function calcular_edad(fecha){
+        var today = new Date();
+        var birthDate = fecha;
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        return age;
+    } 
     $("#boton_siguiente").on("click", function() {
         form = $("section.section-formulario");
         form.find(".border.error").removeClass('error');
@@ -115,6 +125,11 @@ $(document).on("ready", function() {
             dia.prev().addClass('error');
             mes.prev().addClass('error');
             ano.prev().addClass('error');
+        }else if(calcular_edad(new_date) < 18){
+            form.find(".error").text("Debes ser mayor de edad para participar de la campaña.");
+            dia.prev().addClass('error');
+            mes.prev().addClass('error');
+            ano.prev().addClass('error');
         }else if(!dniregex.test(dni.val()) || dni.val() === ""){
             form.find(".error").text("El dato que ingresaste es incorrecto o inválido.");
             dni.prev().addClass('error');
@@ -124,6 +139,9 @@ $(document).on("ready", function() {
         }else if(!numberregex.test(cell.val()) || cell.val() === ""){
             form.find(".error").text("El dato que ingresaste es incorrecto o inválido.");
             cell.prev().addClass('error');
+        }else if(!$(".check_button.terminos_check").hasClass('checked')){
+            form.find(".error").text("Debe aceptar los términos y condiciones.");
+            $(".check_button.terminos_check").addClass('error');
         }else {
             data = {
                 "nombre" : nombre.val(),
@@ -134,7 +152,8 @@ $(document).on("ready", function() {
                 "ano" : ano.val(),
                 "dni" : dni.val(),
                 "email" : email.val(),
-                "cell" : cell.val()
+                "cell" : cell.val(),
+                "recibir_noticias" : $(".check_button.noticias_check").hasClass('checked') ? 1 : 0
             }
             $.ajax({
                 url: 'insertar_usuario.php',
@@ -158,6 +177,9 @@ $(document).on("ready", function() {
                 }
             }); 
         }
+    });
+    $(".check_button").on("click",function(){
+        $(this).toggleClass("checked").removeClass('error');
     });
     var validar_boton_elegir = function(callback) {
         if (!facebook_status) {
@@ -255,6 +277,7 @@ $(document).on("ready", function() {
     $("#boton_que_gano, .boton-terminos-y-condiciones").on("click", function() {
         if ($(this).hasClass('boton-terminos-y-condiciones')) {
             $("section.section-terminos-y-condiciones").css("display", "block").animate({top: 0}, 500);
+            $("#scroll_terminos_y_condiciones").resize();
         } else {
             $("section.section-que-gano").css("display", "block").animate({top: 0}, 500);
         }

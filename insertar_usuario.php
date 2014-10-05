@@ -9,7 +9,7 @@ $mes = $_POST["mes"];
 $ano = $_POST["ano"];
 $email = $_POST["email"];
 $cell = $_POST["cell"];
-
+$recibir_noticias = $_POST["recibir_noticias"];
 $regex_dni = "/^[0-9\-\+]{9,9}$/";
 $regex_name = "/^[a-zA-Z]{1,}([\s-]*[a-zA-Z\s\'-]*)$/";
 $regex_email = "/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/"; 
@@ -31,7 +31,7 @@ if ($mysqli->connect_errno) {
 		if (!$row['cumpleanos'] == null){
 	    	echo json_encode(array('cumpleanos' => $row['cumpleanos']));exit;
 		}else{
-			$query = "INSERT INTO cusquena_user VALUES (Default,'$nombre', '$apellido_paterno', '$apellido_materno', '" . $ano . "-" . $mes . "-" . $dia . "', $dni, '$email', $cell)";
+			$query = "INSERT INTO cusquena_user VALUES (Default,'$nombre', '$apellido_paterno', '$apellido_materno', '" . $ano . "-" . $mes . "-" . $dia . "', $dni, '$email', $cell,$recibir_noticias)";
 			$mysqli->query($query);
 			$mensaje =  "usuario registrado correctamente";
 		    echo json_encode(array('success' => $mensaje));exit;

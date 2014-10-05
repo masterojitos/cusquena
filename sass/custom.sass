@@ -214,7 +214,6 @@ body
                 .top-logo
                     +mesa-roja-cusquena
                 .scroll
-                    border-right: 4px solid #666
                     color: #fff
                     height: 370px
                     margin: 20px 0
@@ -270,6 +269,7 @@ body
                     position: relative
                     display: inline-block
                     text-align: left
+                    vertical-align: text-bottom
                     .border
                         border: 1px solid #fea200
                         border-top: 0
@@ -354,3 +354,23 @@ body
             background: #fff
         .nano-slider
             background: #111
+    .check_button
+        border: 1px solid #fea200
+        display: inline-block
+        height: 10px
+        margin-right: 10px
+        position: relative
+        width: 10px
+        &.checked
+            &:before
+                color: #fea200
+                content:  "\2713 "
+                font-size: 8px
+                left: 1px
+                position: absolute
+                top: 0
+        &.error
+            border: 1px solid #fb2600
+        &:hover
+            cursor: pointer
+
