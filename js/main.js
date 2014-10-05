@@ -84,20 +84,16 @@ $(document).on("ready", function() {
             $(this).next().next().focus();
         }
     });
-    var calcular_edad = function(fecha) {
-        var age_dif_ms = (new Date()).getTime() - fecha.getTime();
-        var age_date = new Date(age_dif_ms);
-        return Math.abs(age_date.getUTCFullYear() - 1970);
-    };
-    Date.prototype.parseISO8601 = function(date){
-        var matches = date.match(/^\s*(\d{4})-(\d{2})-(\d{2})\s*$/);
-        if(matches){
-            this.setFullYear(parseInt(matches[1]));    
-            this.setMonth(parseInt(matches[2]) - 1);
-            this.setDate(parseInt(matches[3]));    
+    function calcular_edad(fecha){
+        var today = new Date();
+        var birthDate = fecha;
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
         }
-        return this;
-    };
+        return age;
+    } 
     $("#boton_siguiente").on("click", function() {
         form = $("section.section-formulario");
         form.find(".border.error").removeClass('error');
@@ -107,81 +103,77 @@ $(document).on("ready", function() {
         var dia = form.find("[name=dia]");
         var mes = form.find("[name=mes]");
         var ano = form.find("[name=ano]");
-        var fecha_ingresada = ano.val() + "-" + mes.val() + "-" + dia.val();
-        var new_date = (new Date()).parseISO8601(fecha_ingresada);
         var dni = form.find("[name=dni]");
         var email = form.find("[name=email]");
         var cell = form.find("[name=cell]");
-        var terminos = $("#terminos_check");
-        var nameregex = /^([a-zA-Z ñáéíóú äöüÄÖÜß]{2,80})$/;
-        var dniregex = /^[0-9]{8,8}$/;
+        var new_date = new Date(ano.val()+"-"+mes.val()+"-"+dia.val());
+        var nameregex = /^([a-zA-Z ñáéíóú äöüÄÖÜß]{2,60})$/;
+        var dniregex = /^[1-9]{8,8}$/;
         var emailregex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        var numberregex = /^[0-9]{9,9}$/;
-        if (nombre.val() === "" && apellido_paterno.val() === "" && apellido_materno.val() === "" && 
-                fecha_ingresada === "--" && dni.val() === "" && email.val() === "" && cell.val() === "") {
-            form.find("div.error").text("Por favor, completa correctamente los campos.");
-            nombre.focus().prev().addClass('error');
-            apellido_paterno.prev().addClass('error');
-            apellido_materno.prev().addClass('error');
-            dia.prev().addClass('error');
-            mes.prev().addClass('error');
-            ano.prev().addClass('error');
-            dni.prev().addClass('error');
-            email.prev().addClass('error');
-            cell.prev().addClass('error');
-            if (!terminos.hasClass('checked')) terminos.addClass('error');
-        } else if(!nameregex.test(nombre.val()) || nombre.val() === ""){
-            form.find("div.error").text("El dato que ingresaste es incorrecto o inválido.");
+        var numberregex = /^[1-9]{9,9}$/;
+        if(!nameregex.test(nombre.val()) || nombre.val() === ""){
+            form.find(".error").text("El dato que ingresaste es incorrecto o inválido.");
             nombre.prev().addClass('error');
         }else if(!nameregex.test(apellido_paterno.val()) || apellido_paterno.val() === ""){
-            form.find("div.error").text("El dato que ingresaste es incorrecto o inválido.");
-            apellido_paterno.focus().prev().addClass('error');
+            form.find(".error").text("El dato que ingresaste es incorrecto o inválido.");
+            apellido_paterno.prev().addClass('error');
         }else if(!nameregex.test(apellido_materno.val()) || apellido_materno.val() === ""){
-            form.find("div.error").text("El dato que ingresaste es incorrecto o inválido.");
-            apellido_materno.focus().prev().addClass('error');
-        }else if(isNaN(new_date.getTime()) || calcular_edad(new_date) < 1 || calcular_edad(new_date) > 99){
-            console.log("a")
-            form.find("div.error").text("El dato que ingresaste es incorrecto o inválido.");
+            form.find(".error").text("El dato que ingresaste es incorrecto o inválido.");
+            apellido_materno.prev().addClass('error');
+        }else if( isNaN( new_date.getTime() )){
+            form.find(".error").text("El dato que ingresaste es incorrecto o inválido.");
             dia.prev().addClass('error');
             mes.prev().addClass('error');
             ano.prev().addClass('error');
         }else if(calcular_edad(new_date) < 18){
-            console.log("b")
-            form.find("div.error").text("Debes ser mayor de edad para participar de la campaña.");
+            form.find(".error").text("Debes ser mayor de edad para participar de la campaña.");
             dia.prev().addClass('error');
             mes.prev().addClass('error');
             ano.prev().addClass('error');
         }else if(!dniregex.test(dni.val()) || dni.val() === ""){
-            form.find("div.error").text("El dato que ingresaste es incorrecto o inválido.");
-            dni.focus().prev().addClass('error');
+            form.find(".error").text("El dato que ingresaste es incorrecto o inválido.");
+            dni.prev().addClass('error');
         }else if(!emailregex.test(email.val()) || email.val() === ""){
-            form.find("div.error").text("El dato que ingresaste es incorrecto o inválido.");
-            email.focus().prev().addClass('error');
+            form.find(".error").text("El dato que ingresaste es incorrecto o inválido.");
+            email.prev().addClass('error');
         }else if(!numberregex.test(cell.val()) || cell.val() === ""){
-            form.find("div.error").text("El dato que ingresaste es incorrecto o inválido.");
-            cell.focus().prev().addClass('error');
-        }else if(!terminos.hasClass('checked')){
-            form.find("div.error").text("Debe aceptar los términos y condiciones.");
-            terminos.addClass('error');
+            form.find(".error").text("El dato que ingresaste es incorrecto o inválido.");
+            cell.prev().addClass('error');
+        }else if(!$(".check_button.terminos_check").hasClass('checked')){
+            form.find(".error").text("Debe aceptar los términos y condiciones.");
+            $(".check_button.terminos_check").addClass('error');
         }else {
-//            var data = $("form").serialize();
-//            data+= "&notificaciones=" + ($("#noticias_check").hasClass('checked') ? 1 : 0);
-            $.post('verificar_dni.php', {dni: dni.val()})
+            data = {
+                "nombre" : nombre.val(),
+                "apellido_paterno" : apellido_paterno.val(),
+                "apellido_materno" : apellido_materno.val(),
+                "dia" : dia.val(),
+                "mes" : mes.val(),
+                "ano" : ano.val(),
+                "dni" : dni.val(),
+                "email" : email.val(),
+                "cell" : cell.val(),
+                "recibir_noticias" : $(".check_button.noticias_check").hasClass('checked') ? 1 : 0
+            }
+            $.ajax({
+                url: 'insertar_usuario.php',
+                type: 'POST',
+                data: data,
+            })
             .done(function(response) {
-                if (response.success) {
+                if(response.success){
                     $("section.section-mesa-roja").css("display","block");
                     $("section.section-formulario").animate({ marginLeft: "-812px"},1200,function(){
                         $(this).css("display","none")}).find("article").animate({ marginTop: "-1709px"},500,function(){
                         $("section.section-mesa-roja article.elegir-amigos").css("display","list-item").animate({ marginTop: "0"},700);
                     });
-                }else if(response.cumpleanos) {
-                    if(fecha_ingresada === response.cumpleanos){
+                }else if(response.cumpleanos){
+                    fecha_ingresada = ano + "-" + mes + "-" + dia;
+                    if(fecha_ingresada == response.cumpleanos){
                         $(".terminos .error").text("El DNI ingresado ya se encuentra participando");
-                    } else {
+                    }else{
                         $(".terminos .error").text("La fecha de nacimiento no coincide con el DNI ingresado");
                     }
-                }else if(response.error) {
-                    $(".terminos .error").text(response.error);
                 }
             }); 
         }
@@ -245,7 +237,7 @@ $(document).on("ready", function() {
         $("#boton_unpasomas, img.eliminar-amigo").addClass('hidden');
         $("section.section-mesa-roja article.colocar-nombre").removeClass('hidden').animate({ marginTop: 0},700,function(){
             $("#boton_regresar").hide().removeClass('hidden').fadeIn();
-            $("#nombre_mesa").val().length > 2 ? $("#boton_listo").hide().removeClass('hidden').fadeIn() : $("#boton_listo_inactivo").hide().removeClass('hidden').fadeIn();
+            $("article.colocar-nombre input[name=name]").val().length > 2 ? $("#boton_listo").hide().removeClass('hidden').fadeIn() : $("#boton_listo_inactivo").hide().removeClass('hidden').fadeIn();
         });
     });
     $("#boton_regresar").on("click", function() {
@@ -254,8 +246,8 @@ $(document).on("ready", function() {
             $("#boton_unpasomas, img.eliminar-amigo").hide().removeClass('hidden').fadeIn();
         });
     });
-    $("#nombre_mesa").on("keyup", function() {
-        if($(this).val().length > 2){
+    $("article.colocar-nombre input[name=name]").on("keyup",function(){
+        if($("article.colocar-nombre input[name=name]").val().length > 2){
             $("#boton_listo").removeClass('hidden');
             $("#boton_listo_inactivo").addClass('hidden');
         }else{
@@ -284,7 +276,7 @@ $(document).on("ready", function() {
         /// convert canvas content to data-uri for link. When download
         /// attribute is set the content pointed to by link will be
         /// pushed as "download" in HTML5 capable browsers
-        lnk.href = canvas.toDataURL();
+        lnk.href = c.toDataURL();
 
         /// create a "fake" click-event to trigger the download
         if (document.createEvent) {
@@ -305,9 +297,14 @@ $(document).on("ready", function() {
         e.preventDefault();
         html2canvas($("section.section-fan"), {
             onrendered: function(canvas) {
-                var base64 = canvas.toDataURL();
-                console.log(base64)
-                //download(canvas, 'image.png');
+                /*var dato = canvas.toDataURL("image/png");
+                dato = dato.replace("image/png", "image/octet-stream");
+                $('#descargar_imagen').attr({
+                    'download': 'myFilename.png',  /// set filename
+                    'href'    : dato              /// set data-uri
+                });
+                document.location.href = dato;*/
+                download(myCanvas, 'untitled.png');
             }
         });
     });
