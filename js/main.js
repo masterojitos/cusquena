@@ -336,9 +336,4 @@ $(document).on("ready", function() {
     $(".boton-cerrar").on("click", function() {
         $(this).parents("section").animate({top: "-709px"}, 500, function() { $(this).hide(); });
     });
-    $("#boton_compartir,#boton_listo,#boton_unpasomas,#boton_elegir,#boton_siguiente,#boton_participa,#boton_regresar,.boton-cerrar").on("mouseenter",function() {
-        $(this).attr("src", $(this).attr("src").replace(".png","-hover.png"));
-    }).on("mouseleave", function() {
-        $(this).attr("src", $(this).attr("src").replace("-hover.png",".png"));
-    });
 });
