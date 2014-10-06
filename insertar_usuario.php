@@ -44,7 +44,7 @@ if ($mysqli->connect_errno) {
     echo json_encode(array('error' => "Error de Conexión."));
     exit;
 }
-$result = $mysqli->query("SELECT cumpleanos FROM cusquena_user WHERE dni = " . $dni);
+$result = $mysqli->query("SELECT * FROM cusquena_user WHERE dni = " . $dni);
 $row = $result->fetch_assoc();
 if (!$row['cumpleanos'] == null) {
     echo json_encode(array('cumpleanos' => $row['cumpleanos']));
