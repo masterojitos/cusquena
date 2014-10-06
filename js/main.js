@@ -27,7 +27,7 @@
 // User code
 var $this, $target;
 $(document).on("ready", function() {
-//    $("section.section-fan").hide();   
+//    $("section.section-fan").hide();
 //    $("section.section-mesa-roja").show();
 //    $("section.section-mesa-roja article.elegir-amigos").animate({ marginTop: "0"}, 700);
     
@@ -220,18 +220,18 @@ $(document).on("ready", function() {
             User.friends.push(friend_id);
             fs_selected_friends = User.friends;
             selected_friend.data('id', friend_id).css("background-image", 'url(' + user_picture.replace('$user_id', friend_id) + ')')
-            .addClass('img_selected').find("img.agregar-amigo").addClass('hidden').prev().removeClass('hidden');
+            .addClass('img_selected').find(".agregar-amigo").addClass('hidden').prev().removeClass('hidden');
             if (User.friends.length === 7) {
                 $("#boton_unpasomas_inactivo").addClass('hidden');
                 $("#boton_unpasomas").removeClass('hidden');
             }
         }
     });
-    $("img.agregar-amigo").on("click", function() {
+    $(".agregar-amigo").on("click", function() {
         selected_friend = $(this).parent();
         $(".bt-fs-dialog").trigger("click");
     });
-    $("img.eliminar-amigo").on("click", function() {
+    $(".eliminar-amigo").on("click", function() {
         $this = $(this);
         User.friends.splice($.inArray($this.parent().data('id'),User.friends), 1);
         $(this).parent().css("background-image", "url()").removeClass('img_selected');
@@ -240,16 +240,16 @@ $(document).on("ready", function() {
         $("#boton_unpasomas_inactivo").removeClass('hidden');
     });
     $("#boton_unpasomas").on("click", function() {
-        $("#boton_unpasomas, img.eliminar-amigo").addClass('hidden');
+        $("#boton_unpasomas, .eliminar-amigo").addClass('hidden');
         $("section.section-mesa-roja article.colocar-nombre").removeClass('hidden').animate({ marginTop: 0},700,function(){
             $("#boton_regresar").hide().removeClass('hidden').fadeIn();
             $("#nombre_mesa").val().length > 2 ? $("#boton_listo").hide().removeClass('hidden').fadeIn() : $("#boton_listo_inactivo").hide().removeClass('hidden').fadeIn();
         });
     });
     $("#boton_regresar").on("click", function() {
-        $("#boton_regresar,#boton_listo, #boton_listo_inactivo").addClass('hidden');
+        $("#boton_regresar, #boton_listo, #boton_listo_inactivo").addClass('hidden');
         $("section.section-mesa-roja article.colocar-nombre").animate({ marginTop: "-709px"},700,function(){
-            $("#boton_unpasomas, img.eliminar-amigo").hide().removeClass('hidden').fadeIn();
+            $("#boton_unpasomas, .eliminar-amigo").hide().removeClass('hidden').fadeIn();
         });
     });
     $("#nombre_mesa").on("keyup", function() {
@@ -335,10 +335,5 @@ $(document).on("ready", function() {
     });
     $(".boton-cerrar").on("click", function() {
         $(this).parents("section").animate({top: "-709px"}, 500, function() { $(this).hide(); });
-    });
-    $("#boton_compartir,#boton_listo,#boton_unpasomas,#boton_elegir,#boton_siguiente,#boton_participa,#boton_regresar,.boton-cerrar").on("mouseenter",function() {
-        $(this).attr("src", $(this).attr("src").replace(".png","-hover.png"));
-    }).on("mouseleave", function() {
-        $(this).attr("src", $(this).attr("src").replace("-hover.png",".png"));
     });
 });
