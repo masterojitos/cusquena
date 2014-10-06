@@ -302,11 +302,17 @@ $(document).on("ready", function() {
     }
     $("#descargar_imagen").on("click",function(e){
         e.preventDefault();
+        //dni = form.find("[name=dni]");
         html2canvas($("section.section-fan"), {
             onrendered: function(canvas) {
                 var base64 = canvas.toDataURL();
-                console.log(base64)
-                //download(canvas, 'image.png');
+                $.post('guardar_imagen.php', {
+                    "dni": "12345689",
+                    "data": base64
+                })
+                .done(function(response) {
+                    console.log(response)
+                });
             }
         });
     });
