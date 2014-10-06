@@ -21,16 +21,9 @@
     }
 }());
 
-// Place any jQuery/helper plugins in here.
-
-
 // User code
 var $this, $target;
 $(document).on("ready", function() {
-//    $("section.section-fan").hide();
-//    $("section.section-mesa-roja").show();
-//    $("section.section-mesa-roja article.elegir-amigos").animate({ marginTop: "0"}, 500);
-    
     $.ajaxSetup({cache: true});
     var facebook_status = 0, User = {};
     var user_picture = 'https://graph.facebook.com/$user_id/picture?width=100&height=100';
@@ -165,8 +158,6 @@ $(document).on("ready", function() {
             form.find("div.error").text("Debe aceptar los términos y condiciones.");
             terminos.addClass('error');
         }else {
-//            var data = $("form").serialize();
-//            data+= "&notificaciones=" + ($("#noticias_check").hasClass('checked') ? 1 : 0);
             $.post('verificar_dni.php', {dni: dni.val()})
             .done(function(response) {
                 if(response.success) {
@@ -185,7 +176,7 @@ $(document).on("ready", function() {
                 }else if(response.error) {
                     $(".terminos .error").text(response.error);
                 }
-            }); 
+            });
         }
     });
     $(".check_button").on("click",function(){
@@ -249,7 +240,7 @@ $(document).on("ready", function() {
         $("#boton_unpasomas, .eliminar-amigo").addClass('hidden');
         $("section.section-mesa-roja article.colocar-nombre").removeClass('hidden').animate({ marginTop: 0}, 1000, function() {
             $("#boton_regresar").hide().removeClass('hidden').fadeIn();
-            $("#nombre_mesa").val().length > 2 ? $("#boton_listo").hide().removeClass('hidden').fadeIn() : $("#boton_listo_inactivo").hide().removeClass('hidden').fadeIn();
+            $.trim($("#nombre_mesa").val()).length > 2 ? $("#boton_listo").hide().removeClass('hidden').fadeIn() : $("#boton_listo_inactivo").hide().removeClass('hidden').fadeIn();
         });
     });
     $("#boton_regresar").on("click", function(e) {
@@ -260,7 +251,7 @@ $(document).on("ready", function() {
         });
     });
     $("#nombre_mesa").on("keyup", function() {
-        if($(this).val().length > 2){
+        if($.trim($(this).val()).length > 2){
             $("#boton_listo").removeClass('hidden');
             $("#boton_listo_inactivo").addClass('hidden');
         }else{
@@ -277,33 +268,28 @@ $(document).on("ready", function() {
             callback();
         }
     };
-    $("#descargar_imagen").on("click",function(e){
-        e.preventDefault();
-        //dni = form.find("[name=dni]");
-        html2canvas($("section.section-fan"), {
-            onrendered: function(canvas) {
-                var base64 = canvas.toDataURL();
-                $.post('guardar_imagen.php', {
-                    "dni": "12345689",
-                    "data": base64
-                })
-                .done(function(response) {
-                    console.log(response)
-                });
-            }
-        });
-    });
-    $("#boton_listo").on("click", function(e) { 
+    var form_data;
+    $("#boton_listo").on("click", function(e) {
         e.preventDefault();
         validar_boton_listo(function() {
-            $("section.section-inscrito").css("display","block");
-            $("main").animate({'background-position': '-2436px'}, 1200, 'linear')
-                .find("section.section-mesa-roja").animate({ marginLeft: "-812px"},1200,function(){
-                $("section.section-mesa-roja").css("display","none")}).find("article.colocar-nombre").animate({ marginTop: "-709px"},500,function(){
-                $("section.section-inscrito article").css("display","list-item").animate({ marginTop: "0"},500);
-                $(".nombre_ingresado").text('"' + $("article.colocar-nombre input[name=name]").val() + '"');
+            form_data = $("#formulario_datos_personales").serialize();
+            form_data += "&notificaciones=" + ($("#noticias_check").hasClass('checked') ? 1 : 0);
+            form_data += "&facebook=" + encodeURIComponent($.param(User)) + "&nombre_mesa=" + $("#nombre_mesa").val();
+            $.post('insertar_usuario.php', form_data)
+            .done(function(response) {
+                console.log(response);
+                $("section.section-inscrito").css("display","block");
+                $("main").animate({'background-position': '-2436px'}, 1200, 'linear')
+                    .find("section.section-mesa-roja").animate({ marginLeft: "-812px"},1200,function(){
+                    $("section.section-mesa-roja").css("display","none")}).find("article.colocar-nombre").animate({ marginTop: "-709px"},500,function(){
+                    $("section.section-inscrito article").css("display","list-item").animate({ marginTop: "0"},500);
+                    $(".nombre_ingresado").text('"' + $("article.colocar-nombre input[name=name]").val() + '"');
+                });
             });
         });
+    });
+    $("#boton_compartir").on("click", function(e) { 
+        e.preventDefault();
     });
     $("#boton_que_gano, .boton-terminos-y-condiciones").on("click", function(e) {
         e.preventDefault();
