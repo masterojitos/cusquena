@@ -26,7 +26,7 @@ var $this, $target;
 $(document).on("ready", function() {
     $.ajaxSetup({cache: true});
     var facebook_status = 0, User = {};
-    var user_picture = 'https://graph.facebook.com/$user_id/picture?width=126&height=126';
+    var user_picture = 'https://graph.facebook.com/$user_id/picture?width=100&height=100';
     $.getScript('//connect.facebook.net/es_LA/all.js', function () {
         FB.init({appId: 147666458740407, status: true, cookie: true, xfbml: true});
         FB.getLoginStatus(function(response) {
@@ -273,6 +273,7 @@ $(document).on("ready", function() {
     $("#boton_listo").on("click", function(e) {
         e.preventDefault();
         validar_boton_listo(function() {
+            $("#mesa_roja").append("<img src='img/loading.gif' class='loading'>")
             form_data = $("#formulario_datos_personales").serialize();
             form_data += "&notificaciones=" + ($("#noticias_check").hasClass('checked') ? 1 : 0);
             form_data += "&facebook=" + encodeURIComponent($.param(User)) + "&nombre_mesa=" + $("#nombre_mesa").val();
@@ -285,6 +286,7 @@ $(document).on("ready", function() {
                     $("section.section-mesa-roja").css("display","none")}).find("article.colocar-nombre").animate({ marginTop: "-709px"},500,function(){
                     $("section.section-inscrito article").css("display","list-item").animate({ marginTop: "0"},500);
                     $(".nombre_ingresado").text('"' + $("article.colocar-nombre input[name=name]").val() + '"');
+                    $("#mesa_roja .loading").remove();
                 });
             });
         });
