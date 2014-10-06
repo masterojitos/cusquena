@@ -305,7 +305,7 @@ $(document).on("ready", function() {
         FB.api('/me/feed', 'post', {
             description: '¡Tú arma la comitiva, Cusqueña pone la Mesa Roja! Participa y disfruta lo mejor del Oktoberfest.',
             link: webapp_url,
-            message: 'Yo ya armé mi comitiva para ir al Ortoberfest. ¡Arma la tuya y participa por una Mesa Roja!',
+            message: 'Yo ya armé mi comitiva para ir al Oktoberfest. ¡Arma la tuya y participa por una Mesa Roja!',
             picture: website_url + 'userfiles/' + $("#formulario_datos_personales input[name=dni]").val() + '.jpg',
             place: '288369631370316',
             privacy: {value: 'SELF'}, //temporal
