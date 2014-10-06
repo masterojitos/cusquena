@@ -62,12 +62,6 @@ $(document).on("ready", function() {
         });
     };
     
-    $(".like-page").on("click", function() {
-        $("#boton_que_gano").removeClass('hidden');
-        $("section.section-no-fan").fadeOut(500).find("article").animate({ marginTop: "-709px"}, 1000, function(){
-            $("section.section-fan article").css("display","list-item").animate({ marginTop: "0"}, 1000);
-        }).parent().next().css("display","block");
-    });
     $("#boton_participa").on("click", function(e) {
         e.preventDefault();
         $(".nano").nanoScroller();
