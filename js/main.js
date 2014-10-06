@@ -33,7 +33,7 @@ $(document).on("ready", function() {
     
     $.ajaxSetup({cache: true});
     var facebook_status = 0, User = {};
-    var user_picture = 'https://graph.facebook.com/$user_id/picture?width=100&height=100';
+    var user_picture = 'https://graph.facebook.com/$user_id/picture?width=126&height=126';
     $.getScript('//connect.facebook.net/es_LA/all.js', function () {
         FB.init({appId: 147666458740407, status: true, cookie: true, xfbml: true});
         FB.getLoginStatus(function(response) {
@@ -171,7 +171,7 @@ $(document).on("ready", function() {
             .done(function(response) {
                 if(response.success) {
                     $("section.section-mesa-roja").css("display","block");
-                    $("main").animate({'background-position': '-1624px'}, 1000, 'linear')
+                    $("main").animate({'background-position': '-1613px'}, 1000, 'linear')
                     .find("section.section-formulario").animate({ marginLeft: "-812px"},1000,function(){
                         $(this).css("display","none")}).find("article").animate({ marginTop: "-1709px"},500,function(){
                         $("section.section-mesa-roja article.elegir-amigos").css("display","list-item").animate({ marginTop: "0"},500);
@@ -208,6 +208,7 @@ $(document).on("ready", function() {
         validar_boton_elegir(function() {
             $("section.section-mesa-roja article.elegir-amigos").animate({ marginTop: "-709px"}, 1000, function() {
                 $(this).addClass('hidden');
+                $(".imagen-recuadro").show();
                 $(".agregar-amigo, #boton_unpasomas_inactivo").removeClass('hidden');
             });
         });

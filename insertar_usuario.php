@@ -39,7 +39,7 @@ if ($domain !== "facebook.com" && $domain !== "localhost") {
     exit;
 }
 
-$mysqli = new mysqli("localhost", "root", "root", "cusquena");
+$mysqli = new mysqli("localhost", "root", "", "cusquena");
 if ($mysqli->connect_errno) {
     echo json_encode(array('error' => "Error de Conexión."));
     exit;
