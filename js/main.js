@@ -140,7 +140,6 @@ $(document).on("ready", function() {
             form.find("div.error").text("El dato que ingresaste es incorrecto o inválido.");
             apellido_materno.focus().prev().addClass('error');
         }else if(isNaN(new_date.getTime()) || calcular_edad(new_date) < 1 || calcular_edad(new_date) > 99){
-            console.log("a")
             form.find("div.error").text("El dato que ingresaste es incorrecto o inválido.");
             dia.prev().addClass('error');
             mes.prev().addClass('error');
