@@ -1,4 +1,4 @@
-.cusquena-icon { background: url('../img/cusquena-icon.png') no-repeat top left; display: inline-block; vertical-align: middle;  } 
+.cusquena-icon { background: url('../img/cusquena-icon.png') no-repeat top left; display: inline-block; outline: 0; vertical-align: middle;  } 
 .cusquena-icon.boton-que-gano { background-position: 0px 0px; width: 178px; height: 37px;  } 
 .cusquena-icon.boton-regresar { background-position: -178px 0px; width: 137px; height: 52px;  } 
 .cusquena-icon.boton-regresar:hover { background-position: -315px 0px; width: 137px; height: 52px;  } 

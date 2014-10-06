@@ -14,7 +14,7 @@ function get_domain($url) {
     return $url_parts[0];
 }
 $domain = get_domain(filter_input(INPUT_SERVER, 'HTTP_REFERER'));
-if ($domain !== "facebook.com" && $domain !== "teclalabs.com" && $domain !== "localhost") {
+if ($domain !== "facebook.com" && $domain !== "teclalabs.com" && $domain !== "localhost" && $domain !== "cusquena.dev") {
     echo json_encode(array('error' => "Acceso no permitido."));
     exit;
 }

@@ -90,11 +90,9 @@ $(document).on("ready", function() {
 //            tags: '100000004768651,544278753,100001466319424'
 //        });
         $(".nano").nanoScroller();
-        $("section.section-formulario").css("display","block");
-        $("main").animate({'background-position': '-812px'}, 1000, 'linear')
-            .find("section.section-fan").animate({ marginLeft: "-812px"},1000,function(){
-            $("section.section-fan").css("display","none")}).find("article").animate({ marginTop: "-709px"},500,function(){
-            $("section.section-formulario article").css("display","list-item").animate({ marginTop: "0"},500);
+        $("main").animate({'background-position': '-810px'}, 1000, 'linear');
+        $("section.section-fan footer").fadeOut(500).prev().animate({ marginTop: "-709px"}, 500, function() {
+            $(this).parent().hide().next().fadeIn(500).find("article").css("display","list-item").animate({ marginTop: "0"}, 500);
         });
     });
     $("section.section-formulario input.dia, section.section-formulario input.mes").on("keyup",function(){
@@ -184,11 +182,11 @@ $(document).on("ready", function() {
             $.post('verificar_dni.php', {dni: dni.val()})
             .done(function(response) {
                 if(response.success) {
-                    $("section.section-mesa-roja").css("display","block");
-                    $("main").animate({'background-position': '-1622px'}, 1000, 'linear')
-                    .find("section.section-formulario").animate({ marginLeft: "-812px"},1000,function(){
-                        $(this).css("display","none")}).find("article").animate({ marginTop: "-1709px"},500,function(){
-                        $("section.section-mesa-roja article.elegir-amigos").css("display","list-item").animate({ marginTop: "0"},500);
+                    $("main").animate({'background-position': '-1622px'}, 1000, function() {
+                        $("#user_picture").fadeIn('fast');
+                    });
+                    $("section.section-formulario footer").fadeOut(500).prev().animate({ marginTop: "-709px"}, 500, function() {
+                        $(this).parent().hide().next().fadeIn(500).find("article.elegir-amigos").css("display","list-item").animate({ marginTop: "0"}, 500);
                     });
                 }else if(response.cumpleanos) {
                     if(fecha_ingresada === response.cumpleanos){
@@ -222,7 +220,6 @@ $(document).on("ready", function() {
         validar_boton_elegir(function() {
             $("section.section-mesa-roja article.elegir-amigos").animate({ marginTop: "-709px"}, 1000, function() {
                 $(this).addClass('hidden');
-                $("#user_picture").fadeIn('fast');
                 $(".imagen-recuadro").show();
                 $(".agregar-amigo, #boton_unpasomas_inactivo").removeClass('hidden');
             });
@@ -299,7 +296,7 @@ $(document).on("ready", function() {
     $("#boton_listo").on("click", function(e) {
         e.preventDefault();
         validar_boton_listo(function() {
-            $("#mesa_roja").append("<img src='img/loading.gif' class='loading'>");
+            $("#mesa_roja").append("<img src='img/loading.gif' class='loading' />");
             $("#boton_listo, #boton_regresar").hide();
             form_data = $("#formulario_datos_personales").serialize();
             form_data += "&notificaciones=" + ($("#noticias_check").hasClass('checked') ? 1 : 0);
@@ -321,20 +318,17 @@ $(document).on("ready", function() {
     var proceso_inscrito = function() {
         if (inscrito_estado) return;
         inscrito_estado = true;
-        console.log("entra");
-        $("section.section-inscrito").css("display", "block");
-        $("main").animate({'background-position': '-2436px'}, 1200, 'linear')
-        .find("section.section-mesa-roja").animate({marginLeft: "-812px"}, 1200, function () {
-            $("section.section-mesa-roja").css("display", "none")
-        }).find("article.colocar-nombre").animate({marginTop: "-709px"}, 500, function () {
-            $("#mesa_roja .loading").remove();
-            $("section.section-inscrito article").css("display", "list-item").animate({marginTop: "0"}, 500);
-            $(".nombre_ingresado").text('"' + $("article.colocar-nombre input[name=name]").val() + '"');
+        $("main").animate({'background-position': '-2430px'}, 1000, 'linear');
+        $("#mesa_roja .loading").hide().remove();
+        $(".imagen-recuadro").css("background-image", "url()");
+        $("section.section-mesa-roja footer").fadeOut(500).parent().find("article.colocar-nombre").animate({ marginTop: "-709px"}, 500, function() {
+            $(this).parent().hide().next().fadeIn(500).find("article").css("display","list-item").animate({ marginTop: "0"}, 500);
+            $("#nombre_ingresado").text('"' + $("#nombre_mesa").val() + '"');
         });
-        
     };
     $("#boton_compartir").on("click", function(e) { 
         e.preventDefault();
+        
     });
     $("#boton_que_gano, .boton-terminos-y-condiciones").on("click", function(e) {
         e.preventDefault();

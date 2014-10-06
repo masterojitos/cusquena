@@ -1,13 +1,20 @@
 @import compass
 @import fonts
-$page_width: 810px
+$page_width: 790px
 $text-color: #fea200
 $error-color: #fb2600
 body
     background-color: #fff
+    #boton_que_gano
+        cursor: pointer
+        left: 50%
+        margin-left: ($page_width / 2) - 178
+        position: absolute
+        top: 0px
+        z-index: 4
 .container
     font-family: 'Calibri'
-    margin: 3px auto 0
+    margin: 5px auto 0
     overflow: hidden
     position: relative
     width: $page_width
@@ -99,7 +106,6 @@ body
                 div.space
                     height: 123px
             &.section-formulario
-                background-position: -811px 0
                 article
                     background-image: url(../img/contenedor-formulario.png)
                     background-repeat: no-repeat
@@ -131,7 +137,6 @@ body
                 div.space
                     height: 123px
             &.section-mesa-roja
-                background-position: -1622px 0
                 article
                     color: #fff
                     z-index: 2
@@ -150,6 +155,7 @@ body
                             left: 63px
                             text-align: center
                 .imagen-recuadro
+                    +background-size(100% 100%)
                     height: 100px
                     position: absolute
                     width: 100px
@@ -184,7 +190,6 @@ body
                         right: -17px
                         top: -18px
             &.section-inscrito
-                background-position: -2433px 0
                 article
                     background-image: url(../img/contenedor-fan-inscrito.png)
                     height: 260px
@@ -334,12 +339,6 @@ body
             width: 558px
     #boton_regresar
         float: left
-    #boton_que_gano
-        cursor: pointer
-        position: absolute
-        top: -3px
-        right: 3px
-        z-index: 4
     .text-center
         text-align: center
     .nano
@@ -374,4 +373,3 @@ body
         top: 333px
         width: 200px
         z-index: 999
-
