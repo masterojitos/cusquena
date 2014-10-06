@@ -53,7 +53,7 @@ $(document).on("ready", function() {
             User = response;
             User.friends = [];
             User.picture = user_picture.replace('$user_id', User.id);
-            $("#user_picture").css("background-image", 'url(' + User.picture + ')');
+            $("#user_picture").find(".image-display").css("background-image", 'url(' + User.picture + ')');
             if (callback) callback();
         });
     };
@@ -216,8 +216,8 @@ $(document).on("ready", function() {
         onSubmit: function (friend_id) {
             User.friends.push(friend_id);
             fs_selected_friends = User.friends;
-            selected_friend.data('id', friend_id).css("background-image", 'url(' + user_picture.replace('$user_id', friend_id) + ')')
-            .addClass('img_selected').find(".agregar-amigo").addClass('hidden').prev().removeClass('hidden');
+            selected_friend.data('id', friend_id).addClass('img_selected').find(".agregar-amigo").addClass('hidden').prev().removeClass('hidden');
+            selected_friend.find(".image-display").css("background-image", 'url(' + user_picture.replace('$user_id', friend_id) + ')');
             if (User.friends.length === 7) {
                 $("#boton_unpasomas_inactivo").addClass('hidden');
                 $("#boton_unpasomas").removeClass('hidden');
@@ -231,7 +231,8 @@ $(document).on("ready", function() {
     $(".eliminar-amigo").on("click", function() {
         $this = $(this);
         User.friends.splice($.inArray($this.parent().data('id'),User.friends), 1);
-        $(this).parent().css("background-image", "url()").removeClass('img_selected');
+        $(this).parent().removeClass('img_selected');
+        $(this).parent().find(".image-display").css("background-image", "url()");
         $(this).addClass('hidden').next().removeClass('hidden');
         $("#boton_unpasomas").addClass('hidden');
         $("#boton_unpasomas_inactivo").removeClass('hidden');
