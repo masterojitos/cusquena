@@ -29,7 +29,7 @@ var $this, $target;
 $(document).on("ready", function() {
 //    $("section.section-fan").hide();
 //    $("section.section-mesa-roja").show();
-//    $("section.section-mesa-roja article.elegir-amigos").animate({ marginTop: "0"}, 700);
+//    $("section.section-mesa-roja article.elegir-amigos").animate({ marginTop: "0"}, 500);
     
     $.ajaxSetup({cache: true});
     var facebook_status = 0, User = {};
@@ -67,16 +67,16 @@ $(document).on("ready", function() {
     
     $(".like-page").on("click", function() {
         $("#boton_que_gano").removeClass('hidden');
-        $("section.section-no-fan").fadeOut(500).find("article").animate({ marginTop: "-709px"},500,function(){
-            $("section.section-fan article").css("display","list-item").animate({ marginTop: "0"},500);
+        $("section.section-no-fan").fadeOut(500).find("article").animate({ marginTop: "-709px"}, 1000, function(){
+            $("section.section-fan article").css("display","list-item").animate({ marginTop: "0"}, 1000);
         }).parent().next().css("display","block");
     });
     $("#boton_participa").on("click", function() {
         $(".nano").nanoScroller();
         $("section.section-formulario").css("display","block");
-        $("section.section-fan").animate({ marginLeft: "-812px"},1200,function(){
-            $("section.section-fan").css("display","none")}).find("article").animate({ marginTop: "-709px"},500,function(){
-            $("section.section-formulario article").css("display","list-item").animate({ marginTop: "0"},700);
+        $("section.section-fan").animate({ marginLeft: "-812px" }, 1000, function(){
+            $("section.section-fan").css("display","none")}).find("article").animate({ marginTop: "-709px"}, 1000, function(){
+            $("section.section-formulario article").css("display","list-item").animate({ marginTop: "0"}, 1000);
         });
     });
     $("section.section-formulario input.dia, section.section-formulario input.mes").on("keyup",function(){
@@ -168,9 +168,9 @@ $(document).on("ready", function() {
             .done(function(response) {
                 if(response.success) {
                     $("section.section-mesa-roja").css("display","block");
-                    $("section.section-formulario").animate({ marginLeft: "-812px"},1200,function(){
-                        $(this).css("display","none")}).find("article").animate({ marginTop: "-1709px"},500,function(){
-                        $("section.section-mesa-roja article.elegir-amigos").css("display","list-item").animate({ marginTop: "0"},700);
+                    $("section.section-formulario").animate({ marginLeft: "-812px"}, 1000, function(){
+                        $(this).css("display","none")}).find("article").animate({ marginTop: "-1709px"}, 1000, function(){
+                        $("section.section-mesa-roja article.elegir-amigos").css("display","list-item").animate({ marginTop: "0"}, 1000);
                     });
                 }else if(response.cumpleanos) {
                     if(fecha_ingresada === response.cumpleanos){
@@ -201,7 +201,7 @@ $(document).on("ready", function() {
     };
     $("#boton_elegir").on("click", function() {
         validar_boton_elegir(function() {
-            $("section.section-mesa-roja article.elegir-amigos").animate({ marginTop: "-709px"},700,function(){
+            $("section.section-mesa-roja article.elegir-amigos").animate({ marginTop: "-709px"}, 1000, function() {
                 $(this).addClass('hidden');
                 $(".agregar-amigo, #boton_unpasomas_inactivo").removeClass('hidden');
             });
@@ -241,14 +241,14 @@ $(document).on("ready", function() {
     });
     $("#boton_unpasomas").on("click", function() {
         $("#boton_unpasomas, .eliminar-amigo").addClass('hidden');
-        $("section.section-mesa-roja article.colocar-nombre").removeClass('hidden').animate({ marginTop: 0},700,function(){
+        $("section.section-mesa-roja article.colocar-nombre").removeClass('hidden').animate({ marginTop: 0}, 1000, function() {
             $("#boton_regresar").hide().removeClass('hidden').fadeIn();
             $("#nombre_mesa").val().length > 2 ? $("#boton_listo").hide().removeClass('hidden').fadeIn() : $("#boton_listo_inactivo").hide().removeClass('hidden').fadeIn();
         });
     });
     $("#boton_regresar").on("click", function() {
         $("#boton_regresar, #boton_listo, #boton_listo_inactivo").addClass('hidden');
-        $("section.section-mesa-roja article.colocar-nombre").animate({ marginTop: "-709px"},700,function(){
+        $("section.section-mesa-roja article.colocar-nombre").animate({ marginTop: "-709px"}, 1000, function() {
             $("#boton_unpasomas, .eliminar-amigo").hide().removeClass('hidden').fadeIn();
         });
     });
@@ -270,35 +270,6 @@ $(document).on("ready", function() {
             callback();
         }
     };
-    function download(canvas, filename) {
-
-        /// create an "off-screen" anchor tag
-        var lnk = document.createElement('a'),
-            e;
-
-        /// the key here is to set the download attribute of the a tag
-        lnk.download = filename;
-
-        /// convert canvas content to data-uri for link. When download
-        /// attribute is set the content pointed to by link will be
-        /// pushed as "download" in HTML5 capable browsers
-        lnk.href = canvas.toDataURL();
-
-        /// create a "fake" click-event to trigger the download
-        if (document.createEvent) {
-
-            e = document.createEvent("MouseEvents");
-            e.initMouseEvent("click", true, true, window,
-                             0, 0, 0, 0, 0, false, false, false,
-                             false, 0, null);
-
-            lnk.dispatchEvent(e);
-
-        } else if (lnk.fireEvent) {
-
-            lnk.fireEvent("onclick");
-        }
-    }
     $("#descargar_imagen").on("click",function(e){
         e.preventDefault();
         //dni = form.find("[name=dni]");
@@ -318,9 +289,10 @@ $(document).on("ready", function() {
     $("#boton_listo").on("click", function() {
         validar_boton_listo(function() {
             $("section.section-inscrito").css("display","block");
-            $("section.section-mesa-roja").animate({ marginLeft: "-812px"},1200,function(){
-                $("section.section-mesa-roja").css("display","none")}).find("article.colocar-nombre").animate({ marginTop: "-709px"},500,function(){
-                $("section.section-inscrito article").css("display","list-item").animate({ marginTop: "0"},700);
+            $("section.section-mesa-roja").animate({ marginLeft: "-812px"}, 1000, function() {
+                $("section.section-mesa-roja").css("display","none");
+            }).find("article.colocar-nombre").animate({ marginTop: "-709px"}, 1000, function(){
+                $("section.section-inscrito article").css("display","list-item").animate({ marginTop: "0"}, 1000);
                 $(".nombre_ingresado").text('"' + $("article.colocar-nombre input[name=name]").val() + '"');
             });
         });
