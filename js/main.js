@@ -53,8 +53,10 @@ $(document).on("ready", function() {
             User = response;
             User.friends = [];
             User.picture = user_picture.replace('$user_id', User.id);
-            $("#user_picture").find(".image-display").css("background-image", 'url(' + User.picture + ')');
-            if (callback) callback();
+            $("#user_picture").css("background-image", 'url(' + User.picture + ')').hide();
+            if (callback) {
+                callback();
+            }
         });
     };
     
@@ -183,7 +185,7 @@ $(document).on("ready", function() {
             .done(function(response) {
                 if(response.success) {
                     $("section.section-mesa-roja").css("display","block");
-                    $("main").animate({'background-position': '-1613px'}, 1000, 'linear')
+                    $("main").animate({'background-position': '-1622px'}, 1000, 'linear')
                     .find("section.section-formulario").animate({ marginLeft: "-812px"},1000,function(){
                         $(this).css("display","none")}).find("article").animate({ marginTop: "-1709px"},500,function(){
                         $("section.section-mesa-roja article.elegir-amigos").css("display","list-item").animate({ marginTop: "0"},500);
@@ -220,6 +222,7 @@ $(document).on("ready", function() {
         validar_boton_elegir(function() {
             $("section.section-mesa-roja article.elegir-amigos").animate({ marginTop: "-709px"}, 1000, function() {
                 $(this).addClass('hidden');
+                $("#user_picture").fadeIn('fast');
                 $(".imagen-recuadro").show();
                 $(".agregar-amigo, #boton_unpasomas_inactivo").removeClass('hidden');
             });
@@ -237,8 +240,8 @@ $(document).on("ready", function() {
         onSubmit: function (friend_id) {
             User.friends.push(friend_id);
             fs_selected_friends = User.friends;
-            selected_friend.data('id', friend_id).addClass('img_selected').find(".agregar-amigo").addClass('hidden').prev().removeClass('hidden');
-            selected_friend.find(".image-display").css("background-image", 'url(' + user_picture.replace('$user_id', friend_id) + ')');
+            selected_friend.data('id', friend_id).css("background-image", 'url(' + user_picture.replace('$user_id', friend_id) + ')')
+            .addClass('img_selected').find(".agregar-amigo").addClass('hidden').prev().removeClass('hidden');
             if (User.friends.length === 7) {
                 $("#boton_unpasomas_inactivo").addClass('hidden');
                 $("#boton_unpasomas").removeClass('hidden');
@@ -254,8 +257,7 @@ $(document).on("ready", function() {
         e.preventDefault();
         $this = $(this);
         User.friends.splice($.inArray($this.parent().data('id'),User.friends), 1);
-        $(this).parent().removeClass('img_selected');
-        $(this).parent().find(".image-display").css("background-image", "url()");
+        $(this).parent().css("background-image", "url()").removeClass('img_selected');
         $(this).addClass('hidden').next().removeClass('hidden');
         $("#boton_unpasomas").addClass('hidden');
         $("#boton_unpasomas_inactivo").removeClass('hidden');
@@ -297,24 +299,40 @@ $(document).on("ready", function() {
     $("#boton_listo").on("click", function(e) {
         e.preventDefault();
         validar_boton_listo(function() {
-            $("#mesa_roja").append("<img src='img/loading.gif' class='loading'>")
+            $("#mesa_roja").append("<img src='img/loading.gif' class='loading'>");
+            $("#boton_listo, #boton_regresar").hide();
             form_data = $("#formulario_datos_personales").serialize();
             form_data += "&notificaciones=" + ($("#noticias_check").hasClass('checked') ? 1 : 0);
             form_data += "&facebook=" + encodeURIComponent($.param(User)) + "&nombre_mesa=" + $("#nombre_mesa").val();
-            $.post('insertar_usuario.php', form_data)
-            .done(function() {
-                $("section.section-inscrito").css("display", "block");
-                $("main").animate({'background-position': '-2436px'}, 1200, 'linear')
-                .find("section.section-mesa-roja").animate({marginLeft: "-812px"}, 1200, function () {
-                    $("section.section-mesa-roja").css("display", "none")
-                }).find("article.colocar-nombre").animate({marginTop: "-709px"}, 500, function () {
-                    $("#mesa_roja .loading").remove();
-                    $("section.section-inscrito article").css("display", "list-item").animate({marginTop: "0"}, 500);
-                    $(".nombre_ingresado").text('"' + $("article.colocar-nombre input[name=name]").val() + '"');
-                });
+            $.ajax({
+                type: 'post',
+                url: 'insertar_usuario.php',
+                data: form_data,
+                success: function() {
+                    proceso_inscrito();
+                },
+                complete: function() {
+                    proceso_inscrito();
+                }
             });
         });
     });
+    var inscrito_estado = false;
+    var proceso_inscrito = function() {
+        if (inscrito_estado) return;
+        inscrito_estado = true;
+        console.log("entra");
+        $("section.section-inscrito").css("display", "block");
+        $("main").animate({'background-position': '-2436px'}, 1200, 'linear')
+        .find("section.section-mesa-roja").animate({marginLeft: "-812px"}, 1200, function () {
+            $("section.section-mesa-roja").css("display", "none")
+        }).find("article.colocar-nombre").animate({marginTop: "-709px"}, 500, function () {
+            $("#mesa_roja .loading").remove();
+            $("section.section-inscrito article").css("display", "list-item").animate({marginTop: "0"}, 500);
+            $(".nombre_ingresado").text('"' + $("article.colocar-nombre input[name=name]").val() + '"');
+        });
+        
+    };
     $("#boton_compartir").on("click", function(e) { 
         e.preventDefault();
     });
