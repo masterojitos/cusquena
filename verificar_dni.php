@@ -14,7 +14,7 @@ function get_domain($url) {
     return $url_parts[0];
 }
 $domain = get_domain(filter_input(INPUT_SERVER, 'HTTP_REFERER'));
-if ($domain !== "facebook.com" && $domain !== "localhost") {
+if ($domain !== "facebook.com" && $domain !== "teclalabs.com" && $domain !== "localhost") {
     echo json_encode(array('error' => "Acceso no permitido."));
     exit;
 }
@@ -24,7 +24,7 @@ if ($mysqli->connect_errno) {
     echo json_encode(array('error' => "Error de conexión."));
     exit;
 }
-$result = $mysqli->query("SELECT * FROM cusquena_user WHERE dni = " . $dni);
+$result = $mysqli->query("SELECT birthdate FROM cusquena_user WHERE dni = " . $dni);
 $row = $result->fetch_assoc();
 if ($row['birthdate'] !== NULL) {
     echo json_encode(array('cumpleanos' => $row['birthdate']));exit;

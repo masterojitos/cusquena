@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `cusquena_user` (
   `lastname1` varchar(80) NOT NULL,
   `lastname2` varchar(80) NOT NULL,
   `birthdate` date NOT NULL,
-  `dni` varchar(8) NOT NULL,
+  `dni` int(8) NOT NULL,
   `email` varchar(255) NOT NULL,
   `cellphone` int(9) NOT NULL,
   `notifications` tinyint(1) NOT NULL,
