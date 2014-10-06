@@ -74,9 +74,10 @@ $(document).on("ready", function() {
     $("#boton_participa").on("click", function() {
         $(".nano").nanoScroller();
         $("section.section-formulario").css("display","block");
-        $("section.section-fan").animate({ marginLeft: "-812px" }, 1000, function(){
-            $("section.section-fan").css("display","none")}).find("article").animate({ marginTop: "-709px"}, 1000, function(){
-            $("section.section-formulario article").css("display","list-item").animate({ marginTop: "0"}, 1000);
+        $("main").animate({'background-position': '-812px'}, 1200, 'linear')
+            .find("section.section-fan").animate({ marginLeft: "-812px"},1200,function(){
+            $("section.section-fan").css("display","none")}).find("article").animate({ marginTop: "-709px"},500,function(){
+            $("section.section-formulario article").css("display","list-item").animate({ marginTop: "0"},700);
         });
     });
     $("section.section-formulario input.dia, section.section-formulario input.mes").on("keyup",function(){
@@ -168,9 +169,10 @@ $(document).on("ready", function() {
             .done(function(response) {
                 if(response.success) {
                     $("section.section-mesa-roja").css("display","block");
-                    $("section.section-formulario").animate({ marginLeft: "-812px"}, 1000, function(){
-                        $(this).css("display","none")}).find("article").animate({ marginTop: "-1709px"}, 1000, function(){
-                        $("section.section-mesa-roja article.elegir-amigos").css("display","list-item").animate({ marginTop: "0"}, 1000);
+                    $("main").animate({'background-position': '-1624px'}, 1200, 'linear')
+                    .find("section.section-formulario").animate({ marginLeft: "-812px"},1200,function(){
+                        $(this).css("display","none")}).find("article").animate({ marginTop: "-1709px"},500,function(){
+                        $("section.section-mesa-roja article.elegir-amigos").css("display","list-item").animate({ marginTop: "0"},700);
                     });
                 }else if(response.cumpleanos) {
                     if(fecha_ingresada === response.cumpleanos){
@@ -286,13 +288,13 @@ $(document).on("ready", function() {
             }
         });
     });
-    $("#boton_listo").on("click", function() {
+    $("#boton_listo").on("click", function() { 
         validar_boton_listo(function() {
             $("section.section-inscrito").css("display","block");
-            $("section.section-mesa-roja").animate({ marginLeft: "-812px"}, 1000, function() {
-                $("section.section-mesa-roja").css("display","none");
-            }).find("article.colocar-nombre").animate({ marginTop: "-709px"}, 1000, function(){
-                $("section.section-inscrito article").css("display","list-item").animate({ marginTop: "0"}, 1000);
+            $("main").animate({'background-position': '-1624px'}, 1200, 'linear')
+                .find("section.section-mesa-roja").animate({ marginLeft: "-812px"},1200,function(){
+                $("section.section-mesa-roja").css("display","none")}).find("article.colocar-nombre").animate({ marginTop: "-709px"},500,function(){
+                $("section.section-inscrito article").css("display","list-item").animate({ marginTop: "0"},700);
                 $(".nombre_ingresado").text('"' + $("article.colocar-nombre input[name=name]").val() + '"');
             });
         });
