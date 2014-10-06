@@ -234,7 +234,7 @@ $(document).on("ready", function() {
     });
     $("img.eliminar-amigo").on("click", function() {
         $this = $(this);
-        User.friends.splice(User.friends.indexOf($this.parent().data('id')), 1);
+        User.friends.splice($.inArray($this.parent().data('id'),User.friends), 1);
         $(this).parent().css("background-image", "url()").removeClass('img_selected');
         $(this).addClass('hidden').next().removeClass('hidden');
         $("#boton_unpasomas").addClass('hidden');
