@@ -161,9 +161,9 @@ $(document).on("ready", function() {
             cell.focus().prev().addClass('error');
         }else if(!terminos.hasClass('checked')){
             form.find("div.error").text("Debe aceptar los términos y condiciones.");
-            terminos.addClass('error')
+            terminos.addClass('error');
         }else {
-            var data = $("form").serialize();
+//            var data = $("form").serialize();
 //            data+= "&notificaciones=" + ($("#noticias_check").hasClass('checked') ? 1 : 0);
             $.post('verificar_dni.php', {dni: dni.val()})
             .done(function(response) {
