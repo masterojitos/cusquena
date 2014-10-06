@@ -64,8 +64,29 @@ $(document).on("ready", function() {
             $("section.section-fan article").css("display","list-item").animate({ marginTop: "0"}, 1000);
         }).parent().next().css("display","block");
     });
+//    var website_url = 'https://www.facebook.com/masterojitos.apps/app_147666458740407';
+    var website_url = 'https://www.teclalabs.com/alpha/Phantasia/Cusquena/';
+    var shared_image_path = website_url + 'userfiles/';
     $("#boton_participa").on("click", function(e) {
         e.preventDefault();
+//        FB.ui({
+//            method: 'feed',
+//            description: '¿Ya estás participando por la Mesa Roja de Cusqueña? Qué esperas para ganarte lo mejor del Oktoberfest! Participa aquí ',
+//            caption: '¿Ya estás participando por la Mesa Roja de Cusqueña? Qué esperas para ganarte lo mejor del Oktoberfest! Participa aquí ',
+//            link: website_url,
+//            picture: website_url + 'img/oktoberfest.jpg'
+//        }, function (response) {
+//            console.log(response)
+//        });
+//        FB.api('/me/feed', 'post', {
+////            message: 'Hello, world!',
+//            link: website_url,
+//            picture: shared_image_path + '46287426.jpg',
+////            name: 'Yo ya armé mi comitiva para ir al Ortoberfest. ¡Arma la tuya y participa por una Mesa Roja!',
+//            description: 'Yo ya armé mi comitiva para ir al Ortoberfest. ¡Arma la tuya y participa por una Mesa Roja!',
+//            place: '288369631370316',
+//            tags: '100000004768651,544278753,100001466319424'
+//        });
         $(".nano").nanoScroller();
         $("section.section-formulario").css("display","block");
         $("main").animate({'background-position': '-812px'}, 1000, 'linear')
@@ -224,11 +245,13 @@ $(document).on("ready", function() {
             }
         }
     });
-    $(".agregar-amigo").on("click", function() {
+    $(".agregar-amigo").on("click", function(e) {
+        e.preventDefault();
         selected_friend = $(this).parent();
         $(".bt-fs-dialog").trigger("click");
     });
-    $(".eliminar-amigo").on("click", function() {
+    $(".eliminar-amigo").on("click", function(e) {
+        e.preventDefault();
         $this = $(this);
         User.friends.splice($.inArray($this.parent().data('id'),User.friends), 1);
         $(this).parent().removeClass('img_selected');
@@ -279,15 +302,15 @@ $(document).on("ready", function() {
             form_data += "&notificaciones=" + ($("#noticias_check").hasClass('checked') ? 1 : 0);
             form_data += "&facebook=" + encodeURIComponent($.param(User)) + "&nombre_mesa=" + $("#nombre_mesa").val();
             $.post('insertar_usuario.php', form_data)
-            .done(function(response) {
-                console.log(response);
-                $("section.section-inscrito").css("display","block");
+            .done(function() {
+                $("section.section-inscrito").css("display", "block");
                 $("main").animate({'background-position': '-2436px'}, 1200, 'linear')
-                    .find("section.section-mesa-roja").animate({ marginLeft: "-812px"},1200,function(){
-                    $("section.section-mesa-roja").css("display","none")}).find("article.colocar-nombre").animate({ marginTop: "-709px"},500,function(){
-                    $("section.section-inscrito article").css("display","list-item").animate({ marginTop: "0"},500);
-                    $(".nombre_ingresado").text('"' + $("article.colocar-nombre input[name=name]").val() + '"');
+                .find("section.section-mesa-roja").animate({marginLeft: "-812px"}, 1200, function () {
+                    $("section.section-mesa-roja").css("display", "none")
+                }).find("article.colocar-nombre").animate({marginTop: "-709px"}, 500, function () {
                     $("#mesa_roja .loading").remove();
+                    $("section.section-inscrito article").css("display", "list-item").animate({marginTop: "0"}, 500);
+                    $(".nombre_ingresado").text('"' + $("article.colocar-nombre input[name=name]").val() + '"');
                 });
             });
         });

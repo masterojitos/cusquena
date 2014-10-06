@@ -46,7 +46,7 @@ if ($domain !== "facebook.com" && $domain !== "teclalabs.com" && $domain !== "lo
     exit;
 }
 
-$mysqli = new mysqli("localhost", "root", "", "cusquena");
+$mysqli = new mysqli("localhost", "root", "root", "cusquena");
 if ($mysqli->connect_errno) {
     echo json_encode(array('error' => "Error de Conexión."));
     exit;
