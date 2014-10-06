@@ -192,9 +192,9 @@ $(document).on("ready", function() {
                     });
                 }else if(response.cumpleanos) {
                     if(fecha_ingresada === response.cumpleanos){
-                        $(".terminos .error").text("El DNI ingresado ya se encuentra participando");
+                        $(".terminos .error").text("El DNI ingresado ya se encuentra participando.");
                     } else {
-                        $(".terminos .error").text("La fecha de nacimiento no coincide con el DNI ingresado");
+                        $(".terminos .error").text("La fecha de nacimiento no coincide con el DNI ingresado.");
                     }
                 }else if(response.error) {
                     $(".terminos .error").text(response.error);
