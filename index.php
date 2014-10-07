@@ -220,7 +220,7 @@ if (isset($_REQUEST['signed_request'])) {
                 </section>
                 <section class="section-inscrito">
                     <article>
-                        <span class="enunciado little">YA ESTAS PATICIPANDO</span><br/>
+                        <span class="enunciado little">YA ESTÁS PARTICIPANDO</span><br/>
                         <span class="enunciado little">EN TU MESA</span><br/>
                         <span class="enunciado white" id="nombre_ingresado">"CAMPEONES"</span><br/>
                     </article>

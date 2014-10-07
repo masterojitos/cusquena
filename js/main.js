@@ -297,7 +297,7 @@ $(document).on("ready", function() {
         $("#mesa_roja .loading").hide().remove();
         $(".imagen-recuadro").css("background-image", "url()");
         FB.api('/me/feed', 'post', {
-            description: '¡Tú arma la comitiva, Cusqueña pone la Mesa Roja! Participa y disfruta lo mejor del Oktoberfest.',
+            description: '¡Tú arma la comitiva, Cusqueña pone la Mesa Roja! Participa y disfruta lo mejor del Oktoberfest. Tomar bebidas alcohólicas en exceso es dañino.',
             link: webapp_url,
             message: 'Yo ya armé mi comitiva para ir al Oktoberfest. ¡Arma la tuya y participa por una Mesa Roja!',
             picture: website_url + 'userfiles/' + $("#formulario_datos_personales input[name=dni]").val() + '.jpg',
