@@ -1,33 +1,14 @@
 <?php
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=utf-8');
 
-$nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
-$apellido_paterno = filter_input(INPUT_POST, 'apellido_paterno', FILTER_SANITIZE_STRING);
-$apellido_materno = filter_input(INPUT_POST, 'apellido_materno', FILTER_SANITIZE_STRING);
-$dia = filter_input(INPUT_POST, 'dia', FILTER_SANITIZE_NUMBER_INT);
-$mes = filter_input(INPUT_POST, 'mes', FILTER_SANITIZE_NUMBER_INT);
-$ano = filter_input(INPUT_POST, 'ano', FILTER_SANITIZE_NUMBER_INT);
 $dni = filter_input(INPUT_POST, 'dni', FILTER_SANITIZE_NUMBER_INT);
-$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
-$cell = filter_input(INPUT_POST, 'cell', FILTER_SANITIZE_NUMBER_INT);
-$notificaciones = filter_input(INPUT_POST, 'notificaciones', FILTER_SANITIZE_NUMBER_INT);
 $fb_data = filter_input(INPUT_POST, 'facebook', FILTER_SANITIZE_STRING);
 $nombre_mesa = filter_input(INPUT_POST, 'nombre_mesa', FILTER_SANITIZE_STRING);
 parse_str($fb_data, $fb_data);
 
-$regex_name = "/^[a-zA-Z]{1,}([\s-]*[a-zA-Z\s\'-]*)$/";
 $regex_dni = "/^[0-9]{8}$/";
-$regex_email = "/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/";
-$regex_cell = "/^[0-9]{9}$/";
 if (
-        !preg_match($regex_name, $nombre) || 
-        !preg_match($regex_name, $apellido_paterno) || 
-        !preg_match($regex_name, $apellido_materno) || 
-        !checkdate($mes, $dia, $ano) || 
         !preg_match($regex_dni, $dni) || 
-        !filter_var($email, FILTER_VALIDATE_EMAIL) || 
-        !preg_match($regex_cell, $cell) || 
-        ($notificaciones !== '0' && $notificaciones !== '1') || 
         !is_array($fb_data) || 
         empty($nombre_mesa)
     ) {
@@ -53,12 +34,9 @@ if ($mysqli->connect_errno) {
 }
 
 $foto_compartida = 'userfiles/' . $dni . '.jpg';
-$query = "INSERT INTO cusquena_user(`names`, `lastname1`, `lastname2`, `birthdate`, `dni`, 
-    `email`, `cellphone`, `notifications`, `fb_id`, `fb_data`, `invited_friends`, `board_name`, 
-    `shared_picture`) VALUES ('$nombre', '$apellido_paterno', '$apellido_materno', "
-        . "'" . $ano . "-" . $mes . "-" . $dia . "', '$dni', '$email', '$cell', '$notificaciones', "
-        . "'" . $fb_data['id'] . "', '" . json_encode($fb_data) . "', '" . json_encode($fb_data['friends']) . "', "
-        . "'" . $nombre_mesa . "', '" . $foto_compartida . "')";
+$query = "UPDATE cusquena_user SET `fb_id` = '" . $fb_data['id'] . "', `fb_data` = '" . json_encode($fb_data) . "', "
+        . "`invited_friends` = '" . json_encode($fb_data['friends']) . "', `board_name` = '" . $nombre_mesa . "', "
+        . "`shared_picture` = '" . $foto_compartida . "', `in_campaign` = 1 WHERE dni = " . $dni;
 $mysqli->query($query);
 
 $background = imagecreatefromjpeg("img/mesa-post-2.jpg");

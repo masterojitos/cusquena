@@ -1,10 +1,32 @@
 <?php
-header('Content-Type: application/json');
-$dni = filter_input(INPUT_POST, 'dni', FILTER_SANITIZE_NUMBER_INT);
+header('Content-Type: application/json; charset=utf-8');
 
+$nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
+$apellido_paterno = filter_input(INPUT_POST, 'apellido_paterno', FILTER_SANITIZE_STRING);
+$apellido_materno = filter_input(INPUT_POST, 'apellido_materno', FILTER_SANITIZE_STRING);
+$dia = filter_input(INPUT_POST, 'dia', FILTER_SANITIZE_NUMBER_INT);
+$mes = filter_input(INPUT_POST, 'mes', FILTER_SANITIZE_NUMBER_INT);
+$ano = filter_input(INPUT_POST, 'ano', FILTER_SANITIZE_NUMBER_INT);
+$dni = filter_input(INPUT_POST, 'dni', FILTER_SANITIZE_NUMBER_INT);
+$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
+$cell = filter_input(INPUT_POST, 'cell', FILTER_SANITIZE_NUMBER_INT);
+$notificaciones = filter_input(INPUT_POST, 'notificaciones', FILTER_SANITIZE_NUMBER_INT);
+
+$regex_name = "/^[a-zA-Z ñáéíóú äöüÄÖÜß]{2,80}$/";
 $regex_dni = "/^[0-9]{8}$/";
-if (!preg_match($regex_dni, $dni)) {
-    echo json_encode(array('error' => "Datos invalidos."));
+$regex_email = "/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/";
+$regex_cell = "/^[0-9]{9}$/";
+if (
+        !preg_match($regex_name, $nombre) || 
+        !preg_match($regex_name, $apellido_paterno) || 
+        !preg_match($regex_name, $apellido_materno) || 
+        !checkdate($mes, $dia, $ano) || 
+        !preg_match($regex_dni, $dni) || 
+        !filter_var($email, FILTER_VALIDATE_EMAIL) || 
+        !preg_match($regex_cell, $cell) || 
+        ($notificaciones !== '0' && $notificaciones !== '1')
+    ) {
+    echo json_encode(array('error' => "Datos Invalidos."));
     exit;
 }
 
@@ -29,5 +51,10 @@ $row = $result->fetch_assoc();
 if ($row['birthdate'] !== NULL) {
     echo json_encode(array('cumpleanos' => $row['birthdate']));exit;
 } else {
-    echo json_encode(array('success' => "El usuario no existe."));exit;
+    $query = "INSERT INTO cusquena_user(`names`, `lastname1`, `lastname2`, `birthdate`, `dni`, 
+        `email`, `cellphone`, `notifications`, `created_at`) VALUES ('" . utf8_decode($nombre) . "', '"
+            . utf8_decode($apellido_paterno) . "', '" . utf8_decode($apellido_materno) . "', '"
+            . $ano . "-" . $mes . "-" . $dia . "', '$dni', '$email', '$cell', '$notificaciones', NOW())";
+    $mysqli->query($query);
+    echo json_encode(array('success' => "Datos de usuario guardados."));exit;
 }

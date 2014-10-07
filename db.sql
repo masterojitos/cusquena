@@ -21,7 +21,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `cusquena_user` (
-`id` int(9) NOT NULL,
+  `id` int(9) NOT NULL AUTO_INCREMENT,
   `names` varchar(80) NOT NULL,
   `lastname1` varchar(80) NOT NULL,
   `lastname2` varchar(80) NOT NULL,
@@ -35,25 +35,10 @@ CREATE TABLE IF NOT EXISTS `cusquena_user` (
   `invited_friends` varchar(255) DEFAULT NULL,
   `board_name` varchar(30) DEFAULT NULL,
   `shared_picture` varchar(100) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `cusquena_user`
---
-ALTER TABLE `cusquena_user`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `dni` (`dni`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `cusquena_user`
---
-ALTER TABLE `cusquena_user`
-MODIFY `id` int(9) NOT NULL AUTO_INCREMENT;
+  `in_campaign` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `dni` (`dni`),
+  KEY `in_campaign` (`in_campaign`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;

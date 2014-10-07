@@ -88,7 +88,7 @@ $(document).on("ready", function() {
            this.setDate(parseInt(matches[3]));
         }
         return this;
-    }; 
+    };
     $("#boton_siguiente").on("click", function(e) {
         e.preventDefault();
         form = $("section.section-formulario");
@@ -131,7 +131,7 @@ $(document).on("ready", function() {
         }else if(!nameregex.test(apellido_materno.val()) || apellido_materno.val() === ""){
             form.find("div.error").text("El dato que ingresaste es incorrecto o inválido.");
             apellido_materno.focus().prev().addClass('error');
-        }else if(isNaN(new_date.getTime()) || calcular_edad(new_date) < 1 || calcular_edad(new_date) > 99){
+        }else if(((new_date.getMonth() +1 != mes.val()) || (new_date.getDate() != dia.val()) || (new_date.getFullYear() != ano.val())) || calcular_edad(new_date) < 1 || calcular_edad(new_date) > 99){
             form.find("div.error").text("El dato que ingresaste es incorrecto o inválido.");
             dia.prev().addClass('error');
             mes.prev().addClass('error');
@@ -154,7 +154,9 @@ $(document).on("ready", function() {
             form.find("div.error").text("Debe aceptar los términos y condiciones.");
             terminos.addClass('error');
         }else {
-            $.post('verificar_dni.php', {dni: dni.val()})
+            var form_data = $("#formulario_datos_personales").serialize();
+            form_data += "&notificaciones=" + ($("#noticias_check").hasClass('checked') ? 1 : 0);
+            $.post('verificar_dni.php', form_data)
             .done(function(response) {
                 if(response.success) {
                     $("main").animate({'background-position': '-1622px'}, 1000, function() {
@@ -233,6 +235,8 @@ $(document).on("ready", function() {
         $(this).addClass('hidden').next().removeClass('hidden');
         $("#boton_unpasomas").addClass('hidden');
         $("#boton_unpasomas_inactivo").removeClass('hidden');
+        selected_friend = $(this).parent();
+        $(".bt-fs-dialog").trigger("click");
     });
     $("#boton_unpasomas").on("click", function(e) {
         e.preventDefault();
@@ -273,8 +277,7 @@ $(document).on("ready", function() {
         validar_boton_listo(function() {
             $("#mesa_roja").append("<img src='img/loading.gif' class='loading' />");
             $("#boton_listo, #boton_regresar").hide();
-            form_data = $("#formulario_datos_personales").serialize();
-            form_data += "&notificaciones=" + ($("#noticias_check").hasClass('checked') ? 1 : 0);
+            form_data = "dni=" + $("#formulario_datos_personales input[name=dni]").val();
             form_data += "&facebook=" + encodeURIComponent($.param(User)) + "&nombre_mesa=" + $("#nombre_mesa").val();
             $.ajax({
                 type: 'post',
