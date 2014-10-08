@@ -105,7 +105,7 @@ $(document).on("ready", function() {
         var fecha_ingresada = ano.val() + "-" + mes.val() + "-" + dia.val();
         var new_date = (new Date()).parseISO8601(fecha_ingresada);
         var terminos = $("#terminos_check");
-        var nameregex = /^([a-zA-Z ñáéíóú äöüÄÖÜß]{2,80})$/;
+        var nameregex = /^([a-zA-Z ñáéíóúüÑÁÉÍÓÚÜ]{2,80})$/;
         var dniregex = /^[0-9]{8,8}$/;
         var emailregex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         var numberregex = /^[0-9]{9,9}$/;
@@ -137,7 +137,7 @@ $(document).on("ready", function() {
             mes.prev().addClass('error');
             ano.prev().addClass('error');
         }else if(calcular_edad(new_date) < 18){
-            form.find(".error").text("Debes ser mayor de edad para participar de la campaña.");
+            form.find("div.error").text("Debes ser mayor de edad para participar de la campaña.");
             dia.prev().addClass('error');
             mes.prev().addClass('error');
             ano.prev().addClass('error');
@@ -151,7 +151,7 @@ $(document).on("ready", function() {
             form.find("div.error").text("El dato que ingresaste es incorrecto o inválido.");
             cell.focus().prev().addClass('error');
         }else if(!terminos.hasClass('checked')){
-            form.find("div.error").text("Debe aceptar los términos y condiciones.");
+            form.find("div.error").text("Debe aceptar los Términos y Condiciones.");
             terminos.addClass('error');
         }else {
             var form_data = $("#formulario_datos_personales").serialize();

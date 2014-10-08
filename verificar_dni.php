@@ -12,7 +12,7 @@ $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
 $cell = filter_input(INPUT_POST, 'cell', FILTER_SANITIZE_NUMBER_INT);
 $notificaciones = filter_input(INPUT_POST, 'notificaciones', FILTER_SANITIZE_NUMBER_INT);
 
-$regex_name = "/^[a-zA-Z ñáéíóú äöüÄÖÜß]{2,80}$/";
+$regex_name = "/^[a-zA-Z ñáéíóúüÑÁÉÍÓÚÜ]{2,80}$/";
 $regex_dni = "/^[0-9]{8}$/";
 $regex_email = "/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/";
 $regex_cell = "/^[0-9]{9}$/";
