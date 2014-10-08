@@ -9,6 +9,6 @@ var cusquena_config = {
     },
     share: {
         caption: 'Oktoberfest Cusqueña',
-        description: '¿Ya estás participando por la Mesa Roja de Cusqueña? Qué esperas para ganarte lo mejor del Oktoberfest! Participa aquí ' + cusquena_config.webapp_url
+        description: '¿Ya estás participando por la Mesa Roja de Cusqueña? Qué esperas para ganarte lo mejor del Oktoberfest! Participa aquí '
     }
 };

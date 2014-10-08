@@ -315,7 +315,7 @@ $(document).on("ready", function() {
         FB.ui({
             method: 'feed',
             caption: cusquena_config.share.caption,
-            description: cusquena_config.share.description,
+            description: cusquena_config.share.description + cusquena_config.webapp_url,
             link: cusquena_config.webapp_url,
             picture: cusquena_config.website_url + 'img/oktoberfest.jpg'
         }, function(){});
