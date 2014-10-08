@@ -50,6 +50,7 @@ if (isset($_REQUEST['signed_request'])) {
         <link rel="stylesheet" href="css/friends_selector.css" />
         <link rel="stylesheet" href="css/main.css" />
         <link rel="stylesheet" href="css/sprite.css" />
+        <link rel="stylesheet" href="css/fonts.css" />
         <link rel="stylesheet" href="css/custom.css" />
             
         <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
@@ -135,7 +136,7 @@ if (isset($_REQUEST['signed_request'])) {
                                 </div>
                             </div>
                             <div class="cusquena-input">
-                                <label>Correo Electronico:</label>
+                                <label>Correo Electrónico:</label>
                                 <div>
                                     <div class="border"></div>
                                     <input type="text" name="email" />
@@ -154,7 +155,7 @@ if (isset($_REQUEST['signed_request'])) {
                                     <i class="check_button" id="terminos_check"></i><span>ACEPTO </span><a href="#" class="boton-terminos-y-condiciones">Términos y Condiciones</a>
                                 </div>
                                 <div>
-                                    <i class="check_button" id="noticias_check"></i><span>ACEPTO </span><a href="#">Recibir noticias por email y SMS</a>
+                                    <i class="check_button" id="noticias_check"></i><span>ACEPTO </span>Recibir noticias por email y SMS
                                 </div>
                             </div>
                         </form>

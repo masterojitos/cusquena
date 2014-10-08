@@ -1,1 +1,96 @@
-@font-face{font-family:"BebasNeue";src:url("../fonts/BebasNeue.otf") format("truetype")}@font-face{font-family:"Calibri";font-style:normal;font-weight:300;src:url("../fonts/calibril.ttf") format("truetype")}@font-face{font-family:"Calibri";font-style:normal;font-weight:400;src:url("../fonts/calibri.ttf") format("truetype")}@font-face{font-family:"Calibri";font-style:normal;font-weight:700;src:url("../fonts/calibrib.ttf") format("truetype")}@font-face{font-family:"Calibri";font-style:italic;font-weight:300;src:url("../fonts/calibrili.ttf") format("truetype")}@font-face{font-family:"Calibri";font-style:italic;font-weight:400;src:url("../fonts/calibrii.ttf") format("truetype")}@font-face{font-family:"Calibri";font-style:italic;font-weight:700;src:url("../fonts/calibriz.ttf") format("truetype")}@font-face{font-family:"ZURCHLC";font-weight:400;src:url("../fonts/ZURCHLC.ttf") format("truetype")}@font-face{font-family:"ZURCHLC";font-style:italic;font-weight:400;src:url("../fonts/ZURCHLCI.ttf") format("truetype")}
+@font-face {
+    font-family: 'BebasNeue';
+    src: url('../fonts/bebasneue-webfont.eot');
+    src: url('../fonts/bebasneue-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/bebasneue-webfont.woff2') format('woff2'),
+        url('../fonts/bebasneue-webfont.woff') format('woff'),
+        url('../fonts/bebasneue-webfont.ttf') format('truetype'),
+        url('../fonts/bebasneue-webfont.svg#BebasNeue') format('svg');
+}
+@font-face {
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 300;
+    src: url('../fonts/calibril-webfont.eot');
+    src: url('../fonts/calibril-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/calibril-webfont.woff2') format('woff2'),
+        url('../fonts/calibril-webfont.woff') format('woff'),
+        url('../fonts/calibril-webfont.ttf') format('truetype'),
+        url('../fonts/calibril-webfont.svg#Calibri') format('svg');
+}
+@font-face {
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/calibri-webfont.eot');
+    src: url('../fonts/calibri-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/calibri-webfont.woff2') format('woff2'),
+        url('../fonts/calibri-webfont.woff') format('woff'),
+        url('../fonts/calibri-webfont.ttf') format('truetype'),
+        url('../fonts/calibri-webfont.svg#Calibri') format('svg');
+}
+@font-face {
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/calibrib-webfont.eot');
+    src: url('../fonts/calibrib-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/calibrib-webfont.woff2') format('woff2'),
+        url('../fonts/calibrib-webfont.woff') format('woff'),
+        url('../fonts/calibrib-webfont.ttf') format('truetype'),
+        url('../fonts/calibrib-webfont.svg#Calibri') format('svg');
+}
+@font-face {
+    font-family: 'Calibri';
+    font-style: italic;
+    font-weight: 300;
+    src: url('../fonts/calibrili-webfont.eot');
+    src: url('../fonts/calibrili-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/calibrili-webfont.woff2') format('woff2'),
+        url('../fonts/calibrili-webfont.woff') format('woff'),
+        url('../fonts/calibrili-webfont.ttf') format('truetype'),
+        url('../fonts/calibrili-webfont.svg#Calibri') format('svg');
+}
+@font-face {
+    font-family: 'Calibri';
+    font-style: italic;
+    font-weight: 400;
+    src: url('../fonts/calibrii-webfont.eot');
+    src: url('../fonts/calibrii-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/calibrii-webfont.woff2') format('woff2'),
+        url('../fonts/calibrii-webfont.woff') format('woff'),
+        url('../fonts/calibrii-webfont.ttf') format('truetype'),
+        url('../fonts/calibrii-webfont.svg#Calibri') format('svg');
+}
+@font-face {
+    font-family: 'Calibri';
+    font-style: italic;
+    font-weight: 700;
+    src: url('../fonts/calibriz-webfont.eot');
+    src: url('../fonts/calibriz-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/calibriz-webfont.woff2') format('woff2'),
+        url('../fonts/calibriz-webfont.woff') format('woff'),
+        url('../fonts/calibriz-webfont.ttf') format('truetype'),
+        url('../fonts/calibriz-webfont.svg#Calibri') format('svg');
+}
+@font-face {
+    font-family: 'ZURCHLC';
+    font-weight: 400;
+    src: url('../fonts/zurchlc-webfont.eot');
+    src: url('../fonts/zurchlc-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/zurchlc-webfont.woff2') format('woff2'),
+        url('../fonts/zurchlc-webfont.woff') format('woff'),
+        url('../fonts/zurchlc-webfont.ttf') format('truetype'),
+        url('../fonts/zurchlc-webfont.svg#ZURCHLC') format('svg');
+}
+@font-face {
+    font-family: 'ZURCHLC';
+    font-style: italic;
+    font-weight: 400;
+    src: url('../fonts/zurchlci-webfont.eot');
+    src: url('../fonts/zurchlci-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/zurchlci-webfont.woff2') format('woff2'),
+        url('../fonts/zurchlci-webfont.woff') format('woff'),
+        url('../fonts/zurchlci-webfont.ttf') format('truetype'),
+        url('../fonts/zurchlci-webfont.svg#ZURCHLC') format('svg');
+}
