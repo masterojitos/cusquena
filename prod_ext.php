@@ -1,3 +1,27 @@
+<?php
+require_once 'config.php';
+function base64_url_decode($input) {
+    return base64_decode(strtr($input, '-_', '+/'));
+}
+function parse_signed_request($signed_request) {
+    list($encoded_sig, $payload) = explode('.', $signed_request, 2);
+    $secret = $cusquena_config['webapp_secret'];
+    $sig = base64_url_decode($encoded_sig);
+    $data = json_decode(base64_url_decode($payload), true);
+    $expected_sig = hash_hmac('sha256', $payload, $secret, $raw = true);
+    if ($sig !== $expected_sig) {
+        error_log('Bad Signed JSON signature!');
+        return null;
+    }
+    return $data;
+}
+if (isset($_REQUEST['signed_request'])) {
+    $signed_request = parse_signed_request($_REQUEST['signed_request']);
+    $liked_page = $signed_request['page']['liked'];
+} else {
+    $liked_page = true;
+}
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html lang="es" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="es" class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -6,27 +30,19 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Oktoberfest Cusqueña</title>
-        <meta name="description" content="¡Tú arma la comitiva, Cusqueña pone la Mesa Roja! Participa y disfruta lo mejor del Oktoberfest." />
+        <title><?php echo $cusquena_config['title_page']; ?></title>
+        <meta name="description" content="<?php echo $cusquena_config['title_description']; ?>" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta property="og:title" content="Oktoberfest Cusqueña" />
+        <meta property="og:title" content="<?php echo $cusquena_config['title_page']; ?>" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="http://www.teclalabs.com/alpha/Phantasia/Cusquena/" />
-        <meta property="og:image" content="http://www.teclalabs.com/alpha/Phantasia/Cusquena/img/oktoberfest.jpg" />
-        <meta property="og:description" content="¡Tú arma la comitiva, Cusqueña pone la Mesa Roja! Participa y disfruta lo mejor del Oktoberfest." />
-        <meta property="og:site_name" content="Oktoberfest Cusqueña" />
+        <meta property="og:url" content="<?php echo $cusquena_config['website_url']; ?>" />
+        <meta property="og:image" content="<?php echo $cusquena_config['website_url']; ?>img/oktoberfest.jpg" />
+        <meta property="og:description" content="<?php echo $cusquena_config['title_description']; ?>" />
+        <meta property="og:site_name" content="<?php echo $cusquena_config['site_name']; ?>" />
         <meta property="og:locale" content="es_LA" />
-        <meta property="fb:app_id" content="147666458740407" />
-
+        <meta property="fb:app_id" content="<?php echo $cusquena_config['webapp_id']; ?>" />
         <link type="text/plain" rel="author" href="humans.txt" />
-
-        <link rel="stylesheet" href="css/normalize.css" />
-        <link rel="stylesheet" href="css/nanoscroller.css" />
-        <link rel="stylesheet" href="css/friends_selector.css" />
-        <link rel="stylesheet" href="css/main.css" />
-        <link rel="stylesheet" href="css/sprite.css" />
-        <link rel="stylesheet" href="css/custom.css" />
-            
+        <link rel="stylesheet" href="css/prod.css" />
         <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
         <script>window.Modernizr || document.write('<script src="js/vendor/modernizr-2.8.3.min.js"><\/script>');</script>
     </head>
@@ -34,11 +50,10 @@
         <!--[if lt IE 8]>
             <p class="browsehappy">Estás usando un navegador <strong>desactualizado</strong>. Por favor <a href="http://browsehappy.com/">actualiza tu navegador</a> para mejorar tu experiencia.</p>
         <![endif]-->
-
-        <a href="#" class="cusquena-icon boton-que-gano" id="boton_que_gano"></a>
+        <a href="#" class="cusquena-icon boton-que-gano<?php if (!$liked_page) { echo ' hidden'; } ?>" id="boton_que_gano"></a>
         <div class="container">
             <main>
-                <section class="section-no-fan hidden">
+                <section class="section-no-fan<?php if ($liked_page) { echo ' hidden'; } ?>">
                     <div class="space"></div>
                     <article>
                         <img src="img/logo.png" alt="OKTOBERFEST CUSQUEÑA" class="top-logo" width="250" height="201" />
@@ -47,7 +62,7 @@
                         <span class="enunciado">PRIMERO DEBES<br />SER FAN!</span>
                     </article>
                     <footer>
-                        DALE <span class="enunciado like-page">&ldquo;ME GUSTA&rdquo;</span><br />A NUESTRO FAN PAGE
+                        DALE <span class="enunciado">&ldquo;ME GUSTA&rdquo;</span><br />A NUESTRO FAN PAGE
                     </footer>
                 </section>
                 <section class="section-fan">
@@ -195,7 +210,7 @@
                 </section>
                 <section class="section-inscrito">
                     <article>
-                        <span class="enunciado little">YA ESTAS PATICIPANDO</span><br/>
+                        <span class="enunciado little">YA ESTÁS PARTICIPANDO</span><br/>
                         <span class="enunciado little">EN TU MESA</span><br/>
                         <span class="enunciado white" id="nombre_ingresado">"CAMPEONES"</span><br/>
                     </article>
@@ -286,13 +301,12 @@
             </footer>
         </div>
         <div id="fb-root"></div>
-
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>');</script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.nanoscroller/0.8.4/javascripts/jquery.nanoscroller.min.js"></script>
         <script>$.fn.nanoScroller || document.write('<script src="js/vendor/jquery.nanoscroller.min.js"><\/script>');</script>
-        <script src="js/vendor/jquery.friend.selector-1.2.1.min.js"></script>
-        <script src="js/main.js"></script>
+        <script src="js/config.js"></script>
+        <script src="js/prod.js"></script>
         <a href="#" class="bt-fs-dialog hidden"></a>
     </body>
 </html>

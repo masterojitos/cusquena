@@ -5,11 +5,9 @@ function base64_url_decode($input) {
 }
 function parse_signed_request($signed_request) {
     list($encoded_sig, $payload) = explode('.', $signed_request, 2);
-    $secret = "5ced0588e0795ac502b279cbb2b0709a"; //Use your app secret here
-    // decode the data
+    $secret = $cusquena_config['webapp_secret'];
     $sig = base64_url_decode($encoded_sig);
     $data = json_decode(base64_url_decode($payload), true);
-    // confirm the signature
     $expected_sig = hash_hmac('sha256', $payload, $secret, $raw = true);
     if ($sig !== $expected_sig) {
         error_log('Bad Signed JSON signature!');
@@ -32,7 +30,7 @@ if (isset($_REQUEST['signed_request'])) {
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title><?php echo $cusquena_config['website_url']; ?></title>
+        <title><?php echo $cusquena_config['title_page']; ?></title>
         <meta name="description" content="<?php echo $cusquena_config['title_description']; ?>" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta property="og:title" content="<?php echo $cusquena_config['title_page']; ?>" />
