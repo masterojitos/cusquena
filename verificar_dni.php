@@ -1,4 +1,5 @@
 <?php
+require_once 'config.php';
 header('Content-Type: application/json; charset=utf-8');
 
 $nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
@@ -36,12 +37,12 @@ function get_domain($url) {
     return $url_parts[0];
 }
 $domain = get_domain(filter_input(INPUT_SERVER, 'HTTP_REFERER'));
-if ($domain !== "facebook.com" && $domain !== "teclalabs.com" && $domain !== "localhost" && $domain !== "cusquena.dev") {
+if (!in_array($domain, $cusquena_config['allowed_domains'])) {
     echo json_encode(array('error' => "Acceso no permitido."));
     exit;
 }
 
-$mysqli = new mysqli("localhost", "root", "root", "cusquena");
+$mysqli = new mysqli($cusquena_config['database']['server_name'], $cusquena_config['database']['username'], $cusquena_config['database']['password'], $cusquena_config['database']['name_db']);
 if ($mysqli->connect_errno) {
     echo json_encode(array('error' => "Error de conexión."));
     exit;

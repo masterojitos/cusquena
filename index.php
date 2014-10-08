@@ -1,4 +1,5 @@
 <?php
+require_once 'config.php';
 function base64_url_decode($input) {
     return base64_decode(strtr($input, '-_', '+/'));
 }
@@ -31,17 +32,17 @@ if (isset($_REQUEST['signed_request'])) {
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Oktoberfest Cusqueña</title>
-        <meta name="description" content="¡Tú arma la comitiva, Cusqueña pone la Mesa Roja! Participa y disfruta lo mejor del Oktoberfest." />
+        <title><?php echo $cusquena_config['website_url']; ?></title>
+        <meta name="description" content="<?php echo $cusquena_config['title_description']; ?>" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta property="og:title" content="Oktoberfest Cusqueña" />
+        <meta property="og:title" content="<?php echo $cusquena_config['title_page']; ?>" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="http://www.teclalabs.com/alpha/Phantasia/Cusquena/" />
-        <meta property="og:image" content="http://www.teclalabs.com/alpha/Phantasia/Cusquena/img/oktoberfest.jpg" />
-        <meta property="og:description" content="¡Tú arma la comitiva, Cusqueña pone la Mesa Roja! Participa y disfruta lo mejor del Oktoberfest." />
-        <meta property="og:site_name" content="Oktoberfest Cusqueña" />
+        <meta property="og:url" content="<?php echo $cusquena_config['website_url']; ?>" />
+        <meta property="og:image" content="<?php echo $cusquena_config['website_url']; ?>img/oktoberfest.jpg" />
+        <meta property="og:description" content="<?php echo $cusquena_config['title_description']; ?>" />
+        <meta property="og:site_name" content="<?php echo $cusquena_config['site_name']; ?>" />
         <meta property="og:locale" content="es_LA" />
-        <meta property="fb:app_id" content="147666458740407" />
+        <meta property="fb:app_id" content="<?php echo $cusquena_config['webapp_id']; ?>" />
 
         <link type="text/plain" rel="author" href="humans.txt" />
 
@@ -318,6 +319,7 @@ if (isset($_REQUEST['signed_request'])) {
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.nanoscroller/0.8.4/javascripts/jquery.nanoscroller.min.js"></script>
         <script>$.fn.nanoScroller || document.write('<script src="js/vendor/jquery.nanoscroller.min.js"><\/script>');</script>
         <script src="js/vendor/jquery.friend.selector-1.2.1.min.js"></script>
+        <script src="js/config.js"></script>
         <script src="js/main.js"></script>
         <a href="#" class="bt-fs-dialog hidden"></a>
     </body>

@@ -27,10 +27,8 @@ $(document).on("ready", function() {
     $.ajaxSetup({cache: true});
     var facebook_status = 0, User = {};
     var user_picture = 'https://graph.facebook.com/$user_id/picture?width=100&height=100';
-    var website_url = 'http://www.teclalabs.com/alpha/Phantasia/Cusquena/';
-    var webapp_url = 'http://www.facebook.com/masterojitos.apps/app_147666458740407';
     $.getScript('//connect.facebook.net/es_LA/all.js', function () {
-        FB.init({appId: 147666458740407, status: true, cookie: true, xfbml: true});
+        FB.init({appId: cusquena_config.webapp_id, status: true, cookie: true, xfbml: true});
         FB.getLoginStatus(function(response) {
             if (response.status === 'connected') {
                 setUserData();
@@ -300,12 +298,11 @@ $(document).on("ready", function() {
         $("#mesa_roja .loading").hide().remove();
         $(".imagen-recuadro").css("background-image", "url()");
         FB.api('/me/feed', 'post', {
-            description: '¡Tú arma la comitiva, Cusqueña pone la Mesa Roja! Participa y disfruta lo mejor del Oktoberfest. Tomar bebidas alcohólicas en exceso es dañino.',
-            link: webapp_url,
-            message: 'Yo ya armé mi comitiva para ir al Oktoberfest. ¡Arma la tuya y participa por una Mesa Roja!',
-            picture: website_url + 'userfiles/' + $("#formulario_datos_personales input[name=dni]").val() + '.jpg',
-            place: '288369631370316',
-            privacy: {value: 'SELF'}, //temporal
+            description: cusquena_config.post.description,
+            link: cusquena_config.webapp_url,
+            message: cusquena_config.post.message,
+            picture: cusquena_config.website_url + 'userfiles/' + $("#formulario_datos_personales input[name=dni]").val() + '.jpg',
+            place: cusquena_config.webapp_pageid,
             tags: User.friends.join(",")
         }, function(){});
         $("section.section-mesa-roja footer").fadeOut(500).parent().find("article.colocar-nombre").animate({ marginTop: "-709px"}, 500, function() {
@@ -317,10 +314,10 @@ $(document).on("ready", function() {
         e.preventDefault();
         FB.ui({
             method: 'feed',
-            caption: 'Oktoberfest Cusqueña',
-            description: '¿Ya estás participando por la Mesa Roja de Cusqueña? Qué esperas para ganarte lo mejor del Oktoberfest! Participa aquí ' + webapp_url,
-            link: webapp_url,
-            picture: website_url + 'img/oktoberfest.jpg'
+            caption: cusquena_config.share.caption,
+            description: cusquena_config.share.description,
+            link: cusquena_config.webapp_url,
+            picture: cusquena_config.website_url + 'img/oktoberfest.jpg'
         }, function(){});
     });
     $("#boton_que_gano, .boton-terminos-y-condiciones").on("click", function(e) {
