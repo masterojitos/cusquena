@@ -10,9 +10,10 @@
 # SITE
     
     Cerveza Cusqueña Perú -- @cusquenaperu -- fb/cervezacusquena
-    Last update: 2014/10/05
+    Website: https://apps.facebook.com/cusquena-oktoberfest/
+    Last update: 2014/10/10
     Language: Español
     IDE: NetBeans 8.0.1
     Standards: HTML5, CSS3
     Components: HTML5 Boilerplate, Normalize.css, SASS, Modernizr, 
-    jQuery, Ajax, Velocity, nanoScroller
+    jQuery, Ajax, nanoScroller, jquery.friend.selector
