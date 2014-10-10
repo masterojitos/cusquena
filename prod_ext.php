@@ -215,7 +215,7 @@ if (isset($_REQUEST['signed_request'])) {
                         <span class="enunciado white" id="nombre_ingresado">"CAMPEONES"</span><br/>
                     </article>
                     <footer>
-                        <a href="#" class="cusquena-icon boton-compartir" id="boton_compartir"></a>
+                        <a href="#" class="cusquena-icon boton-comparte-el-concurso" id="boton_compartir"></a>
                     </footer>
                 </section>
                 <section class="section-terminos-y-condiciones">
@@ -270,11 +270,13 @@ if (isset($_REQUEST['signed_request'])) {
                     <article>
                         <img class="top-logo" src="img/mesa-roja-cusquena.png" alt="MESA ROJA" width="393" height="210" />
                         <span class="enunciado">¿QUÉ GANO?</span><br /><br />
-                        <span class="enunciado white">8 entradas para </span><span class="enunciado">OKTOBERFEST</span>
+                        <span class="enunciado white">Una mesa roja reservada</span><br />
+                        <span class="enunciado">en el OKTOBERFEST</span>
                         <ul class="premios">
-                            <li>Comida y Cerveza gratis en el Festival</li>
-                            <li>KIT Oktoberfest</li>
-                            <li>6 packs de LATAS ROJA</li>
+                            <li><span>&bull;</span><strong>8 entradas</strong> para el festival</li>
+                            <li><span>&bull;</span><strong>8 tickets</strong> de comida</li>
+                            <li><span>&bull;</span><strong>32 vasos</strong> de <strong>Cusqueña Roja</strong></li>
+                            <li><span>&bull;</span>kit <strong>Oktoberfest</strong></li>
                         </ul>
                     </article>
                     <footer>
