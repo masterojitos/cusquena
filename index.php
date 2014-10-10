@@ -225,7 +225,7 @@ if (isset($_REQUEST['signed_request'])) {
                         <span class="enunciado white" id="nombre_ingresado">"CAMPEONES"</span><br/>
                     </article>
                     <footer>
-                        <a href="#" class="cusquena-icon boton-compartir" id="boton_compartir"></a>
+                        <a href="#" class="cusquena-icon boton-comparte-el-concurso" id="boton_compartir"></a>
                     </footer>
                 </section>
                 <section class="section-terminos-y-condiciones">

@@ -22,3 +22,5 @@
 .cusquena-icon.boton-listo-inactivo { background-position: -2619px 0px; width: 129px; height: 44px;  } 
 .cusquena-icon.boton-participa { background-position: -2748px 0px; width: 137px; height: 52px;  } 
 .cusquena-icon.boton-participa:hover { background-position: -2885px 0px; width: 137px; height: 52px;  } 
+.cusquena-icon.boton-comparte-el-concurso { background-position: 0px -75px; width: 220px; height: 52px;  } 
+.cusquena-icon.boton-comparte-el-concurso:hover { background-position: -221px -75px; width: 220px; height: 52px;  } 
