@@ -1,61 +1,59 @@
-# [HTML5 Boilerplate](http://html5boilerplate.com)
-
-HTML5 Boilerplate is a professional front-end template for building fast,
-robust, and adaptable web apps or sites.
-
-This project is the product of many years of iterative development and combined
-community knowledge. It does not impose a specific development philosophy or
-framework, so you're free to architect your code in the way that you want.
-
-* Source: [https://github.com/h5bp/html5-boilerplate](https://github.com/h5bp/html5-boilerplate)
-* Homepage: [http://html5boilerplate.com](http://html5boilerplate.com)
-* Twitter: [@h5bp](http://twitter.com/h5bp)
+# Cusqueña Oktoberfest App
 
 
-## Quick start
+## Paso a paso
 
-Choose one of the following options:
-
-1. Download the latest stable release from
-   [html5boilerplate.com](http://html5boilerplate.com/) or a custom build from
-   [Initializr](http://www.initializr.com).
-2. Clone the git repo — `git clone
-   https://github.com/h5bp/html5-boilerplate.git` - and checkout the tagged
-   release you'd like to use.
-
-
-## Features
-
-* HTML5 ready. Use the new elements with confidence.
-* Cross-browser compatible (Chrome, Opera, Safari, Firefox 3.6+, IE6+).
-* Designed with progressive enhancement in mind.
-* Includes [Normalize.css](http://necolas.github.com/normalize.css/) for CSS
-  normalizations and common bug fixes.
-* The latest [jQuery](http://jquery.com/) via CDN, with a local fallback.
-* The latest [Modernizr](http://modernizr.com/) build for feature detection.
-* IE-specific classes for easier cross-browser control.
-* Placeholder CSS Media Queries.
-* Useful CSS helpers.
-* Default print CSS, performance optimized.
-* Protection against any stray `console.log` causing JavaScript errors in
-  IE6/7.
-* An optimized Google Analytics snippet.
-* Apache server caching, compression, and other configuration defaults for
-  Grade-A performance.
-* Cross-domain Ajax and Flash.
-* "Delete-key friendly." Easy to strip out parts you don't need.
-* Extensive inline and accompanying documentation.
-
-
-## Documentation
-
-Take a look at the [documentation table of contents](doc/TOC.md). This
-documentation is bundled with the project, which makes it readily available for
-offline reading and provides a useful starting point for any documentation you
-want to write about your project.
+* Descargar y usar la estructura de [http://html5boilerplate.com/](http://html5boilerplate.com/)
+* Verificar en el [.htaccess](https://github.com/masterojitos/cusquena/blob/master/.htaccess) el mod_deflate para comprimir el contenido web desde apache:
+  * [http://www.pedroventura.com/linux/utilizar-mod_deflate-para-comprimir-contenido-web-desede-apache/](http://www.pedroventura.com/linux/utilizar-mod_deflate-para-comprimir-contenido-web-desede-apache/)
+* Verificar en el [.htaccess](https://github.com/masterojitos/cusquena/blob/master/.htaccess) el mod_expires para especificar la cache del navegador:
+  * [http://www.pedroventura.com/sysadmin/como-especificar-la-expiracion-de-imagenes-en-la-cache-del-navegador/](http://www.pedroventura.com/sysadmin/como-especificar-la-expiracion-de-imagenes-en-la-cache-del-navegador/)
+* Personalizar el archivo [.gitignore](https://github.com/masterojitos/cusquena/blob/master/.gitignore)
+* Personalizar el archivo [humans.txt](https://github.com/masterojitos/cusquena/blob/master/humans.txt)
+* Actualizar a la correspondiente versión de jQuery y normalize.css
+* Agregar libreria para lindo scroll: [http://jamesflorentino.github.io/nanoScrollerJS/](http://jamesflorentino.github.io/nanoScrollerJS/)
+* Agregar libreria para animaciones rapidas: [http://julian.com/research/velocity/](http://julian.com/research/velocity/)
+* Implementar CDN para librerias js: [https://cdnjs.com/](https://cdnjs.com/)
+* Personalizar la página de [error 404](https://github.com/masterojitos/cusquena/blob/master/404.html)
+* Colocar todas los recursos del proyecto (imagenes, [fuentes](https://github.com/masterojitos/cusquena/blob/master/css/fonts.css), etc)
+* Implementar la estructura html del proyecto
+  * Crear la carpeta sass y dentro el archivo [custom.sass](https://github.com/masterojitos/cusquena/blob/master/sass/custom.sass)
+  * Si es windows, instalar: [http://mhs.github.io/scout-app/](http://mhs.github.io/scout-app/)
+  * [http://sass-lang.com/guide](http://sass-lang.com/guide)
+  * [http://compass-style.org/examples/](http://compass-style.org/examples/)
+* Para sacar medidas de los mockups, se puede usar: [http://apps.pixlr.com/editor/](http://apps.pixlr.com/editor/)
+* Construir toda la maquetación y estilos de la web
+* Integrar el sdk de facebook:
+  * [https://developers.facebook.com/docs/javascript/quickstart/v2.1](https://developers.facebook.com/docs/javascript/quickstart/v2.1)
+* Construir un [SPRITE](https://github.com/masterojitos/cusquena/blob/master/css/sprite.css) para botones e iconos:
+  * [http://instantsprite.com/](http://instantsprite.com/)
+* Comprimir y combinar todos los recursos (pngs, javascripts, css y htmls):
+  * [http://compresspng.com/](http://compresspng.com/)
+  * [http://cssminifier.com/](http://cssminifier.com/)
+  * [http://javascript-minifier.com/](http://javascript-minifier.com/)
+  * [http://www.textfixer.com/html/compress-html-compression.php](http://www.textfixer.com/html/compress-html-compression.php)
+* Comprimir imagenes con el nuevo formato webp:
+  * [https://developers.google.com/speed/webp/](https://developers.google.com/speed/webp/)
+* Cachear el PHP:
+  * [http://www.posicionar-web.info/seo-avanzado/optimizacion-web-cache/](http://www.posicionar-web.info/seo-avanzado/optimizacion-web-cache/)
 
 
-## Contributing
+## Entornos de Trabajo
 
-Anyone and everyone is welcome to [contribute](CONTRIBUTING.md). Hundreds of
-developers have helped make the HTML5 Boilerplate what it is today.
+Modo de desarrollo:
+* [HTML](https://github.com/masterojitos/cusquena/blob/master/index.php)
+* [CSS]
+  * [css](https://github.com/masterojitos/cusquena/blob/master/css/custom.css)
+  * [sass](https://github.com/masterojitos/cusquena/blob/master/sass/custom.sass)
+* [JS](https://github.com/masterojitos/cusquena/blob/master/js/main.js)
+
+Modo de producción:
+* [HTML](https://github.com/masterojitos/cusquena/blob/master/prod.php)
+* [CSS](https://github.com/masterojitos/cusquena/blob/master/css/prod.css)
+* [JS](https://github.com/masterojitos/cusquena/blob/master/js/prod.js)
+
+
+## Configuración
+
+ * [https://github.com/masterojitos/cusquena/blob/master/js/config.js](https://github.com/masterojitos/cusquena/blob/master/js/config.js)
+ * [https://github.com/masterojitos/cusquena/blob/master/config.php](https://github.com/masterojitos/cusquena/blob/master/config.php)
