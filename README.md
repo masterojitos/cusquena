@@ -15,7 +15,7 @@
 * Agregar libreria para animaciones rapidas: [http://julian.com/research/velocity/](http://julian.com/research/velocity/)
 * Implementar CDN para librerias js: [https://cdnjs.com/](https://cdnjs.com/)
 * Personalizar la página de [error 404](https://github.com/masterojitos/cusquena/blob/master/404.html)
-* Colocar todas los recursos del proyecto (imagenes, [fuentes](https://github.com/masterojitos/cusquena/blob/master/css/fonts.css), etc)
+* Colocar todas los recursos del proyecto ([imágenes](https://github.com/masterojitos/cusquena/tree/master/img), [fuentes](https://github.com/masterojitos/cusquena/blob/master/css/fonts.css), etc)
 * Implementar la estructura html del proyecto
   * Crear la carpeta sass y dentro el archivo [custom.sass](https://github.com/masterojitos/cusquena/blob/master/sass/custom.sass)
   * Si es windows, instalar: [http://mhs.github.io/scout-app/](http://mhs.github.io/scout-app/)
@@ -42,9 +42,8 @@
 
 Modo de desarrollo:
 * [HTML](https://github.com/masterojitos/cusquena/blob/master/index.php)
-* [CSS]
-  * [css](https://github.com/masterojitos/cusquena/blob/master/css/custom.css)
-  * [sass](https://github.com/masterojitos/cusquena/blob/master/sass/custom.sass)
+* [CSS](https://github.com/masterojitos/cusquena/blob/master/css/custom.css)
+* [SASS](https://github.com/masterojitos/cusquena/blob/master/sass/custom.sass)
 * [JS](https://github.com/masterojitos/cusquena/blob/master/js/main.js)
 
 Modo de producción:
